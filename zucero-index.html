@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZUCERO — Modern Rituals Around Sweetness</title>
+  <style>
+/* ============================================
+   ZUCERO — Shared Design System
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500&display=swap');
+
+/* ── Tokens ── */
+:root {
+  --c-bg:       #F5F1E8;
+  --c-dark:     #1B1B1B;
+  --c-accent:   #8A6848;
+  --c-accent-lt:#B89A7A;
+  --c-muted:    #6B6356;
+  --c-rule:     #D8D0C4;
+  --c-surface:  #EDE8DE;
+
+  --f-display:  'Cormorant Garamond', Georgia, serif;
+  --f-body:     'Satoshi', system-ui, sans-serif;
+
+  --t-xs:   0.6875rem;
+  --t-sm:   0.8125rem;
+  --t-base: 1rem;
+  --t-md:   1.125rem;
+  --t-lg:   1.375rem;
+  --t-xl:   1.75rem;
+  --t-2xl:  2.25rem;
+  --t-3xl:  3rem;
+  --t-4xl:  4rem;
+  --t-5xl:  5.5rem;
+  --t-6xl:  7.5rem;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 220ms;
+  --dur-med: 400ms;
+  --dur-slow: 700ms;
+
+  --max-w: 1360px;
+  --pad-x: clamp(1.5rem, 5vw, 5rem);
+  --section-gap: clamp(5rem, 10vw, 9rem);
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: var(--c-bg);
+  color: var(--c-dark);
+  font-family: var(--f-body);
+  font-size: var(--t-base);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img, video { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; background: none; border: none; font: inherit; color: inherit; }
+ul { list-style: none; }
+
+/* ── Typography Utilities ── */
+.u-display {
+  font-family: var(--f-display);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+.u-label {
+  font-family: var(--f-body);
+  font-size: var(--t-xs);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+}
+.u-body-serif {
+  font-family: var(--f-display);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.55;
+}
+
+/* ── Navigation ── */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem var(--pad-x);
+  transition: background var(--dur-med) var(--ease-out),
+              backdrop-filter var(--dur-med) var(--ease-out),
+              padding var(--dur-med) var(--ease-out);
+}
+.nav.scrolled {
+  background: rgba(245, 241, 232, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--c-rule);
+}
+.nav__wordmark {
+  font-family: var(--f-display);
+  font-size: var(--t-xl);
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  color: var(--c-dark);
+}
+.nav__wordmark span { color: var(--c-accent); }
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+.nav__link {
+  font-size: var(--t-xs);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-dark);
+  position: relative;
+  padding-bottom: 2px;
+}
+.nav__link::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 1px;
+  background: var(--c-accent);
+  transition: width var(--dur-med) var(--ease-out);
+}
+.nav__link:hover::after,
+.nav__link.active::after { width: 100%; }
+.nav__cta {
+  font-size: var(--t-xs);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.6rem 1.5rem;
+  border: 1px solid var(--c-dark);
+  transition: background var(--dur-fast), color var(--dur-fast);
+}
+.nav__cta:hover {
+  background: var(--c-dark);
+  color: var(--c-bg);
+}
+.nav__menu-btn {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 4px;
+}
+.nav__menu-btn span {
+  display: block;
+  width: 24px; height: 1px;
+  background: var(--c-dark);
+  transition: transform var(--dur-med) var(--ease-out), opacity var(--dur-fast);
+}
+
+/* Mobile nav overlay */
+.nav__mobile {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--c-bg);
+  z-index: 99;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-med) var(--ease-out);
+}
+.nav__mobile.open {
+  opacity: 1;
+  pointer-events: all;
+}
+.nav__mobile .nav__link {
+  font-size: var(--t-2xl);
+  font-family: var(--f-display);
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  text-transform: none;
+}
+.nav__mobile .nav__link::after { display: none; }
+
+/* ── Image Placeholder ── */
+.img-placeholder {
+  background: var(--c-surface);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  color: var(--c-muted);
+  position: relative;
+  overflow: hidden;
+}
+.img-placeholder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 45%, rgba(138,104,72,0.04) 100%);
+}
+.img-placeholder__icon {
+  width: 36px; height: 36px;
+  opacity: 0.35;
+}
+.img-placeholder__label {
+  font-size: var(--t-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 500;
+  opacity: 0.55;
+}
+
+/* ── Buttons ── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: var(--t-xs);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 1.05rem 2.5rem;
+  background: var(--c-dark);
+  color: var(--c-bg);
+  transition: background var(--dur-fast), transform var(--dur-fast);
+}
+.btn-primary:hover {
+  background: var(--c-accent);
+  transform: translateY(-1px);
+}
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: var(--t-xs);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 1.05rem 2.5rem;
+  border: 1px solid var(--c-dark);
+  color: var(--c-dark);
+  transition: background var(--dur-fast), color var(--dur-fast), transform var(--dur-fast);
+}
+.btn-secondary:hover {
+  background: var(--c-dark);
+  color: var(--c-bg);
+  transform: translateY(-1px);
+}
+.btn-arrow::after {
+  content: '→';
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.btn-arrow:hover::after { transform: translateX(4px); }
+
+/* ── Section Structure ── */
+.section {
+  padding: var(--section-gap) var(--pad-x);
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+.section--full {
+  padding-left: var(--pad-x);
+  padding-right: var(--pad-x);
+  padding-top: var(--section-gap);
+  padding-bottom: var(--section-gap);
+}
+.section__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 3.5rem;
+}
+
+/* ── Horizontal Rule ── */
+.hr {
+  border: none;
+  border-top: 1px solid var(--c-rule);
+  margin: 0;
+}
+
+/* ── Footer ── */
+.footer {
+  background: var(--c-dark);
+  color: var(--c-bg);
+  padding: 5rem var(--pad-x) 2.5rem;
+}
+.footer__grid {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: 4rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid rgba(245,241,232,0.12);
+}
+.footer__wordmark {
+  font-family: var(--f-display);
+  font-size: var(--t-3xl);
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+  color: var(--c-bg);
+}
+.footer__wordmark span { color: var(--c-accent-lt); }
+.footer__tagline {
+  font-family: var(--f-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: var(--t-md);
+  color: rgba(245,241,232,0.55);
+  max-width: 22ch;
+  line-height: 1.6;
+}
+.footer__col-title {
+  font-size: var(--t-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: rgba(245,241,232,0.45);
+  margin-bottom: 1.5rem;
+}
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+.footer__link {
+  font-size: var(--t-sm);
+  color: rgba(245,241,232,0.7);
+  transition: color var(--dur-fast);
+}
+.footer__link:hover { color: var(--c-bg); }
+.footer__bottom {
+  max-width: var(--max-w);
+  margin: 2rem auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.footer__copy {
+  font-size: var(--t-xs);
+  color: rgba(245,241,232,0.35);
+  letter-spacing: 0.05em;
+}
+
+/* ── Scroll Reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity var(--dur-slow) var(--ease-out),
+              transform var(--dur-slow) var(--ease-out);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 100ms; }
+.reveal-delay-2 { transition-delay: 200ms; }
+.reveal-delay-3 { transition-delay: 320ms; }
+.reveal-delay-4 { transition-delay: 440ms; }
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .footer__grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
+}
+@media (max-width: 768px) {
+  .nav__links, .nav__cta { display: none; }
+  .nav__menu-btn { display: flex; }
+  .nav__mobile { display: flex; }
+  .footer__grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .section__header { flex-direction: column; gap: 1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+</style>
+  <style>
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      height: 100svh;
+      min-height: 640px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow: hidden;
+    }
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      background: var(--c-surface);
+    }
+    /* Textured golden gradient to suggest warmth, cane fields, raw sugar */
+    .hero__bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 80% at 70% 30%, rgba(180,140,90,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 60% at 20% 80%, rgba(138,104,72,0.1) 0%, transparent 55%),
+        linear-gradient(165deg, #EDE8DE 0%, #E4DDD0 40%, #D8CFC0 100%);
+    }
+    /* Grain texture overlay */
+    .hero__bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      background-size: 256px;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+    .hero__visual {
+      position: absolute;
+      top: 0; right: 0;
+      width: 58%;
+      height: 100%;
+    }
+    .hero__visual .img-placeholder {
+      width: 100%;
+      height: 100%;
+    }
+    .hero__visual .img-placeholder::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 35%;
+      height: 100%;
+      background: linear-gradient(to right, var(--c-surface), transparent);
+    }
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      padding: 0 var(--pad-x) clamp(4rem, 8vh, 7rem);
+      max-width: var(--max-w);
+      margin: 0 auto;
+      width: 100%;
+    }
+    .hero__eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 1s var(--ease-out) 0.2s forwards;
+    }
+    .hero__eyebrow-line {
+      width: 2.5rem; height: 1px;
+      background: var(--c-accent);
+    }
+    .hero__headline {
+      font-family: var(--f-display);
+      font-size: clamp(3.25rem, 7vw, var(--t-6xl));
+      font-weight: 300;
+      line-height: 0.97;
+      letter-spacing: -0.02em;
+      color: var(--c-dark);
+      max-width: 14ch;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 1.1s var(--ease-out) 0.38s forwards;
+    }
+    .hero__headline em {
+      font-style: italic;
+      color: var(--c-accent);
+    }
+    .hero__sub {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: var(--t-lg);
+      font-weight: 300;
+      color: var(--c-muted);
+      max-width: 36ch;
+      line-height: 1.5;
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: fadeUp 1.1s var(--ease-out) 0.52s forwards;
+    }
+    .hero__actions {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 1s var(--ease-out) 0.68s forwards;
+    }
+    .hero__scroll {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: var(--t-xs);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--c-muted);
+    }
+    .hero__scroll-line {
+      width: 1.5rem; height: 1px;
+      background: var(--c-muted);
+      animation: scrollPulse 2.4s ease-in-out infinite;
+    }
+
+    /* ── Marquee Strip ── */
+    .marquee-strip {
+      border-top: 1px solid var(--c-rule);
+      border-bottom: 1px solid var(--c-rule);
+      overflow: hidden;
+      padding: 1.1rem 0;
+      background: var(--c-bg);
+    }
+    .marquee-track {
+      display: flex;
+      gap: 0;
+      white-space: nowrap;
+      animation: marquee 28s linear infinite;
+    }
+    .marquee-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 2.5rem;
+      padding-right: 2.5rem;
+      font-size: var(--t-xs);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--c-muted);
+    }
+    .marquee-dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--c-accent);
+      flex-shrink: 0;
+    }
+
+    /* ── Philosophy ── */
+    .philosophy {
+      padding: var(--section-gap) var(--pad-x);
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .philosophy__text {}
+    .philosophy__pull {
+      font-family: var(--f-display);
+      font-size: clamp(2rem, 4vw, var(--t-4xl));
+      font-weight: 300;
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+      margin-bottom: 2rem;
+      color: var(--c-dark);
+    }
+    .philosophy__pull em {
+      font-style: italic;
+      color: var(--c-accent);
+    }
+    .philosophy__body {
+      font-size: var(--t-md);
+      color: var(--c-muted);
+      line-height: 1.75;
+      max-width: 42ch;
+    }
+    .philosophy__body + .philosophy__body { margin-top: 1rem; }
+    .philosophy__image {
+      aspect-ratio: 4/5;
+    }
+    .philosophy__image .img-placeholder { width: 100%; height: 100%; }
+    .philosophy__pillars {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+    .pillar {
+      border-top: 1px solid var(--c-rule);
+      padding-top: 1.25rem;
+    }
+    .pillar__title {
+      font-family: var(--f-display);
+      font-size: var(--t-lg);
+      font-weight: 400;
+      margin-bottom: 0.4rem;
+    }
+    .pillar__desc {
+      font-size: var(--t-sm);
+      color: var(--c-muted);
+      line-height: 1.6;
+    }
+
+    /* ── Collection Preview ── */
+    .collection-preview {
+      padding: var(--section-gap) var(--pad-x);
+      border-top: 1px solid var(--c-rule);
+    }
+    .collection-preview__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    .product-card {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .product-card__img {
+      aspect-ratio: 3/4;
+      overflow: hidden;
+    }
+    .product-card__img .img-placeholder {
+      width: 100%;
+      height: 100%;
+      transition: transform var(--dur-slow) var(--ease-out);
+    }
+    .product-card:hover .img-placeholder { transform: scale(1.035); }
+    .product-card__body {
+      padding: 1.75rem 0 0;
+    }
+    .product-card__name {
+      font-family: var(--f-display);
+      font-size: var(--t-2xl);
+      font-weight: 300;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.35rem;
+    }
+    .product-card__desc {
+      font-size: var(--t-sm);
+      color: var(--c-muted);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .product-card__price {
+      font-family: var(--f-display);
+      font-size: var(--t-md);
+      font-weight: 400;
+      color: var(--c-dark);
+    }
+    .product-card__tag {
+      position: absolute;
+      top: 1.25rem;
+      left: 1.25rem;
+      background: var(--c-dark);
+      color: var(--c-bg);
+      font-size: 0.6rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 500;
+      padding: 0.35rem 0.75rem;
+    }
+
+    /* ── Product Showcase (Full Bleed) ── */
+    .showcase {
+      padding: var(--section-gap) 0;
+      border-top: 1px solid var(--c-rule);
+      overflow: hidden;
+    }
+    .showcase__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+    }
+    .showcase-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      padding: 5rem 0;
+      border-bottom: 1px solid var(--c-rule);
+    }
+    .showcase-pair:last-of-type { border-bottom: none; }
+    .showcase-pair--reverse { direction: rtl; }
+    .showcase-pair--reverse > * { direction: ltr; }
+    .showcase-pair__img {
+      aspect-ratio: 1/1.1;
+    }
+    .showcase-pair__img .img-placeholder { width: 100%; height: 100%; }
+    .showcase-pair__text {}
+    .showcase-pair__number {
+      font-family: var(--f-display);
+      font-size: var(--t-xs);
+      letter-spacing: 0.2em;
+      color: var(--c-accent);
+      margin-bottom: 0.75rem;
+      display: block;
+      font-weight: 400;
+    }
+    .showcase-pair__title {
+      font-family: var(--f-display);
+      font-size: clamp(2.25rem, 4vw, 3.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+    }
+    .showcase-pair__subtitle {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: var(--t-md);
+      color: var(--c-accent);
+      margin-bottom: 1.5rem;
+    }
+    .showcase-pair__body {
+      font-size: var(--t-sm);
+      color: var(--c-muted);
+      line-height: 1.8;
+      max-width: 40ch;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── Ritual Banner ── */
+    .ritual-banner {
+      background: var(--c-dark);
+      color: var(--c-bg);
+      padding: clamp(5rem, 10vw, 9rem) var(--pad-x);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .ritual-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(138,104,72,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .ritual-banner__inner {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .ritual-banner__title {
+      font-family: var(--f-display);
+      font-size: clamp(2.5rem, 6vw, var(--t-5xl));
+      font-weight: 300;
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.75rem;
+    }
+    .ritual-banner__title em {
+      font-style: italic;
+      color: var(--c-accent-lt);
+    }
+    .ritual-banner__sub {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: var(--t-lg);
+      color: rgba(245,241,232,0.6);
+      margin-bottom: 3rem;
+    }
+    .btn-light {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: var(--t-xs);
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 1.05rem 2.5rem;
+      border: 1px solid rgba(245,241,232,0.4);
+      color: var(--c-bg);
+      transition: border-color var(--dur-fast), background var(--dur-fast);
+    }
+    .btn-light:hover {
+      border-color: var(--c-bg);
+      background: rgba(245,241,232,0.08);
+    }
+    .btn-light::after {
+      content: '→';
+      transition: transform var(--dur-fast) var(--ease-out);
+    }
+    .btn-light:hover::after { transform: translateX(4px); }
+
+    /* ── Keyframes ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    @keyframes scrollPulse {
+      0%, 100% { transform: scaleX(1); opacity: 0.6; }
+      50% { transform: scaleX(1.5); opacity: 1; }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .hero__visual { width: 100%; opacity: 0.25; }
+      .philosophy { grid-template-columns: 1fr; gap: 3rem; }
+      .philosophy__image { display: none; }
+      .philosophy__pillars { grid-template-columns: 1fr; }
+      .products-grid { grid-template-columns: 1fr 1fr; }
+      .showcase-pair { grid-template-columns: 1fr; gap: 2rem; }
+      .showcase-pair--reverse { direction: ltr; }
+    }
+    @media (max-width: 600px) {
+      .products-grid { grid-template-columns: 1fr; }
+      .hero__headline { font-size: clamp(2.75rem, 12vw, 4rem); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav" id="nav">
+  <a href="zucero-index.html" class="nav__wordmark">ZU<span>CE</span>RO</a>
+  <ul class="nav__links" role="list">
+    <li><a href="zucero-index.html" class="nav__link active">World</a></li>
+    <li><a href="zucero-collection.html" class="nav__link">Collection</a></li>
+    <li><a href="zucero-product.html" class="nav__link">Khand</a></li>
+    <li><a href="#philosophy" class="nav__link">Philosophy</a></li>
+  </ul>
+  <a href="zucero-collection.html" class="nav__cta">Shop Now</a>
+  <button class="nav__menu-btn" aria-label="Menu" id="menuBtn">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="nav__mobile" id="mobileNav" role="dialog" aria-label="Navigation">
+  <a href="zucero-index.html" class="nav__link" onclick="closeMobileNav()">World</a>
+  <a href="zucero-collection.html" class="nav__link" onclick="closeMobileNav()">Collection</a>
+  <a href="zucero-product.html" class="nav__link" onclick="closeMobileNav()">Khand</a>
+  <a href="#philosophy" class="nav__link" onclick="closeMobileNav()">Philosophy</a>
+  <a href="zucero-collection.html" class="btn-secondary" style="margin-top:1rem;" onclick="closeMobileNav()">Shop Now</a>
+</div>
+
+<!-- Hero -->
+<section class="hero" aria-label="Hero">
+  <div class="hero__bg"></div>
+  <div class="hero__visual" aria-hidden="true">
+    <div class="img-placeholder">
+      <svg class="img-placeholder__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      <span class="img-placeholder__label">Hero Lifestyle Visual</span>
+    </div>
+  </div>
+  <div class="hero__content">
+    <div class="hero__eyebrow">
+      <div class="hero__eyebrow-line"></div>
+      <span class="u-label">Heritage Sweetness</span>
+    </div>
+    <h1 class="hero__headline">Modern <em>Rituals</em> Around Sweetness</h1>
+    <p class="hero__sub">Crafted through heritage, refined for today.</p>
+    <div class="hero__actions">
+      <a href="zucero-collection.html" class="btn-primary btn-arrow">Explore Collection</a>
+      <div class="hero__scroll" aria-hidden="true">
+        <div class="hero__scroll-line"></div>
+        <span>Scroll</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Marquee -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track">
+    <!-- Duplicated for seamless loop -->
+    <div class="marquee-item"><span>Khand</span><span class="marquee-dot"></span><span>Pure Cane Crystal</span><span class="marquee-dot"></span><span>Jaggery</span><span class="marquee-dot"></span><span>Cold-Pressed Heritage</span><span class="marquee-dot"></span><span>Mishri</span><span class="marquee-dot"></span><span>Rock Sugar Refined</span><span class="marquee-dot"></span><span>Zero Refining</span><span class="marquee-dot"></span><span>Heritage Craft</span><span class="marquee-dot"></span><span>Ritual Sweetness</span><span class="marquee-dot"></span></div>
+    <div class="marquee-item"><span>Khand</span><span class="marquee-dot"></span><span>Pure Cane Crystal</span><span class="marquee-dot"></span><span>Jaggery</span><span class="marquee-dot"></span><span>Cold-Pressed Heritage</span><span class="marquee-dot"></span><span>Mishri</span><span class="marquee-dot"></span><span>Rock Sugar Refined</span><span class="marquee-dot"></span><span>Zero Refining</span><span class="marquee-dot"></span><span>Heritage Craft</span><span class="marquee-dot"></span><span>Ritual Sweetness</span><span class="marquee-dot"></span></div>
+  </div>
+</div>
+
+<!-- Philosophy -->
+<section class="philosophy reveal" id="philosophy">
+  <div class="philosophy__text">
+    <p class="u-label" style="margin-bottom:1.5rem;">Our Belief</p>
+    <h2 class="philosophy__pull">Sugar is everywhere.<br><em>Sweetness</em> is rare.</h2>
+    <p class="philosophy__body">We didn't set out to make a better sugar. We set out to restore the ritual. To bring back the warmth of raw cane at harvest, the patience of slow jaggery, the quiet ceremony of Mishri dissolving in hot chai.</p>
+    <p class="philosophy__body" style="margin-top:1rem;">ZUCERO is for those who recognise the difference between consuming and tasting — between sugar as commodity and sweetness as intention.</p>
+    <div class="philosophy__pillars">
+      <div class="pillar reveal reveal-delay-1">
+        <div class="u-label" style="margin-bottom:0.5rem;">Slow Craft</div>
+        <p class="pillar__desc">Every variety is produced through heritage methods unchanged for centuries.</p>
+      </div>
+      <div class="pillar reveal reveal-delay-2">
+        <div class="u-label" style="margin-bottom:0.5rem;">Sensory Purity</div>
+        <p class="pillar__desc">No bleaching. No chemical processing. Just cane, time, and intention.</p>
+      </div>
+      <div class="pillar reveal reveal-delay-3">
+        <div class="u-label" style="margin-bottom:0.5rem;">Ritual & Intention</div>
+        <p class="pillar__desc">Each product is designed to be part of a moment, not just an ingredient.</p>
+      </div>
+      <div class="pillar reveal reveal-delay-4">
+        <div class="u-label" style="margin-bottom:0.5rem;">Rooted Warmth</div>
+        <p class="pillar__desc">Sourced from small-batch farmers who have been growing cane for generations.</p>
+      </div>
+    </div>
+  </div>
+  <div class="philosophy__image reveal reveal-delay-2">
+    <div class="img-placeholder" style="width:100%;height:100%;aspect-ratio:4/5;">
+      <svg class="img-placeholder__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      <span class="img-placeholder__label">Heritage Craft Visual</span>
+    </div>
+  </div>
+</section>
+
+<hr class="hr">
+
+<!-- Collection Preview -->
+<section class="collection-preview">
+  <div class="collection-preview__inner">
+    <div class="section__header reveal">
+      <div>
+        <p class="u-label" style="margin-bottom:0.75rem;">The Collection</p>
+        <h2 class="u-display" style="font-size: clamp(2rem, 4vw, 3rem);">Three Varieties.<br>One Intention.</h2>
+      </div>
+      <a href="zucero-collection.html" class="btn-secondary btn-arrow" style="white-space:nowrap;flex-shrink:0;">View All</a>
+    </div>
+    <div class="products-grid">
+      <a href="zucero-product.html" class="product-card reveal reveal-delay-1">
+        <div class="product-card__img">
+          <div class="img-placeholder">
+            <svg class="img-placeholder__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="img-placeholder__label">Khand Product Visual</span>
+          </div>
+        </div>
+        <div class="product-card__body">
+          <div class="u-label" style="margin-bottom:0.5rem;">Pure Cane Crystal</div>
+          <h3 class="product-card__name">Khand</h3>
+          <p class="product-card__desc">Unrefined cane sugar with a delicate amber warmth. Dissolves slowly, sweetens deeply.</p>
+          <span class="product-card__price">₹ — </span>
+        </div>
+      </a>
+      <a href="zucero-collection.html" class="product-card reveal reveal-delay-2">
+        <div class="product-card__tag">Heritage</div>
+        <div class="product-card__img">
+          <div class="img-placeholder">
+            <svg class="img-placeholder__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="img-placeholder__label">Jaggery Product Visual</span>
+          </div>
+        </div>
+        <div class="product-card__body">
+          <div class="u-label" style="margin-bottom:0.5rem;">Cold-Pressed Heritage</div>
+          <h3 class="product-card__name">Jaggery</h3>
+          <p class="product-card__desc">Cold-pressed in small batches from first-press cane juice. Dark, mineral, and complex.</p>
+          <span class="product-card__price">₹ — </span>
+        </div>
+      </a>
+      <a href="zucero-collection.html" class="product-card reveal reveal-delay-3">
+        <div class="product-card__img">
+          <div class="img-placeholder">
+            <svg class="img-placeholder__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="img-placeholder__label">Mishri Product Visual</span>
+          </div>
+        </div>
+        <div class="product-card__body">
+          <div class="u-label" style="margin-bottom:0.5rem;">Rock Sugar Refined</div>
+          <h3 class="product-card__name">Mishri</h3>
+          <p class="product-card__desc">Slow-crystallised rock sugar used in Ayurvedic rituals. Pure, airy, and quietly luminous.</p>
+          <span class="product-card__price">₹ — </span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Product Showcase -->
+<section class="showcase">
+  <div class="showcase__inner">
+    <div class="section__header reveal">
+      <div>
+        <p class="u-label" style="margin-bottom:0.75rem;">Named with Intent</p>
+        <h2 class="u-display" style="font-size: clamp(2rem, 4vw, 3rem);">Each one, a world.</h2>
+      </div>
+    </div>
+
+    <div class="showcase-pair reveal">
+      <div class="showcase-pair__img">
+        <div class="img-placeholder">
+          <svg class="img-placeholder__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span class="img-placeholder__label">Khand Product Visual</span>
+        </div>
+      </div>
+      <div class="showcase-pair__text">
+        <span class="showcase-pair__number">01 / 03</span>
+        <h3 class="showcase-pair__title">Khand</h3>
+        <p class="showcase-pair__subtitle">Pure Cane Crystal</p>
+        <p class="showcase-pair__body">In north Indian kitchens, Khand has been the sweetener of ceremonies for centuries. Unlike white sugar, it carries the soul of the cane — a pale amber crystal with a depth that lingers. ZUCERO Khand is unrefined, unbleached, and unhurried.</p>
+        <a href="zucero-product.html" class="btn-secondary btn-arrow">Explore Khand</a>
+      </div>
+    </div>
+
+    <div class="showcase-pair showcase-pair--reverse reveal">
+      <div class="showcase-pair__img">
+        <div class="img-placeholder">
+          <svg class="img-placeholder__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span class="img-placeholder__label">Jaggery Product Visual</span>
+        </div>
+      </div>
+      <div class="showcase-pair__text">
+        <span class="showcase-pair__number">02 / 03</span>
+        <h3 class="showcase-pair__title">Jaggery</h3>
+        <p class="showcase-pair__subtitle">Cold-Pressed Heritage</p>
+        <p class="showcase-pair__body">Jaggery is not made. It's reduced. Slowly, in open pans over wood fire, the cane juice darkens into something ancient and mineral. Ours comes from a single farm in Maharashtra, pressed cold and set by hand into dense, aromatic blocks.</p>
+        <a href="zucero-collection.html" class="btn-secondary btn-arrow">Explore Jaggery</a>
+      </div>
+    </div>
+
+    <div class="showcase-pair reveal">
+      <div class="showcase-pair__img">
+        <div class="img-placeholder">
+          <svg class="img-placeholder__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span class="img-placeholder__label">Mishri Product Visual</span>
+        </div>
+      </div>
+      <div class="showcase-pair__text">
+        <span class="showcase-pair__number">03 / 03</span>
+        <h3 class="showcase-pair__title">Mishri</h3>
+        <p class="showcase-pair__subtitle">Rock Sugar Refined</p>
+        <p class="showcase-pair__body">The sweetener of shrines and medicine. Mishri is crystallised over weeks from pure cane syrup, forming irregular, luminous shards. Used in prasad, chai, and Ayurvedic tonics, it dissolves with a clean sweetness that white sugar cannot replicate.</p>
+        <a href="zucero-collection.html" class="btn-secondary btn-arrow">Explore Mishri</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Ritual Banner -->
+<section class="ritual-banner">
+  <div class="ritual-banner__inner reveal">
+    <h2 class="ritual-banner__title">Every cup. Every meal.<br>Every <em>quiet moment.</em></h2>
+    <p class="ritual-banner__sub">ZUCERO is for those who taste the difference.</p>
+    <a href="zucero-collection.html" class="btn-light">Begin Your Ritual</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer__grid">
+    <div>
+      <div class="footer__wordmark">ZU<span>CE</span>RO</div>
+      <p class="footer__tagline">Modern rituals around sweetness. Crafted through heritage, refined for today.</p>
+    </div>
+    <div>
+      <div class="footer__col-title">Collection</div>
+      <ul class="footer__links" role="list">
+        <li><a href="zucero-product.html" class="footer__link">Khand</a></li>
+        <li><a href="zucero-collection.html" class="footer__link">Jaggery</a></li>
+        <li><a href="zucero-collection.html" class="footer__link">Mishri</a></li>
+        <li><a href="zucero-collection.html" class="footer__link">View All</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer__col-title">World</div>
+      <ul class="footer__links" role="list">
+        <li><a href="#philosophy" class="footer__link">Our Philosophy</a></li>
+        <li><a href="#" class="footer__link">Heritage</a></li>
+        <li><a href="#" class="footer__link">Sourcing</a></li>
+        <li><a href="#" class="footer__link">Rituals</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer__col-title">Connect</div>
+      <ul class="footer__links" role="list">
+        <li><a href="#" class="footer__link">Instagram</a></li>
+        <li><a href="#" class="footer__link">Contact</a></li>
+        <li><a href="#" class="footer__link">Wholesale</a></li>
+        <li><a href="#" class="footer__link">Press</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <span class="footer__copy">© 2025 ZUCERO. All rights reserved.</span>
+    <span class="footer__copy">Brand by SQUARGRAPH™ Studios</span>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 60);
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Mobile menu
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  let menuOpen = false;
+  function closeMobileNav() {
+    menuOpen = false;
+    mobileNav.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+  menuBtn.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    mobileNav.classList.toggle('open', menuOpen);
+    menuBtn.setAttribute('aria-expanded', menuOpen);
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>

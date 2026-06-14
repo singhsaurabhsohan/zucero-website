@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khand — ZUCERO</title>
+  <style>
+/* ============================================
+   ZUCERO — Shared Design System
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500&display=swap');
+
+/* ── Tokens ── */
+:root {
+  --c-bg:       #F5F1E8;
+  --c-dark:     #1B1B1B;
+  --c-accent:   #8A6848;
+  --c-accent-lt:#B89A7A;
+  --c-muted:    #6B6356;
+  --c-rule:     #D8D0C4;
+  --c-surface:  #EDE8DE;
+
+  --f-display:  'Cormorant Garamond', Georgia, serif;
+  --f-body:     'Satoshi', system-ui, sans-serif;
+
+  --t-xs:   0.6875rem;
+  --t-sm:   0.8125rem;
+  --t-base: 1rem;
+  --t-md:   1.125rem;
+  --t-lg:   1.375rem;
+  --t-xl:   1.75rem;
+  --t-2xl:  2.25rem;
+  --t-3xl:  3rem;
+  --t-4xl:  4rem;
+  --t-5xl:  5.5rem;
+  --t-6xl:  7.5rem;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 220ms;
+  --dur-med: 400ms;
+  --dur-slow: 700ms;
+
+  --max-w: 1360px;
+  --pad-x: clamp(1.5rem, 5vw, 5rem);
+  --section-gap: clamp(5rem, 10vw, 9rem);
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: var(--c-bg);
+  color: var(--c-dark);
+  font-family: var(--f-body);
+  font-size: var(--t-base);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img, video { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; background: none; border: none; font: inherit; color: inherit; }
+ul { list-style: none; }
+
+/* ── Typography Utilities ── */
+.u-display {
+  font-family: var(--f-display);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+.u-label {
+  font-family: var(--f-body);
+  font-size: var(--t-xs);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+}
+.u-body-serif {
+  font-family: var(--f-display);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.55;
+}
+
+/* ── Navigation ── */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem var(--pad-x);
+  transition: background var(--dur-med) var(--ease-out),
+              backdrop-filter var(--dur-med) var(--ease-out),
+              padding var(--dur-med) var(--ease-out);
+}
+.nav.scrolled {
+  background: rgba(245, 241, 232, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--c-rule);
+}
+.nav__wordmark {
+  font-family: var(--f-display);
+  font-size: var(--t-xl);
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  color: var(--c-dark);
+}
+.nav__wordmark span { color: var(--c-accent); }
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+.nav__link {
+  font-size: var(--t-xs);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-dark);
+  position: relative;
+  padding-bottom: 2px;
+}
+.nav__link::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 1px;
+  background: var(--c-accent);
+  transition: width var(--dur-med) var(--ease-out);
+}
+.nav__link:hover::after,
+.nav__link.active::after { width: 100%; }
+.nav__cta {
+  font-size: var(--t-xs);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.6rem 1.5rem;
+  border: 1px solid var(--c-dark);
+  transition: background var(--dur-fast), color var(--dur-fast);
+}
+.nav__cta:hover {
+  background: var(--c-dark);
+  color: var(--c-bg);
+}
+.nav__menu-btn {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 4px;
+}
+.nav__menu-btn span {
+  display: block;
+  width: 24px; height: 1px;
+  background: var(--c-dark);
+  transition: transform var(--dur-med) var(--ease-out), opacity var(--dur-fast);
+}
+
+/* Mobile nav overlay */
+.nav__mobile {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--c-bg);
+  z-index: 99;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-med) var(--ease-out);
+}
+.nav__mobile.open {
+  opacity: 1;
+  pointer-events: all;
+}
+.nav__mobile .nav__link {
+  font-size: var(--t-2xl);
+  font-family: var(--f-display);
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  text-transform: none;
+}
+.nav__mobile .nav__link::after { display: none; }
+
+/* ── Image Placeholder ── */
+.img-placeholder {
+  background: var(--c-surface);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  color: var(--c-muted);
+  position: relative;
+  overflow: hidden;
+}
+.img-placeholder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 45%, rgba(138,104,72,0.04) 100%);
+}
+.img-placeholder__icon {
+  width: 36px; height: 36px;
+  opacity: 0.35;
+}
+.img-placeholder__label {
+  font-size: var(--t-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 500;
+  opacity: 0.55;
+}
+
+/* ── Buttons ── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: var(--t-xs);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 1.05rem 2.5rem;
+  background: var(--c-dark);
+  color: var(--c-bg);
+  transition: background var(--dur-fast), transform var(--dur-fast);
+}
+.btn-primary:hover {
+  background: var(--c-accent);
+  transform: translateY(-1px);
+}
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: var(--t-xs);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 1.05rem 2.5rem;
+  border: 1px solid var(--c-dark);
+  color: var(--c-dark);
+  transition: background var(--dur-fast), color var(--dur-fast), transform var(--dur-fast);
+}
+.btn-secondary:hover {
+  background: var(--c-dark);
+  color: var(--c-bg);
+  transform: translateY(-1px);
+}
+.btn-arrow::after {
+  content: '→';
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.btn-arrow:hover::after { transform: translateX(4px); }
+
+/* ── Section Structure ── */
+.section {
+  padding: var(--section-gap) var(--pad-x);
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+.section--full {
+  padding-left: var(--pad-x);
+  padding-right: var(--pad-x);
+  padding-top: var(--section-gap);
+  padding-bottom: var(--section-gap);
+}
+.section__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 3.5rem;
+}
+
+/* ── Horizontal Rule ── */
+.hr {
+  border: none;
+  border-top: 1px solid var(--c-rule);
+  margin: 0;
+}
+
+/* ── Footer ── */
+.footer {
+  background: var(--c-dark);
+  color: var(--c-bg);
+  padding: 5rem var(--pad-x) 2.5rem;
+}
+.footer__grid {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: 4rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid rgba(245,241,232,0.12);
+}
+.footer__wordmark {
+  font-family: var(--f-display);
+  font-size: var(--t-3xl);
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+  color: var(--c-bg);
+}
+.footer__wordmark span { color: var(--c-accent-lt); }
+.footer__tagline {
+  font-family: var(--f-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: var(--t-md);
+  color: rgba(245,241,232,0.55);
+  max-width: 22ch;
+  line-height: 1.6;
+}
+.footer__col-title {
+  font-size: var(--t-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: rgba(245,241,232,0.45);
+  margin-bottom: 1.5rem;
+}
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+.footer__link {
+  font-size: var(--t-sm);
+  color: rgba(245,241,232,0.7);
+  transition: color var(--dur-fast);
+}
+.footer__link:hover { color: var(--c-bg); }
+.footer__bottom {
+  max-width: var(--max-w);
+  margin: 2rem auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.footer__copy {
+  font-size: var(--t-xs);
+  color: rgba(245,241,232,0.35);
+  letter-spacing: 0.05em;
+}
+
+/* ── Scroll Reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity var(--dur-slow) var(--ease-out),
+              transform var(--dur-slow) var(--ease-out);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 100ms; }
+.reveal-delay-2 { transition-delay: 200ms; }
+.reveal-delay-3 { transition-delay: 320ms; }
+.reveal-delay-4 { transition-delay: 440ms; }
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .footer__grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
+}
+@media (max-width: 768px) {
+  .nav__links, .nav__cta { display: none; }
+  .nav__menu-btn { display: flex; }
+  .nav__mobile { display: flex; }
+  .footer__grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .section__header { flex-direction: column; gap: 1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+</style>
+  <style>
+    /* ── Breadcrumb ── */
+    .breadcrumb {
+      padding: 7.5rem var(--pad-x) 0;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: var(--t-xs);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--c-muted);
+    }
+    .breadcrumb a { transition: color var(--dur-fast); }
+    .breadcrumb a:hover { color: var(--c-dark); }
+    .breadcrumb__sep { color: var(--c-rule); }
+
+    /* ── Product Hero ── */
+    .pdp {
+      padding: 2.5rem var(--pad-x) var(--section-gap);
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    /* Left: Images */
+    .pdp__gallery {}
+    .pdp__main-img {
+      aspect-ratio: 4/5;
+      overflow: hidden;
+      margin-bottom: 0.75rem;
+    }
+    .pdp__main-img .img-placeholder { width: 100%; height: 100%; }
+    .pdp__thumbs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+    }
+    .pdp__thumb {
+      aspect-ratio: 1/1;
+      overflow: hidden;
+      cursor: pointer;
+      opacity: 0.55;
+      transition: opacity var(--dur-fast);
+    }
+    .pdp__thumb.active, .pdp__thumb:hover { opacity: 1; }
+    .pdp__thumb .img-placeholder { width: 100%; height: 100%; }
+    .pdp__thumb .img-placeholder__label { font-size: 0.5rem; }
+
+    /* Right: Info */
+    .pdp__info {}
+    .pdp__breadcrumb-mobile {
+      display: none;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: var(--t-xs);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--c-muted);
+      margin-bottom: 1.5rem;
+    }
+    .pdp__variety {
+      font-size: var(--t-xs);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--c-accent);
+      margin-bottom: 1rem;
+    }
+    .pdp__name {
+      font-family: var(--f-display);
+      font-size: clamp(3rem, 5.5vw, 4.75rem);
+      font-weight: 300;
+      line-height: 0.97;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+    .pdp__tagline {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: var(--t-lg);
+      color: var(--c-muted);
+      margin-bottom: 2rem;
+    }
+    .pdp__price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--c-rule);
+    }
+    .pdp__price {
+      font-family: var(--f-display);
+      font-size: var(--t-3xl);
+      font-weight: 300;
+    }
+    .pdp__price-note {
+      font-size: var(--t-xs);
+      color: var(--c-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* Variant selector */
+    .pdp__label {
+      font-size: var(--t-xs);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--c-muted);
+      margin-bottom: 0.85rem;
+      display: block;
+    }
+    .pdp__variants {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    .variant-btn {
+      padding: 0.6rem 1.2rem;
+      border: 1px solid var(--c-rule);
+      font-size: var(--t-xs);
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: var(--c-muted);
+      cursor: pointer;
+      transition: all var(--dur-fast);
+    }
+    .variant-btn.active {
+      border-color: var(--c-dark);
+      color: var(--c-dark);
+    }
+    .variant-btn:hover { border-color: var(--c-dark); color: var(--c-dark); }
+
+    /* Quantity + ATC */
+    .pdp__buy-row {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+    .pdp__qty {
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--c-rule);
+      flex-shrink: 0;
+    }
+    .pdp__qty-btn {
+      width: 44px; height: 52px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      color: var(--c-dark);
+      cursor: pointer;
+      user-select: none;
+      transition: background var(--dur-fast);
+      border: none;
+      background: none;
+    }
+    .pdp__qty-btn:hover { background: var(--c-surface); }
+    .pdp__qty-num {
+      width: 44px;
+      text-align: center;
+      font-family: var(--f-display);
+      font-size: var(--t-lg);
+      font-weight: 300;
+      border-left: 1px solid var(--c-rule);
+      border-right: 1px solid var(--c-rule);
+      line-height: 52px;
+    }
+    .pdp__atc {
+      flex: 1;
+      padding: 0 2rem;
+      height: 52px;
+      background: var(--c-dark);
+      color: var(--c-bg);
+      font-size: var(--t-xs);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      transition: background var(--dur-fast);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+    .pdp__atc:hover { background: var(--c-accent); }
+    .pdp__atc.added {
+      background: #2a6b3c;
+    }
+    .pdp__wishlist {
+      width: 52px; height: 52px;
+      border: 1px solid var(--c-rule);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      cursor: pointer;
+      transition: border-color var(--dur-fast), background var(--dur-fast);
+      color: var(--c-muted);
+    }
+    .pdp__wishlist:hover { border-color: var(--c-dark); color: var(--c-dark); }
+
+    /* Trust Badges */
+    .pdp__trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      padding: 1.5rem 0;
+      border-top: 1px solid var(--c-rule);
+      border-bottom: 1px solid var(--c-rule);
+      margin-bottom: 2rem;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: var(--t-xs);
+      color: var(--c-muted);
+      letter-spacing: 0.08em;
+    }
+    .trust-item svg { flex-shrink: 0; opacity: 0.6; }
+
+    /* Accordion */
+    .pdp__accordion {}
+    .accordion-item {
+      border-bottom: 1px solid var(--c-rule);
+    }
+    .accordion-trigger {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 0;
+      font-size: var(--t-xs);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--c-dark);
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+    .accordion-trigger svg { transition: transform var(--dur-med) var(--ease-out); flex-shrink: 0; }
+    .accordion-trigger[aria-expanded="true"] svg { transform: rotate(45deg); }
+    .accordion-body {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height var(--dur-med) var(--ease-out);
+    }
+    .accordion-body__inner {
+      padding: 0 0 1.5rem;
+      font-size: var(--t-sm);
+      color: var(--c-muted);
+      line-height: 1.8;
+    }
+    .accordion-body__inner ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .accordion-body__inner li::before {
+      content: '—  ';
+      color: var(--c-accent);
+    }
+
+    /* ── Product Story ── */
+    .pdp-story {
+      background: var(--c-dark);
+      color: var(--c-bg);
+      padding: var(--section-gap) var(--pad-x);
+    }
+    .pdp-story__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+    .pdp-story__text {}
+    .pdp-story__label {
+      font-size: var(--t-xs);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--c-accent-lt);
+      margin-bottom: 1.25rem;
+      display: block;
+    }
+    .pdp-story__title {
+      font-family: var(--f-display);
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 1.75rem;
+    }
+    .pdp-story__title em { font-style: italic; color: var(--c-accent-lt); }
+    .pdp-story__body {
+      font-size: var(--t-sm);
+      color: rgba(245,241,232,0.65);
+      line-height: 1.85;
+      max-width: 44ch;
+    }
+    .pdp-story__body + .pdp-story__body { margin-top: 1rem; }
+    .pdp-story__img {
+      aspect-ratio: 4/5;
+    }
+    .pdp-story__img .img-placeholder {
+      width: 100%;
+      height: 100%;
+    }
+    /* Dark bg img-placeholder override */
+    .pdp-story .img-placeholder {
+      background: rgba(255,255,255,0.05);
+      color: rgba(245,241,232,0.3);
+    }
+
+    /* ── Usage Suggestions ── */
+    .usage {
+      padding: var(--section-gap) var(--pad-x);
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .usage__header {
+      margin-bottom: 3.5rem;
+    }
+    .usage__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+    .usage-card {
+      border-top: 2px solid var(--c-accent);
+      padding-top: 1.5rem;
+    }
+    .usage-card__icon {
+      width: 2.5rem; height: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--c-accent);
+    }
+    .usage-card__title {
+      font-family: var(--f-display);
+      font-size: var(--t-xl);
+      font-weight: 300;
+      margin-bottom: 0.5rem;
+    }
+    .usage-card__desc {
+      font-size: var(--t-sm);
+      color: var(--c-muted);
+      line-height: 1.65;
+    }
+
+    /* ── Related Products ── */
+    .related {
+      border-top: 1px solid var(--c-rule);
+      padding: var(--section-gap) var(--pad-x);
+    }
+    .related__inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .related__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .rel-card {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 1.5rem;
+      padding: 2rem;
+      background: var(--c-surface);
+      text-decoration: none;
+      transition: background var(--dur-fast);
+    }
+    .rel-card:hover { background: var(--c-rule); }
+    .rel-card__img {
+      aspect-ratio: 1/1.2;
+    }
+    .rel-card__img .img-placeholder { width: 100%; height: 100%; }
+    .rel-card__body { display: flex; flex-direction: column; justify-content: center; }
+    .rel-card__variety {
+      font-size: var(--t-xs);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--c-accent);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    .rel-card__name {
+      font-family: var(--f-display);
+      font-size: var(--t-2xl);
+      font-weight: 300;
+      margin-bottom: 0.5rem;
+    }
+    .rel-card__desc {
+      font-size: var(--t-xs);
+      color: var(--c-muted);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+    .rel-card__link {
+      font-size: var(--t-xs);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--c-dark);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: gap var(--dur-fast), color var(--dur-fast);
+    }
+    .rel-card:hover .rel-card__link { gap: 0.7rem; color: var(--c-accent); }
+    .rel-card__link::after { content: '→'; }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .breadcrumb { display: none; }
+      .pdp { grid-template-columns: 1fr; gap: 2.5rem; padding-top: 6rem; }
+      .pdp__breadcrumb-mobile { display: flex; }
+      .pdp__thumbs { grid-template-columns: repeat(3, 1fr); }
+      .pdp-story__inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .pdp-story__img { display: none; }
+      .usage__grid { grid-template-columns: 1fr 1fr; }
+      .related__grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .usage__grid { grid-template-columns: 1fr; }
+      .pdp__buy-row { flex-wrap: wrap; }
+      .pdp__atc { order: -1; width: 100%; flex: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav" id="nav">
+  <a href="zucero-index.html" class="nav__wordmark">ZU<span>CE</span>RO</a>
+  <ul class="nav__links" role="list">
+    <li><a href="zucero-index.html" class="nav__link">World</a></li>
+    <li><a href="zucero-collection.html" class="nav__link">Collection</a></li>
+    <li><a href="zucero-product.html" class="nav__link active">Khand</a></li>
+    <li><a href="index.html#philosophy" class="nav__link">Philosophy</a></li>
+  </ul>
+  <a href="zucero-collection.html" class="nav__cta">Shop Now</a>
+  <button class="nav__menu-btn" aria-label="Menu" id="menuBtn">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="nav__mobile" id="mobileNav" role="dialog">
+  <a href="zucero-index.html" class="nav__link" onclick="closeMobileNav()">World</a>
+  <a href="zucero-collection.html" class="nav__link" onclick="closeMobileNav()">Collection</a>
+  <a href="zucero-product.html" class="nav__link" onclick="closeMobileNav()">Khand</a>
+  <a href="zucero-collection.html" class="btn-secondary" style="margin-top:1rem;" onclick="closeMobileNav()">Shop Now</a>
+</div>
+
+<!-- Breadcrumb (desktop) -->
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="zucero-index.html">Home</a>
+  <span class="breadcrumb__sep">—</span>
+  <a href="zucero-collection.html">Collection</a>
+  <span class="breadcrumb__sep">—</span>
+  <span style="color:var(--c-dark)">Khand</span>
+</nav>
+
+<!-- Product Detail -->
+<div class="pdp">
+  <!-- Gallery -->
+  <div class="pdp__gallery reveal">
+    <div class="pdp__main-img" id="mainImg">
+      <div class="img-placeholder">
+        <svg class="img-placeholder__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span class="img-placeholder__label">Khand Product Visual</span>
+      </div>
+    </div>
+    <div class="pdp__thumbs">
+      <div class="pdp__thumb active" onclick="selectThumb(this)">
+        <div class="img-placeholder">
+          <span class="img-placeholder__label">Front</span>
+        </div>
+      </div>
+      <div class="pdp__thumb" onclick="selectThumb(this)">
+        <div class="img-placeholder">
+          <span class="img-placeholder__label">Detail</span>
+        </div>
+      </div>
+      <div class="pdp__thumb" onclick="selectThumb(this)">
+        <div class="img-placeholder">
+          <span class="img-placeholder__label">Context</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Info -->
+  <div class="pdp__info reveal reveal-delay-1">
+    <div class="pdp__breadcrumb-mobile">
+      <a href="zucero-collection.html" style="color:var(--c-muted)">Collection</a>
+      <span style="color:var(--c-rule)">—</span>
+      <span style="color:var(--c-dark)">Khand</span>
+    </div>
+
+    <div class="pdp__variety">Pure Cane Crystal</div>
+    <h1 class="pdp__name">Khand</h1>
+    <p class="pdp__tagline">Pale amber. Warm. Unhurried.</p>
+
+    <div class="pdp__price-row">
+      <span class="pdp__price">₹ —</span>
+      <span class="pdp__price-note">per 500g</span>
+    </div>
+
+    <span class="pdp__label">Size</span>
+    <div class="pdp__variants">
+      <button class="variant-btn active" onclick="selectVariant(this)">250g</button>
+      <button class="variant-btn" onclick="selectVariant(this)">500g</button>
+      <button class="variant-btn" onclick="selectVariant(this)">1 kg</button>
+    </div>
+
+    <div class="pdp__buy-row">
+      <div class="pdp__qty" role="group" aria-label="Quantity">
+        <button class="pdp__qty-btn" onclick="changeQty(-1)" aria-label="Decrease">−</button>
+        <div class="pdp__qty-num" id="qtyNum" aria-live="polite">1</div>
+        <button class="pdp__qty-btn" onclick="changeQty(1)" aria-label="Increase">+</button>
+      </div>
+      <button class="pdp__atc" id="atcBtn" onclick="addToCart()">
+        <span id="atcText">Add to Cart</span>
+      </button>
+      <button class="pdp__wishlist" aria-label="Save to wishlist" onclick="toggleWishlist(this)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </button>
+    </div>
+
+    <div class="pdp__trust">
+      <div class="trust-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Unrefined & unbleached
+      </div>
+      <div class="trust-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Small-batch production
+      </div>
+      <div class="trust-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Single-origin cane
+      </div>
+      <div class="trust-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        No chemical processing
+      </div>
+    </div>
+
+    <!-- Accordion -->
+    <div class="pdp__accordion">
+      <div class="accordion-item">
+        <button class="accordion-trigger" onclick="toggleAccordion(this)" aria-expanded="true">
+          <span>Description</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="accordion-body" style="max-height:500px;">
+          <div class="accordion-body__inner">
+            Khand is the original unrefined Indian cane sugar — crystallised from pure sugarcane juice without bleaching or chemical processing. Its pale amber colour comes not from impurity but from the natural molasses that remain. It carries a warmth white sugar cannot replicate: a faint note of vanilla, a lingering sweetness that settles rather than spikes.
+            <br><br>
+            ZUCERO Khand is sourced from small farms in Uttar Pradesh where the harvest tradition has been uninterrupted for generations. Each batch is slow-dried and coarse-ground by hand, ensuring the crystal structure remains intact.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-trigger" onclick="toggleAccordion(this)" aria-expanded="false">
+          <span>Ingredients & Nutrition</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body__inner">
+            <ul>
+              <li>100% raw sugarcane (Saccharum officinarum)</li>
+              <li>Zero additives, preservatives, or bleaching agents</li>
+              <li>Contains trace iron, calcium, and potassium</li>
+              <li>Glycaemic index lower than refined white sugar</li>
+              <li>No artificial colouring or flavouring</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-trigger" onclick="toggleAccordion(this)" aria-expanded="false">
+          <span>Storage & Shelf Life</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body__inner">
+            Store in a cool, dry place away from direct sunlight. Keep sealed in an airtight container once opened. Shelf life: 18 months from production date. Because Khand is unrefined, it may absorb humidity and form mild clumps — this does not affect quality. Break apart gently before use.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-trigger" onclick="toggleAccordion(this)" aria-expanded="false">
+          <span>Shipping & Returns</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body__inner">
+            <ul>
+              <li>Ships within 2 business days across India</li>
+              <li>Premium packaging designed to protect and present</li>
+              <li>Free shipping on orders above ₹999</li>
+              <li>Returns accepted on sealed, unopened products only</li>
+              <li>Contact us within 48 hours of receipt for any concerns</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="cart-toast" style="
+  position:fixed;bottom:2rem;right:var(--pad-x);
+  background:var(--c-dark);color:var(--c-bg);
+  padding:1rem 1.75rem;
+  font-size:var(--t-sm);letter-spacing:0.06em;
+  transform:translateY(120%);opacity:0;
+  transition:transform 0.4s var(--ease-out),opacity 0.4s;
+  z-index:200;pointer-events:none;
+" aria-live="polite"></div>
+
+<!-- Product Story -->
+<section class="pdp-story">
+  <div class="pdp-story__inner">
+    <div class="pdp-story__text reveal">
+      <span class="pdp-story__label">The Story of Khand</span>
+      <h2 class="pdp-story__title">Before sugar became <em>white,</em><br>there was Khand.</h2>
+      <p class="pdp-story__body">In the kitchens of north India, Khand was not a substitute for sugar. It was the original. The sweet choice of grandmothers, of temple offerings, of the first cup of chai poured in the morning. White sugar arrived later — refined for uniformity, for commerce, for a different kind of world.</p>
+      <p class="pdp-story__body" style="margin-top:1rem;">We went back to find what was lost. What we found was not nostalgia — it was superiority. A complexity of flavour that white sugar cannot replicate. A sweetness that lingers rather than spikes. A product that earns a place in the modern kitchen not because it is old, but because it is better.</p>
+    </div>
+    <div class="pdp-story__img reveal reveal-delay-2">
+      <div class="img-placeholder">
+        <svg class="img-placeholder__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span class="img-placeholder__label">Khand Lifestyle Visual</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Usage Suggestions -->
+<section class="usage">
+  <div class="usage__header reveal">
+    <p class="u-label" style="margin-bottom:0.75rem;">Ritual Suggestions</p>
+    <h2 class="u-display" style="font-size:clamp(2rem,4vw,3rem);">Ways to use Khand</h2>
+  </div>
+  <div class="usage__grid">
+    <div class="usage-card reveal reveal-delay-1">
+      <svg class="usage-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+      <h3 class="usage-card__title">Morning Chai</h3>
+      <p class="usage-card__desc">Replace refined sugar with Khand in your daily chai. Half a teaspoon is enough — it sweetens gently, without overpowering the spice.</p>
+    </div>
+    <div class="usage-card reveal reveal-delay-2">
+      <svg class="usage-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 2l1.5 1.5M7.5 2l-1.5 1.5M12 6a6 6 0 0 1 6 6v2H6v-2a6 6 0 0 1 6-6z"/><path d="M6 14v2a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-2"/></svg>
+      <h3 class="usage-card__title">Baking & Desserts</h3>
+      <p class="usage-card__desc">Khand adds a depth to kheer, halwa, and baked goods that refined sugar cannot. Use 1:1 as a substitute — the colour will be deeper, the flavour fuller.</p>
+    </div>
+    <div class="usage-card reveal reveal-delay-3">
+      <svg class="usage-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/><circle cx="20" cy="4" r="3"/></svg>
+      <h3 class="usage-card__title">Ayurvedic Tonics</h3>
+      <p class="usage-card__desc">Used in traditional chyawanprash and herbal preparations, Khand is considered saatvik — pure, sattvic, and digestively gentle.</p>
+    </div>
+    <div class="usage-card reveal reveal-delay-4">
+      <svg class="usage-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 22C6.48 22 2 17.52 2 12S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10z"/><path d="M8 12s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+      <h3 class="usage-card__title">As a Gift</h3>
+      <p class="usage-card__desc">Present Khand the way you would present fine tea or wine. It is a sweetener with a story — the kind of thing that makes someone pause before they taste.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Related Products -->
+<section class="related">
+  <div class="related__inner">
+    <div class="section__header reveal">
+      <div>
+        <p class="u-label" style="margin-bottom:0.75rem;">From the Collection</p>
+        <h2 class="u-display" style="font-size:clamp(1.75rem,3.5vw,2.5rem);">You may also want</h2>
+      </div>
+      <a href="zucero-collection.html" class="btn-secondary btn-arrow" style="white-space:nowrap;flex-shrink:0;">View All</a>
+    </div>
+    <div class="related__grid">
+      <a href="zucero-collection.html" class="rel-card reveal reveal-delay-1">
+        <div class="rel-card__img">
+          <div class="img-placeholder">
+            <span class="img-placeholder__label">Jaggery</span>
+          </div>
+        </div>
+        <div class="rel-card__body">
+          <div class="rel-card__variety">Cold-Pressed Heritage</div>
+          <h3 class="rel-card__name">Jaggery</h3>
+          <p class="rel-card__desc">Dark, mineral, and complex. Pressed cold from first-press cane juice on a single Maharashtra farm.</p>
+          <span class="rel-card__link">Explore</span>
+        </div>
+      </a>
+      <a href="zucero-collection.html" class="rel-card reveal reveal-delay-2">
+        <div class="rel-card__img">
+          <div class="img-placeholder">
+            <span class="img-placeholder__label">Mishri</span>
+          </div>
+        </div>
+        <div class="rel-card__body">
+          <div class="rel-card__variety">Rock Sugar Refined</div>
+          <h3 class="rel-card__name">Mishri</h3>
+          <p class="rel-card__desc">Slow-crystallised over weeks. The sweetener of ceremonies, shrines, and the finest cup of chai.</p>
+          <span class="rel-card__link">Explore</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer__grid">
+    <div>
+      <div class="footer__wordmark">ZU<span>CE</span>RO</div>
+      <p class="footer__tagline">Modern rituals around sweetness. Crafted through heritage, refined for today.</p>
+    </div>
+    <div>
+      <div class="footer__col-title">Collection</div>
+      <ul class="footer__links" role="list">
+        <li><a href="zucero-product.html" class="footer__link">Khand</a></li>
+        <li><a href="zucero-collection.html" class="footer__link">Jaggery</a></li>
+        <li><a href="zucero-collection.html" class="footer__link">Mishri</a></li>
+        <li><a href="zucero-collection.html" class="footer__link">View All</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer__col-title">World</div>
+      <ul class="footer__links" role="list">
+        <li><a href="index.html#philosophy" class="footer__link">Our Philosophy</a></li>
+        <li><a href="#" class="footer__link">Heritage</a></li>
+        <li><a href="#" class="footer__link">Sourcing</a></li>
+        <li><a href="#" class="footer__link">Rituals</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer__col-title">Connect</div>
+      <ul class="footer__links" role="list">
+        <li><a href="#" class="footer__link">Instagram</a></li>
+        <li><a href="#" class="footer__link">Contact</a></li>
+        <li><a href="#" class="footer__link">Wholesale</a></li>
+        <li><a href="#" class="footer__link">Press</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <span class="footer__copy">© 2025 ZUCERO. All rights reserved.</span>
+    <span class="footer__copy">Brand by SQUARGRAPH™ Studios</span>
+  </div>
+</footer>
+
+<script>
+  // Nav
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60), { passive: true });
+
+  // Mobile menu
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  let menuOpen = false;
+  function closeMobileNav() {
+    menuOpen = false; mobileNav.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded','false');
+    document.body.style.overflow = '';
+  }
+  menuBtn.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    mobileNav.classList.toggle('open', menuOpen);
+    menuBtn.setAttribute('aria-expanded', menuOpen);
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+  });
+
+  // Reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Quantity
+  let qty = 1;
+  function changeQty(delta) {
+    qty = Math.max(1, qty + delta);
+    document.getElementById('qtyNum').textContent = qty;
+  }
+
+  // Variants
+  function selectVariant(btn) {
+    document.querySelectorAll('.variant-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+
+  // Thumbs
+  function selectThumb(el) {
+    document.querySelectorAll('.pdp__thumb').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  // ATC
+  const toast = document.getElementById('cart-toast');
+  let toastTimer;
+  function addToCart() {
+    const btn = document.getElementById('atcBtn');
+    const txt = document.getElementById('atcText');
+    btn.classList.add('added');
+    txt.textContent = '✓ Added';
+    toast.textContent = `ZUCERO Khand × ${qty} added to cart`;
+    toast.style.transform = 'translateY(0)';
+    toast.style.opacity = '1';
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      toast.style.transform = 'translateY(120%)';
+      toast.style.opacity = '0';
+      btn.classList.remove('added');
+      txt.textContent = 'Add to Cart';
+    }, 2400);
+  }
+
+  // Wishlist
+  function toggleWishlist(btn) {
+    const icon = btn.querySelector('svg path');
+    const filled = btn.dataset.filled === 'true';
+    btn.dataset.filled = !filled;
+    icon.style.fill = !filled ? 'var(--c-accent)' : 'none';
+    icon.style.stroke = !filled ? 'var(--c-accent)' : 'currentColor';
+  }
+
+  // Accordion
+  function toggleAccordion(trigger) {
+    const body = trigger.nextElementSibling;
+    const expanded = trigger.getAttribute('aria-expanded') === 'true';
+    // Close all
+    document.querySelectorAll('.accordion-trigger').forEach(t => {
+      t.setAttribute('aria-expanded', 'false');
+      t.nextElementSibling.style.maxHeight = '0';
+    });
+    // Open this if was closed
+    if (!expanded) {
+      trigger.setAttribute('aria-expanded', 'true');
+      body.style.maxHeight = body.scrollHeight + 'px';
+    }
+  }
+</script>
+</body>
+</html>
