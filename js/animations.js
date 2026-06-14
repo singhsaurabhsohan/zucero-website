@@ -30,7 +30,21 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.15 });
   staggerEls.forEach(el => staggerObserver.observe(el));
 
-  // Theme switching removed — body class set per-page in HTML for stability
+  // ── 2. Dynamic Theme Switching (logo excluded from inversion) ──
+  const sections = document.querySelectorAll('section[data-theme]');
+  const body = document.body;
+
+  const themeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const theme = entry.target.getAttribute('data-theme');
+        body.classList.remove('theme-ivory', 'theme-charcoal');
+        if (theme) body.classList.add(`theme-${theme}`);
+      }
+    });
+  }, { threshold: 0.45 });
+
+  sections.forEach(s => themeObserver.observe(s));
 
   // ── 3. Navigation — Frosted Glass Scroll ──
   const nav = document.querySelector('nav');
