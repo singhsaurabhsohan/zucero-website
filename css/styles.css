@@ -1277,3 +1277,41 @@ footer {
   .display { font-size: clamp(3rem, 14vw, 5rem); }
   .container, .container-narrow { width: 92%; }
 }
+/* Send Message — pill button */
+.btn-send {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 1rem 3.5rem;
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-family: var(--sans);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.75rem;
+  font-weight: 400;
+  border-radius: 100px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.5s var(--ease-luxury);
+}
+.btn-send::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; width: 100%; height: 100%;
+  background: var(--gold);
+  transition: left 0.5s var(--ease-luxury);
+  z-index: 0;
+}
+.btn-send span,
+.btn-send {
+  position: relative;
+  z-index: 1;
+}
+.btn-send:hover {
+  color: var(--charcoal);
+}
+.btn-send:hover::before {
+  left: 0;
+}
