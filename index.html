@@ -57,7 +57,7 @@
 
   <section class="hero" data-theme="charcoal" style="padding:0;">
     <div class="hero-bg">
-      <img src="assets/images/hero_cinematic.webp" alt="Golden sugarcane stalks against an amber sunset" loading="eager">
+      <div class="hero-video-wrapper" id="hvw"></div>
     </div>
     <div class="hero-content">
       <div class="hero-tagline">Est. Heritage Sweetness</div>
@@ -338,6 +338,93 @@
     </div>
   </footer>
 
+  <!-- ══════════════════════════════════════════════
+       CONTACT — Ritual Enquiry
+       ══════════════════════════════════════════════ -->
+
+  <section data-theme="charcoal" id="contact" style="border-top:1px solid rgba(197,160,89,0.08);">
+    <div class="container-narrow reveal" style="text-align:center;">
+      <span class="chapter-mark">Get in Touch</span>
+      <h2 class="title-large" style="margin-bottom:1rem;">Begin a Conversation</h2>
+      <p class="body-regular" style="opacity:0.5; margin-bottom:4rem; max-width:420px; margin-left:auto; margin-right:auto;">For wholesale enquiries, gifting partnerships, or simply to say hello — we read every message.</p>
+
+      <form class="ritual-form" id="ritual-form" novalidate>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="f-name">Name</label>
+            <input type="text" id="f-name" name="name" placeholder="Your name" autocomplete="name" required>
+          </div>
+          <div class="form-field">
+            <label for="f-email">Email</label>
+            <input type="email" id="f-email" name="email" placeholder="your@email.com" autocomplete="email" required>
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="f-subject">Subject</label>
+          <select id="f-subject" name="subject">
+            <option value="" disabled selected>Select a topic</option>
+            <option value="wholesale">Wholesale Enquiry</option>
+            <option value="gifting">Corporate Gifting</option>
+            <option value="press">Press & Media</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="f-message">Message</label>
+          <textarea id="f-message" name="message" placeholder="Tell us about your enquiry..." rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="margin-top:1rem; width:100%; max-width:320px;">Send Message</button>
+        <div class="form-status" id="form-status" aria-live="polite"></div>
+      </form>
+    </div>
+  </section>
+
   <script src="js/animations.js"></script>
+  <script>
+  /* ── Video source obfuscation ── */
+  (function(){
+    var p=['aHR0cHM6Ly9wbGF5','Lmd1bWxldC5pby9l','bWJlZC82YTJlZTgy','MTM2MjIzYjIyNzY2','ZjQ0OGM/YXV0b3Bs','YXk9MSZsb29wPTEm','bXV0ZWQ9MSZwcmVs','b2FkPXRydWUmYmFj','a2dyb3VuZD10cnVl'];
+    var src=atob(p.join(''));
+    var w=document.getElementById('hvw');
+    if(!w)return;
+    var f=document.createElement('iframe');
+    f.setAttribute('loading','lazy');
+    f.setAttribute('title','');
+    f.setAttribute('allow','accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write');
+    f.setAttribute('referrerpolicy','no-referrer');
+    f.style.cssText='border:none;position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;';
+    f.src=src;
+    w.appendChild(f);
+  })();
+
+  /* ── Contact form ── */
+  (function(){
+    var form=document.getElementById('ritual-form');
+    var status=document.getElementById('form-status');
+    if(!form)return;
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      var name=document.getElementById('f-name').value.trim();
+      var email=document.getElementById('f-email').value.trim();
+      var msg=document.getElementById('f-message').value.trim();
+      if(!name||!email||!msg){
+        status.className='form-status form-error';
+        status.textContent='Please fill in all required fields.';
+        return;
+      }
+      var btn=form.querySelector('button[type="submit"]');
+      btn.textContent='Sending…';
+      btn.disabled=true;
+      /* Replace the setTimeout below with your actual fetch/POST when backend is ready */
+      setTimeout(function(){
+        status.className='form-status form-success';
+        status.textContent='Thank you. We\'ll be in touch shortly.';
+        form.reset();
+        btn.textContent='Send Message';
+        btn.disabled=false;
+      },1200);
+    });
+  })();
+  </script>
 </body>
 </html>
