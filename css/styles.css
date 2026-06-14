@@ -813,6 +813,9 @@ body.theme-ivory nav.nav-scrolled {
 .parallax-img {
   transform: scale(1.08);
   transition: transform 0.1s linear;
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 /* Subtle gold shimmer on hover for interactive elements */
