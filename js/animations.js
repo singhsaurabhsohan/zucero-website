@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ── 4. Parallax Images (subtle) ──
   const parallaxImgs = document.querySelectorAll('.parallax-img');
+  let ticking = false;
 
   window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
@@ -64,14 +65,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     lastScroll = scrolled;
 
-    // Parallax
-    parallaxImgs.forEach(img => {
-      const rect = img.getBoundingClientRect();
-      if (rect.top < window.innerHeight && rect.bottom > 0) {
-        const yPos = -(rect.top * 0.06);
-        img.style.transform = `scale(1.08) translateY(${yPos}px)`;
-      }
-    });
+    // Parallax — rAF throttled
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        parallaxImgs.forEach(img => {
+          const rect = img.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            const yPos = -(rect.top * 0.06);
+            img.style.transform = `scale(1.08) translateY(${yPos}px)`;
+          }
+        });
+        ticking = false;
+      });
+      ticking = true;
+    }
   }, { passive: true });
 
   // ── 5. Hero Ken Burns ──
