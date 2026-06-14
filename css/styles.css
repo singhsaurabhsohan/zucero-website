@@ -385,32 +385,24 @@ body.theme-ivory nav.nav-scrolled {
   background:
     linear-gradient(
       to top,
-      rgba(5,5,5,.95) 0%,
-      rgba(5,5,5,.55) 30%,
-      rgba(5,5,5,.15) 60%,
-      transparent 100%
+      rgba(5,5,5,.88) 0%,
+      rgba(5,5,5,.20) 35%,
+      transparent 65%
     ),
     linear-gradient(
       to right,
-      rgba(5,5,5,.75) 0%,
-      rgba(5,5,5,.30) 40%,
-      transparent 70%
+      rgba(5,5,5,.45) 0%,
+      transparent 50%
     );
   z-index: 1;
   pointer-events: none;
 }
-
-/* Second grade — top-to-bottom warmth */
+//* Second grade — disabled, video is dark enough */
 .hero::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(20,15,10,.25),
-    rgba(0,0,0,.15)
-  );
-  mix-blend-mode: multiply;
+  background: transparent;
   pointer-events: none;
   z-index: 1;
 }
@@ -1245,15 +1237,14 @@ footer {
     min-height: 100%;
   }
 
-  /* Mobile overlay — bottom-heavy so text always readable */
+  /* Mobile overlay — light hand, bottom dark for text only */
   .hero::before {
     background:
       linear-gradient(
         to top,
-        rgba(5,5,5,.96) 0%,
-        rgba(5,5,5,.65) 35%,
-        rgba(5,5,5,.25) 65%,
-        rgba(5,5,5,.45) 100%
+        rgba(5,5,5,.90) 0%,
+        rgba(5,5,5,.25) 40%,
+        transparent 70%
       );
   }
 
