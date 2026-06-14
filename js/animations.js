@@ -110,9 +110,11 @@ document.addEventListener('DOMContentLoaded', () => {
   if (mobileBtn && mobileOverlay) {
     mobileBtn.addEventListener('click', () => {
       mobileOverlay.classList.add('active');
+      mobileBtn.classList.add('active');
     });
     mobileClose.addEventListener('click', () => {
       mobileOverlay.classList.remove('active');
+      mobileBtn.classList.remove('active');
     });
     mobileOverlay.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
