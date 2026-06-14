@@ -268,8 +268,50 @@
   </section>
 
 
+  <!-- ══════════════════════════════════════════════
+       CONTACT — Ritual Enquiry
+       ══════════════════════════════════════════════ -->
+
+  <section data-theme="charcoal" id="contact" style="border-top:1px solid rgba(197,160,89,0.08);">
+    <div class="container-narrow reveal" style="text-align:center;">
+      <span class="chapter-mark">Get in Touch</span>
+      <h2 class="title-large" style="margin-bottom:1rem;">Begin a Conversation</h2>
+      <p class="body-regular" style="opacity:0.5; margin-bottom:4rem; max-width:420px; margin-left:auto; margin-right:auto;">For wholesale enquiries, gifting partnerships, or simply to say hello — we read every message.</p>
+
+      <form class="ritual-form" id="ritual-form" novalidate>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="f-name">Name</label>
+            <input type="text" id="f-name" name="name" placeholder="Your name" autocomplete="name" required>
+          </div>
+          <div class="form-field">
+            <label for="f-email">Email</label>
+            <input type="email" id="f-email" name="email" placeholder="your@email.com" autocomplete="email" required>
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="f-subject">Subject</label>
+          <select id="f-subject" name="subject">
+            <option value="" disabled selected>Select a topic</option>
+            <option value="wholesale">Wholesale Enquiry</option>
+            <option value="gifting">Corporate Gifting</option>
+            <option value="press">Press & Media</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="f-message">Message</label>
+          <textarea id="f-message" name="message" placeholder="Tell us about your enquiry..." rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn-send" style="margin-top:1rem;">Send Message</button>
+        <div class="form-status" id="form-status" aria-live="polite"></div>
+      </form>
+    </div>
+  </section>
+
   <!-- ═══ Pre-Footer ═══ -->
   <div class="pre-footer reveal">
+    
     <p class="pre-footer-text">Sweetness,<br><em>as it was<br>meant to be.</em></p>
   </div>
 
@@ -344,47 +386,6 @@
       <span class="footer-credit">Made with ❤️ by <a href="https://squargraph.com" target="_blank" rel="noopener">SQUARGRAPH™</a></span>
     </div>
   </footer>
-
-  <!-- ══════════════════════════════════════════════
-       CONTACT — Ritual Enquiry
-       ══════════════════════════════════════════════ -->
-
-  <section data-theme="charcoal" id="contact" style="border-top:1px solid rgba(197,160,89,0.08);">
-    <div class="container-narrow reveal" style="text-align:center;">
-      <span class="chapter-mark">Get in Touch</span>
-      <h2 class="title-large" style="margin-bottom:1rem;">Begin a Conversation</h2>
-      <p class="body-regular" style="opacity:0.5; margin-bottom:4rem; max-width:420px; margin-left:auto; margin-right:auto;">For wholesale enquiries, gifting partnerships, or simply to say hello — we read every message.</p>
-
-      <form class="ritual-form" id="ritual-form" novalidate>
-        <div class="form-row">
-          <div class="form-field">
-            <label for="f-name">Name</label>
-            <input type="text" id="f-name" name="name" placeholder="Your name" autocomplete="name" required>
-          </div>
-          <div class="form-field">
-            <label for="f-email">Email</label>
-            <input type="email" id="f-email" name="email" placeholder="your@email.com" autocomplete="email" required>
-          </div>
-        </div>
-        <div class="form-field">
-          <label for="f-subject">Subject</label>
-          <select id="f-subject" name="subject">
-            <option value="" disabled selected>Select a topic</option>
-            <option value="wholesale">Wholesale Enquiry</option>
-            <option value="gifting">Corporate Gifting</option>
-            <option value="press">Press & Media</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-        <div class="form-field">
-          <label for="f-message">Message</label>
-          <textarea id="f-message" name="message" placeholder="Tell us about your enquiry..." rows="5" required></textarea>
-        </div>
-        <button type="submit" class="btn-primary" style="margin-top:1rem; width:100%; max-width:320px;">Send Message</button>
-        <div class="form-status" id="form-status" aria-live="polite"></div>
-      </form>
-    </div>
-  </section>
 
   <script src="js/animations.js"></script>
   <script>
