@@ -90,4 +90,27 @@ document.addEventListener('DOMContentLoaded', () => {
     cartClose.addEventListener('click', closeCart);
     cartOverlay.addEventListener('click', closeCart);
   }
+
+  // 5. Mobile Menu Logic
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+  const mobileMenuClose = document.getElementById('mobile-menu-close');
+
+  if (mobileMenuBtn && mobileMenuOverlay) {
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenuOverlay.classList.add('active');
+    });
+
+    mobileMenuClose.addEventListener('click', () => {
+      mobileMenuOverlay.classList.remove('active');
+    });
+
+    // Close mobile menu when a link is clicked
+    const mobileLinks = mobileMenuOverlay.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenuOverlay.classList.remove('active');
+      });
+    });
+  }
 });
