@@ -261,7 +261,7 @@ nav {
 
 nav.nav-scrolled {
   padding: 1rem 5%;
-  background: rgba(20, 20, 20, 0.82);
+  background: rgba(12, 17, 13, 0.82);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border-bottom: none;
@@ -273,7 +273,7 @@ body.theme-ivory nav {
   color: var(--charcoal);
 }
 body.theme-ivory nav.nav-scrolled {
-  background: rgba(245, 240, 232, 0.92);
+  background: rgba(242, 237, 224, 0.92);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border-bottom: none;
@@ -429,9 +429,9 @@ body.theme-ivory nav.nav-scrolled {
   inset: 0;
   background: linear-gradient(
     to top,
-    rgba(20, 20, 20, 0.95) 0%,
-    rgba(20, 20, 20, 0.5) 35%,
-    rgba(20, 20, 20, 0.1) 60%,
+    rgba(12, 17, 13, 0.95) 0%,
+    rgba(12, 17, 13, 0.5) 35%,
+    rgba(12, 17, 13, 0.1) 60%,
     transparent 100%
   );
   z-index: 1;
@@ -868,7 +868,7 @@ body.theme-ivory nav.nav-scrolled {
    ══════════════════════════════════════════════════ */
 
 footer {
-  background: #0E0E0E;
+  background: #090D09;
   color: var(--ivory);
   border-top: 1px solid rgba(197, 160, 89, 0.1);
 }
