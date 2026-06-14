@@ -10,12 +10,14 @@
 :root {
   --ivory:    #F5F0E8;
   --cream:    #EDE7DA;
-  --charcoal: #141414;
-  --carbon:   #1C1C1C;
-  --gold:     #C5A059;
-  --gold-dim: #A38045;
-  --gold-glow: #D4B06A;
-  --warm:     #2A2218;
+  --charcoal: #0C110D;
+  --carbon:   #141A15;
+  --gold:     #B8973F;
+  --gold-dim: #8A7030;
+  --gold-glow: #C9A84C;
+  --warm:     #1E2A1F;
+  --ivory:    #F2EDE0;
+  --forest:   #4A6741;
 
   --serif:  'Cormorant Garamond', 'Georgia', serif;
   --sans:   'Outfit', 'Helvetica Neue', sans-serif;
