@@ -57,7 +57,11 @@
 
   <section class="hero" data-theme="charcoal" style="padding:0;">
     <div class="hero-bg">
-      <div class="hero-video-wrapper" id="hvw"></div>
+      <div class="hero-video-wrapper">
+        <video autoplay muted loop playsinline preload="auto" poster="assets/images/hero_cinematic.webp">
+          <source src="hero_zucero.mp4" type="video/mp4">
+        </video>
+      </div>
     </div>
     <div class="hero-content">
       <div class="hero-tagline">Est. Heritage Sweetness</div>
@@ -381,20 +385,11 @@
 
   <script src="js/animations.js"></script>
   <script>
-  /* ── Video source obfuscation ── */
+  /* ── Hero video iOS force play ── */
   (function(){
-    var p=['aHR0cHM6Ly9wbGF5','Lmd1bWxldC5pby9l','bWJlZC82YTJlZTgy','MTM2MjIzYjIyNzY2','ZjQ0OGM/YXV0b3Bs','YXk9MSZsb29wPTEm','bXV0ZWQ9MSZwcmVs','b2FkPXRydWUmYmFj','a2dyb3VuZD10cnVl'];
-    var src=atob(p.join(''));
-    var w=document.getElementById('hvw');
-    if(!w)return;
-    var f=document.createElement('iframe');
-    f.setAttribute('loading','lazy');
-    f.setAttribute('title','');
-    f.setAttribute('allow','accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;clipboard-write');
-    f.setAttribute('referrerpolicy','no-referrer');
-    f.style.cssText='border:none;position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;';
-    f.src=src;
-    w.appendChild(f);
+    var v = document.querySelector('.hero-video-wrapper video');
+    if(!v) return;
+    v.play().catch(function(){});
   })();
 
   /* ── Contact form ── */
