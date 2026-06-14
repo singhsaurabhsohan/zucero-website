@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZUCERO | Journal</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="theme-ivory">
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-links">
+      <a href="collection.html">Collection</a>
+      <a href="stories.html">Journal</a>
+      <a href="founder.html">Heritage</a>
+    </div>
+    <a href="index.html" class="brand-logo" style="text-align: center; flex: 1;">ZUCERO</a>
+    <div class="nav-actions">
+      <a href="wishlist.html">Wishlist</a>
+      <a href="#" class="cart-trigger">Cart (0)</a>
+    </div>
+  </nav>
+
+  <!-- Cart Drawer -->
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <div class="cart-drawer" id="cart-drawer">
+    <div class="cart-header">
+      <span class="serif" style="font-size: 1.5rem;">Your Cart</span>
+      <span class="cart-close" id="cart-close">&times;</span>
+    </div>
+    <div class="cart-items">
+      <div style="padding: 2rem 0; text-align: center; color: var(--color-gold-muted);">
+        <p class="body-regular">Your cart is currently empty.</p>
+        <a href="collection.html" class="btn-primary" style="margin-top: 2rem;">Explore Collection</a>
+      </div>
+    </div>
+  </div>
+
+  <section style="padding-top: 20vh;">
+    <div class="container">
+      <div class="reveal-up" style="text-align: center; margin-bottom: var(--space-xl);">
+        <span class="caption text-gold">The Journal</span>
+        <h1 class="title-huge" style="margin-top: 1rem;">Culture & Craft</h1>
+      </div>
+
+      <!-- Featured Story -->
+      <a href="story-detail.html" style="display: block; margin-bottom: var(--space-xxl);">
+        <div class="grid-offset-reverse reveal-up">
+          <div class="img-wrap img-wide">
+            <img src="assets/images/slow_sweetness.png" alt="The Ritual of Morning Tea" class="parallax-img">
+          </div>
+          <div style="padding-top: var(--space-sm);">
+            <span class="caption">Rituals</span>
+            <h2 class="title-medium" style="margin: 1rem 0;">The Ritual of Morning Tea</h2>
+            <p class="body-regular" style="color: var(--color-charcoal);">Why the slow dissolve of a Mishri crystal forces us to pause, breathe, and begin the day with intention.</p>
+            <span class="btn-primary" style="margin-top: 2rem;">Read Feature</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Story Grid -->
+      <div class="grid-2 reveal-up">
+        <a href="story-detail.html">
+          <div class="img-wrap img-square" style="margin-bottom: 2rem;">
+            <img src="assets/images/heritage_khand.png" alt="The Heritage of Khand" class="parallax-img">
+          </div>
+          <span class="caption">Heritage Sweetness</span>
+          <h3 class="title-medium" style="margin: 1rem 0; font-size: 2.5rem;">The Heritage of Khand</h3>
+          <p class="body-regular">Tracing the ancient roots of India's finest unrefined sugar.</p>
+        </a>
+
+        <a href="story-detail.html" style="margin-top: var(--space-xl);">
+          <div class="img-wrap img-square" style="margin-bottom: 2rem;">
+            <img src="assets/images/artisan_hands.png" alt="The Art of Slow Sweetness" class="parallax-img">
+          </div>
+          <span class="caption">Craft & Origin</span>
+          <h3 class="title-medium" style="margin: 1rem 0; font-size: 2.5rem;">The Hands Behind the Craft</h3>
+          <p class="body-regular">Meet the artisans preserving a century-old boiling technique.</p>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">ZUCERO</div>
+    <span class="caption">The Emotion of Sweetness.</span>
+  </footer>
+
+  <script src="js/animations.js"></script>
+</body>
+</html>

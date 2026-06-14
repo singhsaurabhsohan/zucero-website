@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZUCERO | Khand Gold Reserve</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .product-details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-top: 4rem;
+      border-top: 1px solid rgba(26, 26, 26, 0.2);
+      padding-top: 4rem;
+    }
+    .detail-block h4 {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+      color: var(--color-gold);
+    }
+  </style>
+</head>
+<body class="theme-ivory">
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-links">
+      <a href="collection.html">Collection</a>
+      <a href="stories.html">Journal</a>
+      <a href="founder.html">Heritage</a>
+    </div>
+    <a href="index.html" class="brand-logo" style="text-align: center; flex: 1;">ZUCERO</a>
+    <div class="nav-actions">
+      <a href="wishlist.html">Wishlist</a>
+      <a href="#" class="cart-trigger">Cart (0)</a>
+    </div>
+  </nav>
+
+  <!-- Cart Drawer Component (Shared) -->
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <div class="cart-drawer" id="cart-drawer">
+    <div class="cart-header">
+      <span class="serif" style="font-size: 1.5rem;">Your Cart</span>
+      <span class="cart-close" id="cart-close">&times;</span>
+    </div>
+    <div class="cart-items">
+      <div style="padding: 2rem 0; text-align: center; color: var(--color-gold-muted);">
+        <p class="body-regular">Your cart is currently empty.</p>
+        <a href="collection.html" class="btn-primary" style="margin-top: 2rem;">Explore Collection</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product Hero -->
+  <section style="padding-top: 15vh; min-height: 100vh; display: flex; align-items: center;">
+    <div class="container">
+      <div class="grid-offset-reverse reveal-up">
+        <div class="img-wrap img-tall">
+          <img src="assets/images/khand_gold_reserve.png" alt="Khand Gold Reserve" class="parallax-img">
+        </div>
+        <div style="padding-top: var(--space-lg);">
+          <span class="caption">The Collection &mdash; No. 01</span>
+          <h1 class="title-huge text-gold" style="margin: 1rem 0;">Khand Gold Reserve</h1>
+          <p class="body-large" style="margin-bottom: 2rem;">A delicate, unrefined cane sugar. Fine as sand, rich with the memory of the cane stalk. This is sweetness in its most elegant natural form.</p>
+          
+          <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 2rem;">
+            <div class="qty-selector">
+              <span>-</span>
+              <span>1</span>
+              <span>+</span>
+            </div>
+            <span class="serif" style="font-size: 1.5rem;">$45.00</span>
+          </div>
+
+          <a href="#" class="btn-primary cart-trigger">Add to Cart</a>
+          <a href="#" style="margin-left: 2rem; font-family: var(--font-sans); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.1em; border-bottom: 1px solid currentColor;">Save to Wishlist</a>
+
+          <div class="product-details-grid">
+            <div class="detail-block">
+              <h4>Ingredients</h4>
+              <p class="serif" style="font-size: 1.2rem;">100% Raw Sugarcane Juice.</p>
+            </div>
+            <div class="detail-block">
+              <h4>Origin</h4>
+              <p class="serif" style="font-size: 1.2rem;">Cold-pressed in Uttar Pradesh.</p>
+            </div>
+            <div class="detail-block">
+              <h4>Pairing</h4>
+              <p class="serif" style="font-size: 1.2rem;">Light roast coffee, shortbread.</p>
+            </div>
+            <div class="detail-block">
+              <h4>Ritual</h4>
+              <p class="serif" style="font-size: 1.2rem;">Dissolve one teaspoon in warm espresso.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Ritual Details -->
+  <section data-theme="charcoal">
+    <div class="container reveal-up">
+      <div class="grid-offset">
+        <div style="padding-top: var(--space-lg);">
+          <h2 class="title-large" style="margin-bottom: 2rem;">The Morning Ritual</h2>
+          <p class="body-regular">Khand is designed for the modern dawn. Because of its fine texture, it dissolves instantly into hot beverages. When stirred into a fresh espresso or a robust black tea, it imparts a very subtle note of caramel without overpowering the roast.</p>
+        </div>
+        <div class="img-wrap img-square">
+          <img src="assets/images/heritage_khand.png" alt="Heritage Khand" class="parallax-img">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">ZUCERO</div>
+    <span class="caption">The Emotion of Sweetness.</span>
+  </footer>
+
+  <script src="js/animations.js"></script>
+</body>
+</html>
