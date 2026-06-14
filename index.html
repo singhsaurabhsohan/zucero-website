@@ -58,9 +58,10 @@
   <section class="hero" data-theme="charcoal" style="padding:0;">
     <div class="hero-bg">
       <div class="hero-video-wrapper">
-        <video autoplay muted loop playsinline preload="auto" poster="assets/images/hero_cinematic.webp">
+        <video autoplay muted loop playsinline preload="metadata">
+          <source src="https://video.gumlet.io/6a0894513a5246215d4785da/6a2ee82136223b22766f448c/main.m3u8" type="application/x-mpegURL">
           <source src="hero_zucero.mp4" type="video/mp4">
-        </video>
+      </video>
       </div>
     </div>
     <div class="hero-content">
@@ -421,5 +422,19 @@
     });
   })();
   </script>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest/dist/hls.min.js"></script>
+<script>
+  var video = document.querySelector('.hero-video-wrapper video');
+  var src = 'https://video.gumlet.io/6a0894513a5246215d4785da/6a2ee82136223b22766f448c/main.m3u8';
+  if (Hls.isSupported()) {
+    var hls = new Hls({ autoStartLoad: true, startLevel: -1 });
+    hls.loadSource(src);
+    hls.attachMedia(video);
+    hls.on(Hls.Events.MANIFEST_PARSED, function() { video.play(); });
+  } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+    video.src = src;
+    video.play();
+  }
+</script>
 </body>
 </html>
