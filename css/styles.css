@@ -1032,6 +1032,103 @@ footer {
 .cart-items { flex: 1; overflow-y: auto; }
 
 /* ══════════════════════════════════════════════════
+   CONTACT FORM — Ritual Enquiry
+   ══════════════════════════════════════════════════ */
+
+.ritual-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-field label {
+  font-family: var(--sans);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  opacity: 0.7;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(197, 160, 89, 0.25);
+  color: var(--ivory);
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 200;
+  padding: 0.75rem 0;
+  outline: none;
+  transition: border-color 0.4s var(--ease-luxury);
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 0;
+}
+
+.form-field select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23C5A059' opacity='.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  padding-right: 1.5rem;
+}
+
+.form-field select option {
+  background: var(--charcoal);
+  color: var(--ivory);
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: rgba(245, 240, 232, 0.2);
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  border-bottom-color: var(--gold);
+}
+
+.form-field textarea {
+  resize: none;
+  line-height: 1.7;
+}
+
+.form-status {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  margin-top: 0.5rem;
+  min-height: 1.4rem;
+  text-align: center;
+}
+
+.form-success { color: var(--gold); }
+.form-error   { color: #c0614a; }
+
+@media (max-width: 600px) {
+  .form-row { grid-template-columns: 1fr; }
+}
+
+/* ══════════════════════════════════════════════════
    RESPONSIVE
    ══════════════════════════════════════════════════ */
 
