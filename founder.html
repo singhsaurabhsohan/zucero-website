@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZUCERO | The Founder</title>
+  <title>ZUCERO | Heritage & Vision</title>
+  <meta name="description" content="The story of ZUCERO — preserving the ritual of natural sweetness through heritage craft and modern intention.">
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="theme-ivory">
+<body class="theme-charcoal">
 
-  <!-- Navigation -->
   <nav>
     <a href="index.html" class="brand-logo">
       <img src="assets/images/zucerothegoodsugar-logo.png" alt="ZUCERO" class="logo-img">
@@ -18,12 +18,11 @@
       <a href="stories.html">Journal</a>
       <a href="founder.html">Heritage</a>
       <a href="wishlist.html">Wishlist</a>
-      <a href="#" class="cart-trigger">Cart (0)</a>
+      <a href="#" class="cart-trigger">Cart</a>
     </div>
     <div class="mobile-menu-btn" id="mobile-menu-btn">Menu</div>
   </nav>
 
-  <!-- Mobile Menu Overlay -->
   <div class="mobile-menu-overlay" id="mobile-menu-overlay">
     <div class="mobile-menu-close" id="mobile-menu-close">&times;</div>
     <a href="collection.html">Collection</a>
@@ -33,49 +32,95 @@
     <a href="#" class="cart-trigger">Cart</a>
   </div>
 
-  <!-- Cart Drawer Component (Shared) -->
   <div class="cart-overlay" id="cart-overlay"></div>
   <div class="cart-drawer" id="cart-drawer">
     <div class="cart-header">
-      <span class="serif" style="font-size: 1.5rem;">Your Cart</span>
+      <span class="serif" style="font-size: 1.4rem;">Your Cart</span>
       <span class="cart-close" id="cart-close">&times;</span>
     </div>
-    <div class="cart-items">
-      <div style="padding: 2rem 0; text-align: center; color: var(--color-gold-muted);">
-        <p class="body-regular">Your cart is currently empty.</p>
-        <a href="collection.html" class="btn-primary" style="margin-top: 2rem;">Explore Collection</a>
+    <div class="cart-items" style="display:flex; align-items:center; justify-content:center; flex:1;">
+      <div style="text-align:center;">
+        <p class="body-regular" style="opacity:0.5; margin-bottom:2rem;">Your cart is empty.</p>
+        <a href="collection.html" class="btn-primary">Explore the Collection</a>
       </div>
     </div>
   </div>
 
-  <section style="padding-top: 20vh;">
+  <!-- Founder Hero -->
+  <section style="padding-top: 18vh;" data-theme="charcoal">
     <div class="container">
-      <div class="grid-offset reveal-up">
-        <div style="padding-top: var(--space-xl);">
-          <span class="caption text-gold">The Vision</span>
-          <h1 class="title-large" style="margin: 2rem 0;">"We are not selling sugar. We are preserving a ritual."</h1>
-          <p class="body-large">The journey of ZUCERO began not in a boardroom, but in the quiet, sun-drenched kitchens of our ancestors. Where sweetness was not a commodity, but a craft. A moment of pause. A gesture of hospitality.</p>
-          <img src="assets/images/signature_placeholder.png" alt="Founder Signature" style="height: 60px; margin-top: 3rem; opacity: 0.5; display: none;">
-          <div style="font-family: var(--font-serif); font-style: italic; font-size: 1.5rem; margin-top: 2rem; color: var(--color-gold);">— The Founder</div>
+      <div class="grid-offset-reverse">
+        <div class="img-wrap img-tall reveal">
+          <img src="assets/images/founder_portrait.png" alt="Portrait of the ZUCERO Founder" class="parallax-img">
         </div>
-        <div class="img-wrap img-tall">
-          <img src="assets/images/founder_portrait.png" alt="Founder Portrait" class="parallax-img">
+        <div class="reveal reveal-delay-1" style="padding-top: clamp(2rem, 8vw, 8rem);">
+          <span class="chapter-mark">The Founder</span>
+          <h1 class="title-huge text-gold" style="margin-bottom: 2rem;">A Letter<br>on Sweetness</h1>
+          <div class="divider-gold"></div>
         </div>
       </div>
     </div>
   </section>
 
-  <section data-theme="charcoal">
-    <div class="container reveal-up" style="max-width: 800px; margin: 0 auto; text-align: center;">
-      <h2 class="title-medium text-gold" style="margin-bottom: 2rem;">A Return to Purity</h2>
-      <p class="body-regular" style="margin-bottom: 2rem;">For decades, the industry stripped away the soul of sweetness. We bleached it. We mass-produced it. We forgot the rich molasses of authentic Jaggery and the delicate crystals of Mishri.</p>
-      <p class="body-regular">ZUCERO is our quiet rebellion. By partnering directly with heritage artisans, we are bringing the culture of slow sweetness back into the modern home.</p>
+  <!-- The Letter -->
+  <section data-theme="charcoal" style="padding-top: 0;">
+    <div class="container-narrow reveal">
+      <div class="founder-quote" style="margin-bottom: 3rem;">
+        "We are not selling sugar. We are preserving a ritual that the modern world forgot."
+      </div>
+      <div class="founder-attribution" style="margin-bottom: 4rem;">— The Founder</div>
+
+      <div class="divider-gold"></div>
+
+      <div class="body-large" style="opacity:0.8; margin-top: 3rem;">
+        <p style="margin-bottom: 2rem;">The journey of ZUCERO began not in a boardroom, but in the quiet, sun-drenched kitchens of our ancestors.</p>
+        <p style="margin-bottom: 2rem;">Where sweetness was not a commodity you bought in plastic bags, but a craft. A moment of pause. A gesture of hospitality. A grandmother dissolving rock sugar into warm milk for a grandchild who couldn't sleep.</p>
+        <p style="margin-bottom: 2rem;">For decades, the industry stripped away the soul of sweetness. We bleached it. We mass-produced it. We forgot the rich molasses of authentic Jaggery and the delicate cooling crystals of Mishri.</p>
+      </div>
+
+      <div class="crystal-dots"><span></span></div>
+    </div>
+  </section>
+
+  <!-- The Vision -->
+  <section data-theme="ivory">
+    <div class="container">
+      <div class="grid-2">
+        <div class="reveal">
+          <span class="chapter-mark">The Vision</span>
+          <h2 class="title-large" style="margin-bottom: 2rem;">A Return<br>to Purity</h2>
+          <div class="divider-gold"></div>
+          <p class="body-regular" style="opacity:0.7; max-width: 400px;">ZUCERO is our quiet rebellion. By partnering directly with heritage artisans across India, we are bringing the culture of slow sweetness back into the modern home.</p>
+          <p class="body-regular" style="opacity:0.5; max-width: 400px; margin-top: 1.5rem;">Every grain of Khand, every block of Jaggery, every crystal of Mishri carries generations of knowledge. We simply give them the stage they deserve.</p>
+        </div>
+        <div class="reveal reveal-delay-2">
+          <div class="img-wrap img-square">
+            <img src="assets/images/heritage_khand.png" alt="Heritage Khand texture" class="parallax-img">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Philosophy -->
+  <section data-theme="charcoal" style="text-align:center;">
+    <div class="container-narrow reveal">
+      <span class="chapter-mark">Philosophy</span>
+      <h2 class="display text-gold" style="margin: 1.5rem 0;">Slow<br>craft.</h2>
+      <div class="crystal-dots" style="justify-content:center;"><span></span></div>
+      <p class="body-large" style="opacity:0.5;">We believe the best things cannot be rushed. That sweetness, like all good things, requires patience, fire, and the wisdom of knowing when to stop.</p>
     </div>
   </section>
 
   <footer>
     <div class="footer-logo">ZUCERO</div>
-    <span class="caption">The Emotion of Sweetness.</span>
+    <div class="footer-tagline">The Emotion of Sweetness</div>
+    <div class="footer-links">
+      <a href="collection.html">Collection</a>
+      <a href="stories.html">Journal</a>
+      <a href="founder.html">Heritage</a>
+    </div>
+    <div class="footer-legal">&copy; 2025 ZUCERO. All rights reserved.</div>
   </footer>
 
   <script src="js/animations.js"></script>

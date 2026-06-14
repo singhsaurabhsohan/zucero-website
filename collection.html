@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ZUCERO | The Collection</title>
+  <meta name="description" content="Explore the ZUCERO triad — Khand, Jaggery, and Mishri. Three forms of heritage sweetness, crafted for modern rituals.">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body class="theme-charcoal">
@@ -18,12 +19,11 @@
       <a href="stories.html">Journal</a>
       <a href="founder.html">Heritage</a>
       <a href="wishlist.html">Wishlist</a>
-      <a href="#" class="cart-trigger">Cart (0)</a>
+      <a href="#" class="cart-trigger">Cart</a>
     </div>
     <div class="mobile-menu-btn" id="mobile-menu-btn">Menu</div>
   </nav>
 
-  <!-- Mobile Menu Overlay -->
   <div class="mobile-menu-overlay" id="mobile-menu-overlay">
     <div class="mobile-menu-close" id="mobile-menu-close">&times;</div>
     <a href="collection.html">Collection</a>
@@ -33,68 +33,97 @@
     <a href="#" class="cart-trigger">Cart</a>
   </div>
 
-  <!-- Cart Drawer Component (Shared) -->
   <div class="cart-overlay" id="cart-overlay"></div>
   <div class="cart-drawer" id="cart-drawer">
     <div class="cart-header">
-      <span class="serif" style="font-size: 1.5rem;">Your Cart</span>
+      <span class="serif" style="font-size: 1.4rem;">Your Cart</span>
       <span class="cart-close" id="cart-close">&times;</span>
     </div>
-    <div class="cart-items">
-      <div style="padding: 2rem 0; text-align: center; color: var(--color-gold-muted);">
-        <p class="body-regular">Your cart is currently empty.</p>
-        <a href="collection.html" class="btn-primary" style="margin-top: 2rem;">Explore Collection</a>
+    <div class="cart-items" style="display:flex; align-items:center; justify-content:center; flex:1;">
+      <div style="text-align:center;">
+        <p class="body-regular" style="opacity:0.5; margin-bottom:2rem;">Your cart is empty.</p>
+        <a href="collection.html" class="btn-primary">Explore the Collection</a>
       </div>
     </div>
   </div>
 
-  <section style="padding-top: 20vh; text-align: center;">
-    <div class="container reveal-up">
-      <span class="caption">The Collection</span>
-      <h1 class="title-huge text-gold" style="margin: 2rem 0;">Nature's Sweetest Forms</h1>
-      <p class="body-large" style="max-width: 600px; margin: 0 auto;">Explore our triad of unrefined luxury. Three distinct textures. Three unique rituals.</p>
+  <!-- Hero -->
+  <section style="padding-top: 20vh; text-align:center;" data-theme="charcoal">
+    <div class="container reveal">
+      <span class="chapter-mark">The Collection</span>
+      <h1 class="display text-gold">Three<br>Forms</h1>
+      <div class="crystal-dots" style="justify-content:center;"><span></span></div>
+      <p class="body-large" style="max-width:500px; margin:0 auto; opacity:0.6;">Each product is a distinct expression of natural sweetness — shaped by terroir, tradition, and the patience of the artisan.</p>
     </div>
   </section>
 
-  <section>
+  <!-- Products -->
+  <section data-theme="charcoal">
     <div class="container">
-      
-      <!-- Khand Gold Reserve -->
-      <div class="grid-offset reveal-up" style="margin-bottom: var(--space-xxl);">
-        <div style="padding-top: var(--space-lg);">
-          <h2 class="title-large">Khand Gold Reserve</h2>
-          <span class="caption text-gold" style="display: block; margin-bottom: 2rem;">Pale Golden Sand</span>
-          <p class="body-regular">Khand is the essence of raw cane juice, gently separated from its molasses to leave behind a delicate, fine-grained texture. It dissolves instantly, bringing a light, airy sweetness to your morning cup.</p>
-          <a href="product.html" class="btn-primary" style="border-color: #F9F6F0; color: #F9F6F0;">Deep Dive</a>
-        </div>
-        <div class="img-wrap img-square">
-          <img src="assets/images/khand_gold_reserve.png" alt="Khand Gold Reserve" class="parallax-img">
+
+      <!-- Khand -->
+      <div class="product-story reveal">
+        <div class="grid-offset">
+          <div style="padding-top: clamp(2rem, 8vw, 8rem);">
+            <span class="product-label">No. 01 — Cane</span>
+            <h2 class="title-huge">Khand<br>Gold Reserve</h2>
+            <div class="divider-gold"></div>
+            <p class="body-regular" style="opacity:0.7; max-width:400px;">The essence of raw cane juice, gently separated from its molasses. A delicate, fine-grained texture that dissolves instantly, bringing airy sweetness to every morning.</p>
+            <div class="crystal-dots"><span></span></div>
+            <div style="display:flex; gap:3rem; opacity:0.5;">
+              <div><span class="caption" style="display:block; margin-bottom:0.5rem;">Origin</span><span class="serif" style="font-size:1.1rem;">Uttar Pradesh</span></div>
+              <div><span class="caption" style="display:block; margin-bottom:0.5rem;">Texture</span><span class="serif" style="font-size:1.1rem;">Fine Sand</span></div>
+              <div><span class="caption" style="display:block; margin-bottom:0.5rem;">Pairs With</span><span class="serif" style="font-size:1.1rem;">Espresso, Chai</span></div>
+            </div>
+            <a href="product.html" class="btn-discover">Explore Khand</a>
+          </div>
+          <div class="img-wrap img-tall">
+            <img src="assets/images/khand_gold_reserve.png" alt="Khand Gold Reserve" class="parallax-img">
+          </div>
         </div>
       </div>
 
-      <!-- Palm Jaggery -->
-      <div class="grid-offset-reverse reveal-up" style="margin-bottom: var(--space-xxl);">
-        <div class="img-wrap img-tall">
-          <img src="assets/images/palm_jaggery.png" alt="Heritage Palm Jaggery" class="parallax-img">
-        </div>
-        <div style="padding-top: var(--space-xl);">
-          <h2 class="title-large">Heritage Palm Jaggery</h2>
-          <span class="caption text-gold" style="display: block; margin-bottom: 2rem;">Dark Earthy Blocks</span>
-          <p class="body-regular">A testament to the earth. Our jaggery is boiled slowly over open fires, capturing the deep minerals and rich caramel flavors of the soil. Perfect for robust winter recipes.</p>
-          <a href="product.html" class="btn-primary" style="border-color: #F9F6F0; color: #F9F6F0;">Deep Dive</a>
+      <!-- Jaggery -->
+      <div class="product-story reveal">
+        <div class="grid-offset-reverse">
+          <div class="img-wrap img-tall">
+            <img src="assets/images/palm_jaggery.png" alt="Heritage Palm Jaggery" class="parallax-img">
+          </div>
+          <div style="padding-top: clamp(2rem, 8vw, 8rem);">
+            <span class="product-label">No. 02 — Earth</span>
+            <h2 class="title-huge">Heritage<br>Palm Jaggery</h2>
+            <div class="divider-gold"></div>
+            <p class="body-regular" style="opacity:0.7; max-width:400px;">A testament to the earth. Slow-boiled over open fires in iron kadhai, our jaggery captures deep minerals and rich caramel warmth that no refined sugar can replicate.</p>
+            <div class="crystal-dots"><span></span></div>
+            <div style="display:flex; gap:3rem; opacity:0.5;">
+              <div><span class="caption" style="display:block; margin-bottom:0.5rem;">Origin</span><span class="serif" style="font-size:1.1rem;">Tamil Nadu</span></div>
+              <div><span class="caption" style="display:block; margin-bottom:0.5rem;">Texture</span><span class="serif" style="font-size:1.1rem;">Dense Blocks</span></div>
+              <div><span class="caption" style="display:block; margin-bottom:0.5rem;">Pairs With</span><span class="serif" style="font-size:1.1rem;">Winter Recipes</span></div>
+            </div>
+            <a href="product.html" class="btn-discover">Explore Jaggery</a>
+          </div>
         </div>
       </div>
 
-      <!-- Saffron Mishri -->
-      <div class="grid-offset reveal-up">
-        <div style="padding-top: var(--space-md);">
-          <h2 class="title-large">Saffron Mishri</h2>
-          <span class="caption text-gold" style="display: block; margin-bottom: 2rem;">Crystal Clarity</span>
-          <p class="body-regular">Mishri crystals are grown slowly on threads, symbolizing patience and purity. Known in Ayurveda for their cooling properties, they are the ultimate palate cleanser.</p>
-          <a href="product.html" class="btn-primary" style="border-color: #F9F6F0; color: #F9F6F0;">Deep Dive</a>
-        </div>
-        <div class="img-wrap img-wide">
-          <img src="assets/images/saffron_mishri.png" alt="Saffron Mishri" class="parallax-img">
+      <!-- Mishri -->
+      <div class="product-story reveal">
+        <div class="grid-offset">
+          <div style="padding-top: clamp(2rem, 6vw, 6rem);">
+            <span class="product-label">No. 03 — Crystal</span>
+            <h2 class="title-huge">Saffron<br>Mishri</h2>
+            <div class="divider-gold"></div>
+            <p class="body-regular" style="opacity:0.7; max-width:400px;">Translucent crystals grown slowly on threads, infused with pure Kashmiri saffron. Known in Ayurveda for cooling the body and calming the mind.</p>
+            <div class="crystal-dots"><span></span></div>
+            <div style="display:flex; gap:3rem; opacity:0.5;">
+              <div><span class="caption" style="display:block; margin-bottom:0.5rem;">Origin</span><span class="serif" style="font-size:1.1rem;">Rajasthan</span></div>
+              <div><span class="caption" style="display:block; margin-bottom:0.5rem;">Texture</span><span class="serif" style="font-size:1.1rem;">Large Crystals</span></div>
+              <div><span class="caption" style="display:block; margin-bottom:0.5rem;">Pairs With</span><span class="serif" style="font-size:1.1rem;">Warm Milk, Tea</span></div>
+            </div>
+            <a href="product.html" class="btn-discover">Explore Mishri</a>
+          </div>
+          <div class="img-wrap img-square">
+            <img src="assets/images/saffron_mishri.png" alt="Saffron Mishri" class="parallax-img">
+          </div>
         </div>
       </div>
 
@@ -103,7 +132,13 @@
 
   <footer>
     <div class="footer-logo">ZUCERO</div>
-    <span class="caption">The Emotion of Sweetness.</span>
+    <div class="footer-tagline">The Emotion of Sweetness</div>
+    <div class="footer-links">
+      <a href="collection.html">Collection</a>
+      <a href="stories.html">Journal</a>
+      <a href="founder.html">Heritage</a>
+    </div>
+    <div class="footer-legal">&copy; 2025 ZUCERO. All rights reserved.</div>
   </footer>
 
   <script src="js/animations.js"></script>

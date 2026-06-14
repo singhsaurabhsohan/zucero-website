@@ -6,7 +6,7 @@
   <title>ZUCERO | Wishlist</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="theme-ivory">
+<body class="theme-charcoal">
 
   <nav>
     <a href="index.html" class="brand-logo">
@@ -17,12 +17,11 @@
       <a href="stories.html">Journal</a>
       <a href="founder.html">Heritage</a>
       <a href="wishlist.html">Wishlist</a>
-      <a href="#" class="cart-trigger">Cart (0)</a>
+      <a href="#" class="cart-trigger">Cart</a>
     </div>
     <div class="mobile-menu-btn" id="mobile-menu-btn">Menu</div>
   </nav>
 
-  <!-- Mobile Menu Overlay -->
   <div class="mobile-menu-overlay" id="mobile-menu-overlay">
     <div class="mobile-menu-close" id="mobile-menu-close">&times;</div>
     <a href="collection.html">Collection</a>
@@ -32,53 +31,47 @@
     <a href="#" class="cart-trigger">Cart</a>
   </div>
 
-  <!-- Cart Drawer Component (Shared) -->
   <div class="cart-overlay" id="cart-overlay"></div>
   <div class="cart-drawer" id="cart-drawer">
     <div class="cart-header">
-      <span class="serif" style="font-size: 1.5rem;">Your Cart</span>
+      <span class="serif" style="font-size: 1.4rem;">Your Cart</span>
       <span class="cart-close" id="cart-close">&times;</span>
     </div>
-    <div class="cart-items">
-      <div style="padding: 2rem 0; text-align: center; color: var(--color-gold-muted);">
-        <p class="body-regular">Your cart is currently empty.</p>
-        <a href="collection.html" class="btn-primary" style="margin-top: 2rem;">Explore Collection</a>
+    <div class="cart-items" style="display:flex; align-items:center; justify-content:center; flex:1;">
+      <div style="text-align:center;">
+        <p class="body-regular" style="opacity:0.5; margin-bottom:2rem;">Your cart is empty.</p>
+        <a href="collection.html" class="btn-primary">Explore the Collection</a>
       </div>
     </div>
   </div>
 
-  <section style="padding-top: 20vh; min-height: 80vh;">
-    <div class="container reveal-up">
-      <div style="text-align: center; margin-bottom: var(--space-xl);">
-        <span class="caption text-gold">Your Collection</span>
-        <h1 class="title-large" style="margin-top: 1rem;">The Wishlist</h1>
+  <section style="padding-top: 18vh; min-height: 80vh;" data-theme="charcoal">
+    <div class="container reveal">
+      <div style="text-align:center; margin-bottom: clamp(4rem, 8vw, 6rem);">
+        <span class="chapter-mark">Your Selections</span>
+        <h1 class="title-huge text-gold">Wishlist</h1>
+        <div class="crystal-dots" style="justify-content:center;"><span></span></div>
       </div>
 
-      <div class="grid-2">
-        <!-- Saved Item 1 -->
-        <div style="padding-right: 2rem;">
+      <div class="grid-2 stagger-children">
+        <div>
           <div class="img-wrap img-square" style="margin-bottom: 2rem;">
             <img src="assets/images/khand_gold_reserve.png" alt="Khand Gold Reserve" class="parallax-img">
           </div>
-          <h3 class="serif" style="font-size: 2rem; margin-bottom: 1rem;">Khand Gold Reserve</h3>
-          <p class="body-regular" style="margin-bottom: 2rem;">Pale Golden Sand. Unrefined cane sugar.</p>
-          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(26,26,26,0.2); padding-top: 1rem;">
-            <span class="serif" style="font-size: 1.5rem;">$45.00</span>
-            <a href="#" class="btn-primary cart-trigger" style="margin-top: 0; padding: 0.8rem 2rem;">Move to Cart</a>
-          </div>
+          <span class="product-label">No. 01 — Cane</span>
+          <h3 class="serif" style="font-size: 1.8rem; margin-bottom: 1rem;">Khand Gold Reserve</h3>
+          <p class="body-regular" style="opacity:0.5; margin-bottom: 2rem;">Pale golden sand. Unrefined cane sugar.</p>
+          <a href="#" class="btn-primary cart-trigger" style="border-color: rgba(245,240,232,0.3); color: var(--ivory);">Move to Cart</a>
         </div>
 
-        <!-- Saved Item 2 -->
-        <div style="padding-right: 2rem;">
+        <div style="margin-top: clamp(2rem, 6vw, 6rem);">
           <div class="img-wrap img-square" style="margin-bottom: 2rem;">
             <img src="assets/images/saffron_mishri.png" alt="Saffron Mishri" class="parallax-img">
           </div>
-          <h3 class="serif" style="font-size: 2rem; margin-bottom: 1rem;">Saffron Mishri</h3>
-          <p class="body-regular" style="margin-bottom: 2rem;">Infused natural crystals with Kashmiri saffron.</p>
-          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(26,26,26,0.2); padding-top: 1rem;">
-            <span class="serif" style="font-size: 1.5rem;">$85.00</span>
-            <a href="#" class="btn-primary cart-trigger" style="margin-top: 0; padding: 0.8rem 2rem;">Move to Cart</a>
-          </div>
+          <span class="product-label">No. 03 — Crystal</span>
+          <h3 class="serif" style="font-size: 1.8rem; margin-bottom: 1rem;">Saffron Mishri</h3>
+          <p class="body-regular" style="opacity:0.5; margin-bottom: 2rem;">Infused natural crystals with Kashmiri saffron.</p>
+          <a href="#" class="btn-primary cart-trigger" style="border-color: rgba(245,240,232,0.3); color: var(--ivory);">Move to Cart</a>
         </div>
       </div>
     </div>
@@ -86,7 +79,8 @@
 
   <footer>
     <div class="footer-logo">ZUCERO</div>
-    <span class="caption">The Emotion of Sweetness.</span>
+    <div class="footer-tagline">The Emotion of Sweetness</div>
+    <div class="footer-legal">&copy; 2025 ZUCERO. All rights reserved.</div>
   </footer>
 
   <script src="js/animations.js"></script>

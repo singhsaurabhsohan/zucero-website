@@ -3,29 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZUCERO | The Art of Slow Sweetness</title>
+  <title>ZUCERO | The Ritual of Morning Tea</title>
+  <meta name="description" content="Why the slow dissolve of a Mishri crystal forces us to pause, breathe, and begin the day with intention.">
   <link rel="stylesheet" href="css/styles.css">
   <style>
-    .drop-cap:first-letter {
-      font-family: var(--font-serif);
-      font-size: 6rem;
-      float: left;
-      line-height: 0.8;
-      padding-right: 1rem;
-      color: var(--color-gold);
-    }
     .article-body {
-      max-width: 650px;
+      max-width: 640px;
       margin: 0 auto;
     }
     .article-body p {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      line-height: 1.8;
+      font-weight: 300;
       margin-bottom: 2rem;
+      opacity: 0.85;
+    }
+    .drop-cap::first-letter {
+      font-family: var(--serif);
+      font-size: 5.5rem;
+      float: left;
+      line-height: 0.8;
+      padding-right: 1rem;
+      padding-top: 0.1rem;
+      color: var(--gold);
+      font-weight: 400;
+    }
+    .pull-quote {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.4;
+      text-align: center;
+      color: var(--gold);
+      padding: 3rem 0;
+      margin: 2rem 0;
+      border-top: 1px solid rgba(197, 160, 89, 0.15);
+      border-bottom: 1px solid rgba(197, 160, 89, 0.15);
     }
   </style>
 </head>
-<body class="theme-ivory">
+<body class="theme-charcoal">
 
-  <!-- Navigation -->
   <nav>
     <a href="index.html" class="brand-logo">
       <img src="assets/images/zucerothegoodsugar-logo.png" alt="ZUCERO" class="logo-img">
@@ -35,12 +55,11 @@
       <a href="stories.html">Journal</a>
       <a href="founder.html">Heritage</a>
       <a href="wishlist.html">Wishlist</a>
-      <a href="#" class="cart-trigger">Cart (0)</a>
+      <a href="#" class="cart-trigger">Cart</a>
     </div>
     <div class="mobile-menu-btn" id="mobile-menu-btn">Menu</div>
   </nav>
 
-  <!-- Mobile Menu Overlay -->
   <div class="mobile-menu-overlay" id="mobile-menu-overlay">
     <div class="mobile-menu-close" id="mobile-menu-close">&times;</div>
     <a href="collection.html">Collection</a>
@@ -50,59 +69,74 @@
     <a href="#" class="cart-trigger">Cart</a>
   </div>
 
-  <!-- Cart Drawer -->
   <div class="cart-overlay" id="cart-overlay"></div>
   <div class="cart-drawer" id="cart-drawer">
     <div class="cart-header">
-      <span class="serif" style="font-size: 1.5rem;">Your Cart</span>
+      <span class="serif" style="font-size: 1.4rem;">Your Cart</span>
       <span class="cart-close" id="cart-close">&times;</span>
     </div>
-    <div class="cart-items">
-      <div style="padding: 2rem 0; text-align: center; color: var(--color-gold-muted);">
-        <p class="body-regular">Your cart is currently empty.</p>
-        <a href="collection.html" class="btn-primary" style="margin-top: 2rem;">Explore Collection</a>
+    <div class="cart-items" style="display:flex; align-items:center; justify-content:center; flex:1;">
+      <div style="text-align:center;">
+        <p class="body-regular" style="opacity:0.5; margin-bottom:2rem;">Your cart is empty.</p>
+        <a href="collection.html" class="btn-primary">Explore the Collection</a>
       </div>
     </div>
   </div>
 
-  <section style="padding-top: 15vh;">
-    <div class="container reveal-up" style="text-align: center; margin-bottom: var(--space-md);">
-      <span class="caption text-gold">Rituals</span>
-      <h1 class="title-huge" style="margin: 2rem 0;">The Ritual of Morning Tea</h1>
-      <p class="body-large" style="max-width: 600px; margin: 0 auto;">In a world obsessed with speed, the act of waiting for a crystal to dissolve becomes a quiet rebellion.</p>
+  <!-- Article Header -->
+  <section style="padding-top: 16vh;" data-theme="charcoal">
+    <div class="container-narrow reveal" style="text-align:center; margin-bottom: clamp(3rem, 6vw, 5rem);">
+      <span class="caption text-gold" style="margin-bottom: 2rem;">Rituals</span>
+      <h1 class="title-huge" style="margin: 1.5rem 0;">The Ritual of<br>Morning Tea</h1>
+      <div class="crystal-dots" style="justify-content:center;"><span></span></div>
+      <p class="body-large" style="opacity:0.5; max-width:500px; margin: 0 auto;">In a world obsessed with speed, the act of waiting for a crystal to dissolve becomes a quiet rebellion.</p>
     </div>
+  </section>
 
-    <div class="img-wrap img-wide reveal-up" style="height: 70vh; margin-bottom: var(--space-xl);">
-      <img src="assets/images/slow_sweetness.png" alt="The Ritual of Morning Tea" class="parallax-img" style="transform-origin: top;">
-    </div>
+  <!-- Full bleed image -->
+  <div class="img-full reveal" style="height: 65vh;">
+    <img src="assets/images/slow_sweetness.png" alt="Mishri crystal dissolving in morning tea" class="parallax-img" style="object-position: center 40%;">
+  </div>
 
-    <div class="container reveal-up">
-      <div class="article-body body-regular">
-        <p class="drop-cap">T</p>
-        <p>here is a specific sound that occurs when a heavy brass spoon meets the edge of a porcelain cup. It is the sound of morning arriving. But the true ritual begins seconds later, when a rough-hewn crystal of Mishri is dropped into the dark, steaming liquid.</p>
-        
-        <p>Unlike refined sugar, which vanishes instantly in a desperate rush to sweeten, Mishri demands patience. It is dense. It is crystalline. It dissolves on its own schedule.</p>
+  <!-- Article Body -->
+  <section data-theme="charcoal" style="padding-top: clamp(4rem, 8vw, 6rem);">
+    <div class="container reveal">
+      <div class="article-body">
+        <p class="drop-cap">There is a specific sound that occurs when a heavy brass spoon meets the edge of a porcelain cup. It is the sound of morning arriving. But the true ritual begins seconds later, when a rough-hewn crystal of Mishri is dropped into the dark, steaming liquid.</p>
 
-        <h3 class="title-medium" style="margin: 4rem 0 2rem 0; text-align: center;">"To watch it melt is to watch time itself slow down."</h3>
+        <p>Unlike refined sugar, which vanishes instantly in a desperate rush to sweeten, Mishri demands patience. It is dense. It is crystalline. It dissolves on its own schedule — and that is precisely the point.</p>
+
+        <div class="pull-quote">"To watch it melt is to watch time itself slow down."</div>
 
         <p>This is the essence of what we call slow sweetness. Our ancestors understood that the preparation of food and drink was not merely a mechanical necessity, but a transitionary space between sleep and the demands of the day.</p>
 
-        <p>When you use Mishri, you cannot rush your tea. You must sit. You must watch the steam rise. You must stir, slowly, listening to the gentle clinking until it fades—the signal that the crystal has yielded, imparting its cool, clear sweetness into the brew.</p>
+        <p>When you use Mishri, you cannot rush your tea. You must sit. You must watch the steam rise. You must stir, slowly, listening to the gentle clinking until it fades — the signal that the crystal has yielded, imparting its cool, clear sweetness into the brew.</p>
+
+        <p>In that silence, the morning has truly begun.</p>
+
+        <div class="crystal-dots" style="justify-content:center; margin: 4rem 0;"><span></span></div>
       </div>
     </div>
   </section>
 
-  <section data-theme="charcoal">
-    <div class="container reveal-up" style="text-align: center;">
-      <span class="caption">Continue Reading</span>
-      <h2 class="title-large" style="margin: 2rem 0;">The Heritage of Khand</h2>
-      <a href="stories.html" class="btn-primary">Back to Journal</a>
+  <!-- Next Story -->
+  <section data-theme="charcoal" style="text-align:center;">
+    <div class="container-narrow reveal">
+      <span class="caption" style="opacity:0.4;">Continue Reading</span>
+      <h2 class="title-medium text-gold" style="margin: 1.5rem 0;">The Hands Behind the Craft</h2>
+      <a href="stories.html" class="btn-primary" style="border-color: rgba(245,240,232,0.2); color: var(--ivory);">Back to Journal</a>
     </div>
   </section>
 
   <footer>
     <div class="footer-logo">ZUCERO</div>
-    <span class="caption">The Emotion of Sweetness.</span>
+    <div class="footer-tagline">The Emotion of Sweetness</div>
+    <div class="footer-links">
+      <a href="collection.html">Collection</a>
+      <a href="stories.html">Journal</a>
+      <a href="founder.html">Heritage</a>
+    </div>
+    <div class="footer-legal">&copy; 2025 ZUCERO. All rights reserved.</div>
   </footer>
 
   <script src="js/animations.js"></script>

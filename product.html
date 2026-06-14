@@ -4,29 +4,39 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ZUCERO | Khand Gold Reserve</title>
+  <meta name="description" content="Khand Gold Reserve — pale golden unrefined cane sugar with delicate molasses notes. Cold-pressed from heritage sugarcane.">
   <link rel="stylesheet" href="css/styles.css">
   <style>
-    .product-details-grid {
+    .product-meta-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      margin-top: 4rem;
-      border-top: 1px solid rgba(26, 26, 26, 0.2);
-      padding-top: 4rem;
+      gap: 3rem;
+      margin-top: 3rem;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(197, 160, 89, 0.15);
     }
-    .detail-block h4 {
-      font-family: var(--font-sans);
-      font-size: 0.8rem;
+    .meta-block .meta-label {
+      font-family: var(--sans);
+      font-size: 0.65rem;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 1rem;
-      color: var(--color-gold);
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+    .meta-block .meta-value {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 300;
+      line-height: 1.5;
+    }
+    @media (max-width: 600px) {
+      .product-meta-grid { grid-template-columns: 1fr; gap: 2rem; }
     }
   </style>
 </head>
 <body class="theme-ivory">
 
-  <!-- Navigation -->
   <nav>
     <a href="index.html" class="brand-logo">
       <img src="assets/images/zucerothegoodsugar-logo.png" alt="ZUCERO" class="logo-img">
@@ -36,12 +46,11 @@
       <a href="stories.html">Journal</a>
       <a href="founder.html">Heritage</a>
       <a href="wishlist.html">Wishlist</a>
-      <a href="#" class="cart-trigger">Cart (0)</a>
+      <a href="#" class="cart-trigger">Cart</a>
     </div>
     <div class="mobile-menu-btn" id="mobile-menu-btn">Menu</div>
   </nav>
 
-  <!-- Mobile Menu Overlay -->
   <div class="mobile-menu-overlay" id="mobile-menu-overlay">
     <div class="mobile-menu-close" id="mobile-menu-close">&times;</div>
     <a href="collection.html">Collection</a>
@@ -51,61 +60,54 @@
     <a href="#" class="cart-trigger">Cart</a>
   </div>
 
-  <!-- Cart Drawer Component (Shared) -->
   <div class="cart-overlay" id="cart-overlay"></div>
   <div class="cart-drawer" id="cart-drawer">
     <div class="cart-header">
-      <span class="serif" style="font-size: 1.5rem;">Your Cart</span>
+      <span class="serif" style="font-size: 1.4rem;">Your Cart</span>
       <span class="cart-close" id="cart-close">&times;</span>
     </div>
-    <div class="cart-items">
-      <div style="padding: 2rem 0; text-align: center; color: var(--color-gold-muted);">
-        <p class="body-regular">Your cart is currently empty.</p>
-        <a href="collection.html" class="btn-primary" style="margin-top: 2rem;">Explore Collection</a>
+    <div class="cart-items" style="display:flex; align-items:center; justify-content:center; flex:1;">
+      <div style="text-align:center;">
+        <p class="body-regular" style="opacity:0.5; margin-bottom:2rem;">Your cart is empty.</p>
+        <a href="collection.html" class="btn-primary">Explore the Collection</a>
       </div>
     </div>
   </div>
 
   <!-- Product Hero -->
-  <section style="padding-top: 15vh; min-height: 100vh; display: flex; align-items: center;">
+  <section style="padding-top: 14vh; min-height: 100vh; display:flex; align-items:center;" data-theme="ivory">
     <div class="container">
-      <div class="grid-offset-reverse reveal-up">
-        <div class="img-wrap img-tall">
+      <div class="grid-offset-reverse">
+        <div class="img-wrap img-tall reveal">
           <img src="assets/images/khand_gold_reserve.png" alt="Khand Gold Reserve" class="parallax-img">
         </div>
-        <div style="padding-top: var(--space-lg);">
-          <span class="caption">The Collection &mdash; No. 01</span>
-          <h1 class="title-huge text-gold" style="margin: 1rem 0;">Khand Gold Reserve</h1>
-          <p class="body-large" style="margin-bottom: 2rem;">A delicate, unrefined cane sugar. Fine as sand, rich with the memory of the cane stalk. This is sweetness in its most elegant natural form.</p>
-          
-          <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 2rem;">
-            <div class="qty-selector">
-              <span>-</span>
-              <span>1</span>
-              <span>+</span>
-            </div>
-            <span class="serif" style="font-size: 1.5rem;">$45.00</span>
+        <div class="reveal reveal-delay-1" style="padding-top: clamp(2rem, 6vw, 6rem);">
+          <span class="product-label" style="color: var(--gold-dim);">The Collection — No. 01</span>
+          <h1 class="title-huge" style="margin-bottom: 1.5rem;">Khand<br>Gold Reserve</h1>
+          <div class="divider-gold"></div>
+          <p class="body-large" style="opacity:0.7; max-width:450px;">A delicate, unrefined cane sugar. Fine as sand, rich with the memory of the cane stalk. This is sweetness in its most elegant natural form.</p>
+
+          <div style="margin-top: 3rem; display:flex; gap:1.5rem; flex-wrap:wrap;">
+            <a href="#" class="btn-primary cart-trigger">Add to Cart</a>
+            <a href="#" class="btn-discover" style="margin-top: 2rem;">Save to Wishlist</a>
           </div>
 
-          <a href="#" class="btn-primary cart-trigger">Add to Cart</a>
-          <a href="#" style="margin-left: 2rem; font-family: var(--font-sans); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.1em; border-bottom: 1px solid currentColor;">Save to Wishlist</a>
-
-          <div class="product-details-grid">
-            <div class="detail-block">
-              <h4>Ingredients</h4>
-              <p class="serif" style="font-size: 1.2rem;">100% Raw Sugarcane Juice.</p>
+          <div class="product-meta-grid">
+            <div class="meta-block">
+              <span class="meta-label">Ingredients</span>
+              <span class="meta-value">100% Raw Sugarcane Juice. Nothing else.</span>
             </div>
-            <div class="detail-block">
-              <h4>Origin</h4>
-              <p class="serif" style="font-size: 1.2rem;">Cold-pressed in Uttar Pradesh.</p>
+            <div class="meta-block">
+              <span class="meta-label">Origin</span>
+              <span class="meta-value">Cold-pressed in the fields of Uttar Pradesh.</span>
             </div>
-            <div class="detail-block">
-              <h4>Pairing</h4>
-              <p class="serif" style="font-size: 1.2rem;">Light roast coffee, shortbread.</p>
+            <div class="meta-block">
+              <span class="meta-label">Pairs With</span>
+              <span class="meta-value">Light roast coffee, shortbread, cardamom chai.</span>
             </div>
-            <div class="detail-block">
-              <h4>Ritual</h4>
-              <p class="serif" style="font-size: 1.2rem;">Dissolve one teaspoon in warm espresso.</p>
+            <div class="meta-block">
+              <span class="meta-label">The Ritual</span>
+              <span class="meta-value">Dissolve one teaspoon in warm espresso. Listen to the silence.</span>
             </div>
           </div>
         </div>
@@ -113,24 +115,27 @@
     </div>
   </section>
 
-  <!-- The Ritual Details -->
+  <!-- Ritual Section -->
   <section data-theme="charcoal">
-    <div class="container reveal-up">
-      <div class="grid-offset">
-        <div style="padding-top: var(--space-lg);">
-          <h2 class="title-large" style="margin-bottom: 2rem;">The Morning Ritual</h2>
-          <p class="body-regular">Khand is designed for the modern dawn. Because of its fine texture, it dissolves instantly into hot beverages. When stirred into a fresh espresso or a robust black tea, it imparts a very subtle note of caramel without overpowering the roast.</p>
-        </div>
-        <div class="img-wrap img-square">
-          <img src="assets/images/heritage_khand.png" alt="Heritage Khand" class="parallax-img">
-        </div>
-      </div>
+    <div class="img-full reveal" style="margin-bottom: clamp(4rem, 8vw, 6rem);">
+      <img src="assets/images/heritage_khand.png" alt="Heritage Khand texture" class="parallax-img">
+    </div>
+    <div class="container-narrow reveal" style="text-align:center;">
+      <h2 class="title-large" style="margin-bottom: 2rem;">The Morning Ritual</h2>
+      <p class="body-large" style="opacity:0.7;">Because of its fine texture, Khand dissolves instantly into hot beverages. When stirred into a fresh espresso or a robust black tea, it imparts a subtle note of caramel without overpowering the roast. Close your eyes. Taste the difference.</p>
+      <div class="crystal-dots" style="justify-content:center;"><span></span></div>
     </div>
   </section>
 
   <footer>
     <div class="footer-logo">ZUCERO</div>
-    <span class="caption">The Emotion of Sweetness.</span>
+    <div class="footer-tagline">The Emotion of Sweetness</div>
+    <div class="footer-links">
+      <a href="collection.html">Collection</a>
+      <a href="stories.html">Journal</a>
+      <a href="founder.html">Heritage</a>
+    </div>
+    <div class="footer-legal">&copy; 2025 ZUCERO. All rights reserved.</div>
   </footer>
 
   <script src="js/animations.js"></script>

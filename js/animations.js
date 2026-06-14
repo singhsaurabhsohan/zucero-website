@@ -1,116 +1,133 @@
+/* ═══════════════════════════════════════════════════
+   ZUCERO — Interaction Engine
+   Smooth, cinematic, intentional
+   ═══════════════════════════════════════════════════ */
+
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Reveal Elements on Scroll
-  const revealElements = document.querySelectorAll('.reveal-up');
-  
+
+  // ── 1. Scroll Reveal with stagger ──
+  const revealEls = document.querySelectorAll('.reveal');
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-        // Optional: stop observing once revealed
-        // revealObserver.unobserve(entry.target);
+        entry.target.classList.add('visible');
       }
     });
   }, {
-    threshold: 0.15,
-    rootMargin: '0px 0px -50px 0px'
+    threshold: 0.12,
+    rootMargin: '0px 0px -60px 0px'
   });
+  revealEls.forEach(el => revealObserver.observe(el));
 
-  revealElements.forEach(el => revealObserver.observe(el));
+  // Stagger children
+  const staggerEls = document.querySelectorAll('.stagger-children');
+  const staggerObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+  staggerEls.forEach(el => staggerObserver.observe(el));
 
-  // 2. Dynamic Theme Switching
+  // ── 2. Dynamic Theme Switching ──
   const sections = document.querySelectorAll('section[data-theme]');
   const body = document.body;
 
   const themeObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      // When a section enters the viewport significantly
       if (entry.isIntersecting) {
         const theme = entry.target.getAttribute('data-theme');
-        // Remove existing theme classes
         body.classList.remove('theme-ivory', 'theme-charcoal');
-        // Add new theme
-        if (theme) {
-          body.classList.add(`theme-${theme}`);
-        }
+        if (theme) body.classList.add(`theme-${theme}`);
       }
     });
-  }, {
-    // Trigger when 50% of the section is visible
-    threshold: 0.5
-  });
+  }, { threshold: 0.45 });
 
-  sections.forEach(section => themeObserver.observe(section));
+  sections.forEach(s => themeObserver.observe(s));
 
-  // 3. Simple Parallax Effect
-  const parallaxImages = document.querySelectorAll('.parallax-img');
+  // ── 3. Navigation — Frosted Glass Scroll ──
   const nav = document.querySelector('nav');
-  
+  let lastScroll = 0;
+
+  // ── 4. Parallax Images (subtle) ──
+  const parallaxImgs = document.querySelectorAll('.parallax-img');
+
   window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
-    
-    // Sticky Nav Blur Effect
-    if (scrolled > 50) {
+
+    // Nav state
+    if (scrolled > 60) {
       nav.classList.add('nav-scrolled');
     } else {
       nav.classList.remove('nav-scrolled');
     }
-    
-    parallaxImages.forEach(img => {
-      // Calculate offset relative to the image's position
+    lastScroll = scrolled;
+
+    // Parallax
+    parallaxImgs.forEach(img => {
       const rect = img.getBoundingClientRect();
-      // Only animate if in viewport
-      if(rect.top < window.innerHeight && rect.bottom > 0) {
-        // Adjust the multiplier for stronger/weaker effect
-        const yPos = -(rect.top * 0.1); 
-        img.style.transform = `scale(1.1) translateY(${yPos}px)`;
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        const yPos = -(rect.top * 0.06);
+        img.style.transform = `scale(1.08) translateY(${yPos}px)`;
       }
     });
-  });
+  }, { passive: true });
 
-  // 4. Cart Drawer Logic
+  // ── 5. Hero Ken Burns ──
+  const hero = document.querySelector('.hero');
+  if (hero) {
+    setTimeout(() => hero.classList.add('loaded'), 100);
+  }
+
+  // ── 6. Cart Drawer ──
   const cartTriggers = document.querySelectorAll('.cart-trigger');
   const cartDrawer = document.getElementById('cart-drawer');
   const cartOverlay = document.getElementById('cart-overlay');
-  const cartClose = document.getElementById('cart-close');
+  const cartCloseBtn = document.getElementById('cart-close');
 
   if (cartDrawer && cartOverlay) {
-    cartTriggers.forEach(trigger => {
-      trigger.addEventListener('click', (e) => {
-        e.preventDefault();
-        cartDrawer.classList.add('active');
-        cartOverlay.classList.add('active');
-      });
-    });
-
+    const openCart = (e) => {
+      e.preventDefault();
+      cartDrawer.classList.add('active');
+      cartOverlay.classList.add('active');
+    };
     const closeCart = () => {
       cartDrawer.classList.remove('active');
       cartOverlay.classList.remove('active');
     };
 
-    cartClose.addEventListener('click', closeCart);
+    cartTriggers.forEach(t => t.addEventListener('click', openCart));
+    if (cartCloseBtn) cartCloseBtn.addEventListener('click', closeCart);
     cartOverlay.addEventListener('click', closeCart);
   }
 
-  // 5. Mobile Menu Logic
-  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-  const mobileMenuClose = document.getElementById('mobile-menu-close');
+  // ── 7. Mobile Menu ──
+  const mobileBtn = document.getElementById('mobile-menu-btn');
+  const mobileOverlay = document.getElementById('mobile-menu-overlay');
+  const mobileClose = document.getElementById('mobile-menu-close');
 
-  if (mobileMenuBtn && mobileMenuOverlay) {
-    mobileMenuBtn.addEventListener('click', () => {
-      mobileMenuOverlay.classList.add('active');
+  if (mobileBtn && mobileOverlay) {
+    mobileBtn.addEventListener('click', () => {
+      mobileOverlay.classList.add('active');
     });
-
-    mobileMenuClose.addEventListener('click', () => {
-      mobileMenuOverlay.classList.remove('active');
+    mobileClose.addEventListener('click', () => {
+      mobileOverlay.classList.remove('active');
     });
-
-    // Close mobile menu when a link is clicked
-    const mobileLinks = mobileMenuOverlay.querySelectorAll('a');
-    mobileLinks.forEach(link => {
+    mobileOverlay.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
-        mobileMenuOverlay.classList.remove('active');
+        mobileOverlay.classList.remove('active');
       });
+    });
+  }
+
+  // ── 8. Smooth link hover gold underline (already CSS) ──
+
+  // ── 9. Image lazy loading fallback ──
+  if ('loading' in HTMLImageElement.prototype) {
+    const lazyImgs = document.querySelectorAll('img[loading="lazy"]');
+    lazyImgs.forEach(img => {
+      if (img.dataset.src) img.src = img.dataset.src;
     });
   }
 });
