@@ -8,7 +8,6 @@
 
 /* ── Design Tokens ── */
 :root {
-  --ivory:    #F5F0E8;
   --cream:    #EDE7DA;
   --charcoal: #0C110D;
   --carbon:   #141A15;
@@ -399,7 +398,7 @@ body.theme-ivory nav.nav-scrolled {
   z-index: 1;
   pointer-events: none;
 }
-//* Second grade — disabled, video is dark enough */
+/* Second grade — disabled, video is dark enough */
 .hero::after {
   content: "";
   position: absolute;
