@@ -70,9 +70,8 @@
   <section class="hero" data-theme="charcoal" style="padding:0;">
     <div class="hero-bg">
       <div class="hero-video-wrapper">
-        <video autoplay muted loop playsinline preload="metadata">
+        <video autoplay muted loop playsinline preload="metadata" poster="assets/images/hero_cinematic.webp">
           <source src="https://video.gumlet.io/6a0894513a5246215d4785da/6a2ee82136223b22766f448c/main.m3u8" type="application/x-mpegURL">
-          <source src="hero_zucero.mp4" type="video/mp4">
       </video>
       </div>
     </div>
@@ -80,7 +79,26 @@
       <div class="hero-tagline">Since the beginning</div>
       <h1 class="hero-title">Sweetness<br>is a ritual.</h1>
       <p class="hero-subtitle">Khand. Jaggery. Mishri. Made the way they always were, for people who still care how things taste.</p>
+      <div class="hero-actions">
+        <a href="collection.html" class="btn-primary hero-cta">Experience natural sweetness</a>
+        <a href="#philosophy" class="hero-text-link">Discover our philosophy</a>
+      </div>
       <div class="hero-scroll">Scroll to discover</div>
+    </div>
+  </section>
+
+  <aside class="trust-ribbon" aria-label="Zucero quality promises">
+    <div class="trust-ribbon__item"><span>01</span><strong>Single-origin cane</strong></div>
+    <div class="trust-ribbon__item"><span>02</span><strong>Nothing artificial</strong></div>
+    <div class="trust-ribbon__item"><span>03</span><strong>Small-batch crafted</strong></div>
+    <div class="trust-ribbon__item"><span>04</span><strong>Indian heritage sugars</strong></div>
+  </aside>
+
+  <section id="philosophy" data-theme="ivory" class="philosophy-section">
+    <div class="container-narrow reveal" style="text-align:center;">
+      <span class="chapter-mark">Our philosophy</span>
+      <h2 class="title-large">Nature perfected sweetness.<br>We simply preserved it.</h2>
+      <p class="body-large philosophy-copy">Before sweetness became a commodity, it carried the character of its field, season and maker. Zucero returns to that slower idea: familiar Indian sugars, thoughtfully sourced and made with restraint.</p>
     </div>
   </section>
 
@@ -90,7 +108,7 @@
        Products as objects of desire, not commodities
        ══════════════════════════════════════════════ -->
 
-  <section id="collection" data-theme="ivory">
+  <section id="collection" data-theme="ivory" class="collection-section">
     <div class="container">
 
       <div class="reveal" style="text-align:center; margin-bottom: clamp(4rem, 8vw, 8rem);">
@@ -148,6 +166,27 @@
         </div>
       </div>
 
+    </div>
+  </section>
+
+  <section id="comparison" data-theme="ivory" class="comparison-section">
+    <div class="container">
+      <div class="comparison-intro reveal">
+        <span class="chapter-mark">A considered choice</span>
+        <h2 class="title-large">Sweetness,<br>without compromise.</h2>
+        <p class="body-regular">A clear look at what makes Zucero different from everyday refined sugar and high-intensity sweeteners.</p>
+      </div>
+      <div class="comparison-wrap reveal reveal-delay-1" role="region" aria-label="Sweetener comparison" tabindex="0">
+        <table class="comparison-table">
+          <thead><tr><th>Experience</th><th class="featured-col">Zucero</th><th>Refined sugar</th><th>Stevia</th></tr></thead>
+          <tbody>
+            <tr><th>Traditionally crafted</th><td class="featured-col">Yes</td><td>No</td><td>No</td></tr>
+            <tr><th>Full, rounded taste</th><td class="featured-col">Yes</td><td>Neutral</td><td>Often bitter</td></tr>
+            <tr><th>Nothing artificial</th><td class="featured-col">Yes</td><td>Highly refined</td><td>Varies</td></tr>
+            <tr><th>Traceable origin</th><td class="featured-col">Yes</td><td>Rarely</td><td>Rarely</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
 
@@ -225,6 +264,35 @@
     </div>
   </section>
 
+  <section id="rituals" data-theme="charcoal" class="proof-section">
+    <div class="container">
+      <div class="proof-heading reveal">
+        <span class="chapter-mark">Made for real life</span>
+        <h2 class="title-large">Everyday rituals,<br>elevated.</h2>
+      </div>
+      <div class="proof-grid stagger-children">
+        <article class="quote-card">
+          <div class="ritual-number">01</div>
+          <h3>Morning chai</h3>
+          <p>Stir a spoon of fine khand into strong cardamom tea for a gentle caramel note.</p>
+          <a href="product.html">Meet Khand</a>
+        </article>
+        <article class="quote-card">
+          <div class="ritual-number">02</div>
+          <h3>After-dinner pause</h3>
+          <p>Let a saffron mishri crystal dissolve slowly after a meal or beside a cup of warm water.</p>
+          <a href="product.html">Meet Mishri</a>
+        </article>
+        <article class="quote-card">
+          <div class="ritual-number">03</div>
+          <h3>Slow baking</h3>
+          <p>Bring the rounded depth of jaggery to cakes, puddings and time-honoured Indian sweets.</p>
+          <a href="product.html">Meet Jaggery</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
 
   <!-- ══════════════════════════════════════════════
        THE JOURNAL — Editorial Preview
@@ -240,7 +308,7 @@
       <div class="grid-2 stagger-children">
         <a href="story-detail.html" class="journal-card">
           <div class="img-wrap img-square">
-            <img src="assets/images/slow_sweetness.webp" alt="The Ritual of Morning Tea" class="parallax-img">
+          <img src="assets/images/slow_sweetness.webp" alt="The Ritual of Morning Tea" class="parallax-img" loading="lazy" decoding="async">
           </div>
           <span class="journal-tag">Rituals</span>
           <h3 class="serif">The Ritual of Morning Tea</h3>
@@ -248,7 +316,7 @@
         </a>
         <a href="story-detail.html" class="journal-card" style="margin-top: clamp(2rem, 6vw, 6rem);">
           <div class="img-wrap img-square">
-            <img src="assets/images/journal_editorial.webp" alt="The Heritage of Khand" class="parallax-img">
+          <img src="assets/images/journal_editorial.webp" alt="The Heritage of Khand" class="parallax-img" loading="lazy" decoding="async">
           </div>
           <span class="journal-tag">Heritage</span>
           <h3 class="serif">The Hands Behind the Craft</h3>
@@ -258,6 +326,21 @@
 
       <div class="reveal" style="text-align:center; margin-top: clamp(4rem, 6vw, 6rem);">
         <a href="stories.html" class="btn-primary" style="border-color: rgba(245,240,232,0.3); color: var(--ivory);">View All Stories</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" data-theme="ivory" class="faq-section">
+    <div class="container faq-layout">
+      <div class="reveal">
+        <span class="chapter-mark">The essentials</span>
+        <h2 class="title-large">Questions,<br>answered.</h2>
+      </div>
+      <div class="faq-list reveal reveal-delay-1">
+        <details><summary>What makes Zucero different?</summary><p>We focus on regional Indian sweeteners with distinct flavour and provenance, made in small batches using time-honoured methods.</p></details>
+        <details><summary>Is anything added?</summary><p>Our core products are made without artificial colours, flavours or preservatives. Please refer to each product page for its complete ingredient declaration.</p></details>
+        <details><summary>How should I use it?</summary><p>Use Zucero anywhere you would use ordinary sugar: chai, coffee, baking, desserts and Indian sweets. Start with a one-to-one swap and adjust to taste.</p></details>
+        <details><summary>How quickly will my order arrive?</summary><p>Orders are typically dispatched within two business days. Delivery time varies by postcode and is confirmed during checkout.</p></details>
       </div>
     </div>
   </section>
