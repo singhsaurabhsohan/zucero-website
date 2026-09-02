@@ -50,3 +50,7 @@ footer{background:var(--deep-green-dark)}
 .brand{width:100px;height:100%;align-self:center;justify-content:center;overflow:visible}
 .brand img{display:block;width:100px;height:100px;object-fit:contain}
 @media(max-width:640px){.brand{width:84px;max-width:none}.brand img{width:84px;height:84px}}
+
+/* Persistent navigation across every route. */
+.site-header{position:fixed;top:0;left:0;right:0;background:rgba(9,23,15,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 8px 30px rgba(3,12,7,.12)}
+.store-header .site-header{position:fixed}

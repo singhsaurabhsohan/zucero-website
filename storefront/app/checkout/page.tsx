@@ -5,10 +5,11 @@ import { LockKeyhole } from "lucide-react";
 import { StoreHeader } from "@/components/store-header";
 import { useCart } from "@/components/cart-provider";
 import { formatPrice } from "@/lib/catalog";
+import { SiteFooter } from "@/components/site-footer";
 
 export default function CheckoutPage() {
   const { lines, subtotalPaise } = useCart();
-  if (!lines.length) return <main className="store-page"><StoreHeader /><section className="empty-cart"><h1>Your bag is empty.</h1><Link className="button button-dark" href="/#products">Shop products</Link></section></main>;
+  if (!lines.length) return <main className="store-page"><StoreHeader /><section className="empty-cart"><h1>Your bag is empty.</h1><Link className="button button-dark" href="/#products">Shop products</Link></section><SiteFooter /></main>;
   return <main className="store-page checkout-page"><StoreHeader /><section className="checkout-layout">
     <form className="checkout-form">
       <div className="checkout-heading"><p className="eyebrow">Secure checkout</p><h1>Where should we send it?</h1><p>You may check out as a guest. Create an account afterward to save the address and track future orders.</p></div>
@@ -17,5 +18,5 @@ export default function CheckoutPage() {
       <button className="button button-dark checkout-button" type="button" disabled><LockKeyhole size={16} /> Payment activates after price approval</button>
     </form>
     <aside className="checkout-summary"><p className="eyebrow">Your order</p>{lines.map((line) => <div className="checkout-line" key={line.variantId}><span>{line.productName} · {line.variantLabel} × {line.quantity}</span><strong>{formatPrice(line.pricePaise * line.quantity)}</strong></div>)}<div className="checkout-total"><span>Current subtotal</span><strong>{formatPrice(subtotalPaise)}</strong></div><p>Final tax and live Shiprocket shipping will appear after a valid PIN code.</p></aside>
-  </section></main>;
+  </section><SiteFooter /></main>;
 }
