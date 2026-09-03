@@ -1,13 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowDown, ArrowRight, Check, Droplets, FlaskConical, Leaf, PackageCheck, Sparkles, Sun } from "lucide-react";
+import { ArrowDown, ArrowRight, Check, FlaskConical, Leaf, PackageCheck, Sparkles, Sun } from "lucide-react";
 import { Header } from "@/components/header";
 import { LocationConsent } from "@/components/location-consent";
-import { ProductCard } from "@/components/product-card";
+import { HeritageSections, PhilosophySection } from "@/components/heritage-sections";
 import { SiteFooter } from "@/components/site-footer";
-import { products } from "@/lib/catalog";
 
 const carousel = ["artisan_hands.webp", "crystal_divider.webp", "heritage_khand.webp", "khand_texture.webp", "mishri_macro.webp", "sugarcane_origin.webp", "tea_ritual.webp"];
+const highlights = [
+  { Icon: Leaf, title: "PURE BY NATURE", description: "Nothing Artificial" },
+  { Icon: FlaskConical, title: "NATURAL GOODNESS", description: "Retains the goodness of its natural source" },
+  { Icon: Sparkles, title: "MINDFUL SWEETNESS", description: "A natural alternative to refined sugar" },
+  { Icon: PackageCheck, title: "DELICATE SWEETNESS", description: "Light, subtle and naturally sweet" },
+];
+const carouselCopy = [["Good is traditional.", "Made with respect for craft.", "/#process"], ["Good is transparent.", "Know what goes into what you eat.", "/products/dhage-wali-mishri"], ["Good is pure.", "Pure is a process.", "/products/desi-khand"], ["Good is knowing.", "Know your sugar.", "/#problem"], ["Good is transparent.", "Crystal by crystal.", "/products/dhage-wali-mishri"], ["Good begins in nature.", "Begin with sugarcane.", "/#nature"], ["Good is a choice.", "Choose better. Choose Zucero.", "/#products"]];
 const faqs = [
   ["What makes Zucero different from refined white sugar?", "Zucero focuses on minimally processed, traditional sugar formats. Each product page will clearly state ingredients, process, and nutrition so you can make an informed choice."],
   ["Is Zucero sugar-free or suitable for diabetes?", "No. Zucero products are sugars and should be consumed mindfully. We do not make disease-treatment claims; please follow advice from your healthcare professional."],
@@ -22,48 +28,48 @@ export default function Home() {
     <main>
       <section className="hero">
         <Image className="hero-image" src="/images/hero-cinematic-poster.png" alt="Zucero Desi Khand in warm sunlight among sugarcane" fill priority sizes="100vw" />
+        <video autoPlay muted loop playsInline preload="metadata" poster="/images/hero-cinematic-poster.png" aria-label="Zucero cinematic brand visual"><source src="/media/hero-cinematic.mp4" type="video/mp4" /></video>
         <div className="hero-shade" />
         <Header />
         <div className="hero-copy">
           <p className="eyebrow gold">Rooted in Indian sugar-making</p>
-          <h1>Nature perfected<br /><em>sweetness.</em></h1>
-          <p>We simply preserved it.</p>
-          <div className="button-row"><Link className="button button-gold" href="#products">Shop Now <ArrowRight size={16} /></Link><Link className="text-link light" href="#problem">Why good sugar?</Link></div>
+          <h1>Sweetness<br />is a <em>ritual.</em></h1>
+          <p>Nature perfected sweetness.<br />We simply preserved it.</p>
+          <div className="button-row"><Link className="button button-gold" href="#products">Add natural sweetness to your life <ArrowRight size={16} /></Link></div>
+          <div className="hero-labels"><Link href="/products/desi-khand#product-information">Pure by nature</Link><Link href="#nature">Natural goodness</Link><Link href="#problem">Mindful sweetness</Link><Link href="/products/dhage-wali-mishri">Delicate sweetness</Link></div>
         </div>
         <div className="hero-proofs" aria-label="Product highlights">
-          <span><Leaf /> 100% sugarcane</span><span><FlaskConical /> Quality tested</span><span><Sparkles /> No artificial colours</span><span><PackageCheck /> Securely packed</span>
+          <div className="hero-proofs-track">
+            {[...highlights, ...highlights].map(({ Icon, title, description }, index) => (
+              <span key={`${title}-${index}`} aria-hidden={index >= highlights.length ? true : undefined}>
+                <Icon aria-hidden="true" />
+                <b className="hero-proof-copy"><strong>{title}</strong><small>{description}</small></b>
+              </span>
+            ))}
+          </div>
         </div>
         <Link href="#carousel" className="scroll-cue" aria-label="Scroll to explore"><ArrowDown /></Link>
       </section>
 
       <section id="carousel" className="image-marquee" aria-label="Zucero moments">
-        <div className="marquee-track">{[...carousel, ...carousel].map((image, index) => <div className="marquee-image" key={`${image}-${index}`}><Image src={`/images/${image}`} alt="" width={520} height={360} /></div>)}</div>
+        <div className="marquee-track">{[...carousel, ...carousel].map((image, index) => <Link className="marquee-image" href={carouselCopy[index % carousel.length][2]} key={`${image}-${index}`} aria-hidden={index >= carousel.length ? true : undefined} tabIndex={index >= carousel.length ? -1 : undefined}><Image src={`/images/${image}`} alt="" width={520} height={360} /><span><strong>{carouselCopy[index % carousel.length][0]}</strong><small>{carouselCopy[index % carousel.length][1]}</small></span></Link>)}</div>
       </section>
 
+      <PhilosophySection />
+
       <section id="problem" className="split-section problem">
-        <div className="section-copy"><p className="eyebrow">The sugar problem</p><h2>Sweetness lost its <em>story.</em></h2><p>Much of today’s sugar is treated like an anonymous white ingredient—processed for uniformity, marketed with vague claims, and disconnected from how it was made.</p><ul className="check-list"><li><Check /> Labels that hide more than they explain</li><li><Check /> Over-processing that removes character</li><li><Check /> Health halos instead of honest context</li></ul><p className="note">Sugar is still sugar. The meaningful difference is transparency, process, taste, and how mindfully it fits into your life.</p></div>
+        <div className="section-copy"><p className="eyebrow">The sugar problem</p><h2>Sweetness lost its <em>story.</em></h2><p>Sugar begins with something beautifully simple. A stalk of sugarcane. Sunlight. Soil. Time.</p><p>For generations, India knew how to turn that sweetness into Gur, Khand and Mishri — with patience, craft and a deep respect for the ingredient.</p><p>But somewhere along the way, sweetness became increasingly refined, standardised and disconnected from where it began. The colour became whiter. The crystals became more uniform. The story became harder to see.</p><p>We believe sweetness deserves better. Not more. Not louder. Just closer to its source. So we went back to the beginning.</p><p className="note">Sugar is still sugar. Enjoy it mindfully; natural sweetness is not sugar-free.</p></div>
         <div className="editorial-image"><Image src="/images/khand_texture.webp" alt="Close-up of golden unrefined sugar crystals" fill sizes="(max-width: 760px) 100vw, 50vw" /></div>
       </section>
 
-      <section className="nature-section">
+      <section id="nature" className="nature-section">
         <div className="nature-art"><Image src="/images/sugarcane_origin.webp" alt="Sugarcane growing in warm sunlight" fill sizes="100vw" /></div>
-        <div className="nature-copy"><Sun /><p className="eyebrow gold">Nature’s solution</p><h2>Begin with better sugarcane.<br />Interfere less.</h2><p>Our approach is beautifully simple: start close to the source, respect time-tested craft, and explain every step without pretending sugar is something it is not.</p></div>
+        <div className="nature-copy"><Sun /><p className="eyebrow gold">Nature’s answer</p><h2>Begin with sugarcane.<br />Interfere less.</h2><p>At Zucero, we believe some things don’t need to be reinvented. They simply need to be respected.</p><p>We return to traditional forms of sweetness, thoughtfully crafted from sugarcane and brought into the modern kitchen with greater care, clarity and intention.</p><p>This is sweetness with its story intact.<br />This is The Good Sugar.</p></div>
       </section>
 
-      <section id="products" className="products-section section-shell">
-        <div className="section-heading"><div><p className="eyebrow">The opening collection</p><h2>Good sugar, in its<br /><em>most honest forms.</em></h2></div><p>Two launch products, carefully sized for everyday kitchens and considered gifting.</p></div>
-        <div className="product-grid">{products.map((product) => <ProductCard product={product} key={product.slug} />)}</div>
-      </section>
+      <HeritageSections />
 
-      <section id="process" className="process-section section-shell">
-        <div className="section-heading centered"><div><p className="eyebrow">How we make it</p><h2>Patient by process.<br /><em>Precise by principle.</em></h2></div></div>
-        <div className="process-grid"><article><span>01</span><Droplets /><h3>Source</h3><p>Start with carefully selected sugarcane and documented supplier standards.</p></article><article><span>02</span><Sun /><h3>Clarify</h3><p>Clean the juice with a restrained process designed for clarity without cosmetic shortcuts.</p></article><article><span>03</span><Sparkles /><h3>Concentrate</h3><p>Reduce patiently until the flavour and texture reach the intended expression.</p></article><article><span>04</span><PackageCheck /><h3>Test & pack</h3><p>Complete batch checks and pack securely for freshness, traceability, and transit.</p></article></div>
-      </section>
-
-      <section id="philosophy" className="philosophy split-section">
-        <div className="editorial-image"><Image src="/images/slow_sweetness.webp" alt="A slow sweetness ritual" fill sizes="(max-width: 760px) 100vw, 50vw" /></div>
-        <div className="section-copy"><p className="eyebrow">Our philosophy</p><h2>Honesty is the<br /><em>best ingredient.</em></h2><p>Zucero was shaped by a marketer who grew tired of seeing food reduced to clever claims. Our work begins where advertising should: with a product worthy of clear language.</p><blockquote>“We will tell you what it is, how it is made, and what it is not—so your choice remains yours.”</blockquote><p className="founder-line">— Tamanna, Founder of Zucero</p><Link className="text-link" href="/our-story">Read our story <ArrowRight size={15} /></Link></div>
-      </section>
+      <section className="why-zucero section-shell"><p className="eyebrow">Why Zucero exists</p><h2>We question what goes into everything else.<br /><em>Why not sugar?</em></h2><p>We know where our coffee comes from. We ask about our milk. We read the labels on what we eat. Yet sugar — something we consume every day — is rarely questioned.</p><p>Zucero exists to change that. To make sweetness more thoughtful. More transparent. More connected to its source.</p><Link className="button button-gold" href="#products">Be first to experience The Good Sugar</Link><p className="eyebrow">Deliveries begin 14 September</p></section>
 
       <section className="proof-section section-shell">
         <p className="eyebrow">Trust, before testimonials</p><h2>Launching with proof.<br /><em>Reviews will be earned.</em></h2><p className="intro">As a new brand, we will not invent customer praise. This space will publish verified purchaser reviews after launch; until then, here is what you can inspect.</p>

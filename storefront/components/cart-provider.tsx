@@ -32,15 +32,15 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     queueMicrotask(() => {
       try {
-        const saved = localStorage.getItem("zucero-cart-v1");
+        const saved = localStorage.getItem("zucero-cart-prelaunch-v2");
         if (saved) setLines(JSON.parse(saved));
-      } catch { localStorage.removeItem("zucero-cart-v1"); }
+      } catch { localStorage.removeItem("zucero-cart-prelaunch-v2"); }
       setReady(true);
     });
   }, []);
 
   useEffect(() => {
-    if (ready) localStorage.setItem("zucero-cart-v1", JSON.stringify(lines));
+    if (ready) localStorage.setItem("zucero-cart-prelaunch-v2", JSON.stringify(lines));
   }, [lines, ready]);
 
   const value = useMemo<CartContextValue>(() => ({

@@ -16,30 +16,30 @@ export type Product = {
   variants: ProductVariant[];
 };
 
-// Prices remain intentionally unset until the founder approves the launch price list.
+// Pre-launch sizes and prices supplied in the September website-flow brief.
 export const products: Product[] = [
   {
     slug: "desi-khand",
     name: "Desi Khand",
     eyebrow: "Natural unrefined cane sugar",
-    description: "Slow-made from sugarcane juice to preserve its warm flavour and naturally occurring character.",
+    description: "Born from fresh sugarcane juice. Shaped by time. Crafted to preserve its natural character.",
     image: "/images/heritage_khand.webp",
-    ingredients: "100% sugarcane",
+    ingredients: "Sugarcane juice, desi cow milk and desi cow ghee. Contains milk.",
     variants: [
-      { id: "khand-500", label: "500 g", sku: "ZUC-KHA-500", weightGrams: 500, pricePaise: null },
-      { id: "khand-1000", label: "1 kg", sku: "ZUC-KHA-1000", weightGrams: 1000, pricePaise: null }
+      { id: "khand-490", label: "490 g", sku: "ZUC-KHA-490", weightGrams: 490, pricePaise: 39900 },
+      { id: "khand-990", label: "990 g", sku: "ZUC-KHA-990", weightGrams: 990, pricePaise: 79900 }
     ]
   },
   {
     slug: "dhage-wali-mishri",
-    name: "Dhage Wali Mishri",
-    eyebrow: "Traditional crystal sugar",
-    description: "Patiently crystallised for a clean sweetness, delicate crunch, and a slower everyday ritual.",
+    name: "Original Brown Khand Mishri",
+    eyebrow: "From the abundance of sugarcane to the rarity of every crystal",
+    description: "Crafted crystal by crystal through an age-old Indian thread technique, preserving its distinctive colour, delicate sweetness and refined crunch.",
     image: "/images/mishri_macro.webp",
-    ingredients: "Sugarcane sugar",
+    ingredients: "Sugarcane juice, desi cow milk and desi cow ghee. Contains milk.",
     variants: [
-      { id: "mishri-250", label: "250 g", sku: "ZUC-MIS-250", weightGrams: 250, pricePaise: null },
-      { id: "mishri-500", label: "500 g", sku: "ZUC-MIS-500", weightGrams: 500, pricePaise: null }
+      { id: "mishri-250", label: "250 g", sku: "ZUC-MIS-250", weightGrams: 250, pricePaise: 79900 },
+      { id: "mishri-500", label: "500 g", sku: "ZUC-MIS-500", weightGrams: 500, pricePaise: 179900 }
     ]
   }
 ];
