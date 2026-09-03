@@ -11,6 +11,7 @@ const links = [["Our story", "/#philosophy"], ["Products", "/#products"], ["How 
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [showPriorityNotice, setShowPriorityNotice] = useState(true);
   const [lightBackground, setLightBackground] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -65,7 +66,6 @@ export function Header() {
   const { count } = useCart();
   return (
     <>
-      <Link className="priority-band" href="/#products">Priority Access | Pre-Launch Orders <span>Deliveries begin 14 September</span></Link>
     <header ref={headerRef} className={`site-header ${lightBackground && !open ? "nav-on-light" : "nav-on-dark"}`}>
       <Link href="/" className="brand" aria-label="Zucero home" onClick={() => setOpen(false)}>
         <Image src="/images/zucerothegoodsugar-logo.webp" alt="Zucero — The Good Sugar" width={124} height={124} priority />
@@ -79,6 +79,16 @@ export function Header() {
         <button ref={menuButtonRef} className="icon-button mobile-menu" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} aria-controls="primary-navigation" onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button>
       </div>
     </header>
+      {showPriorityNotice && (
+        <aside className="priority-popup" aria-label="Pre-launch ordering notice">
+          <button type="button" aria-label="Dismiss notice" onClick={() => setShowPriorityNotice(false)}><X size={16} /></button>
+          <Link href="/#products" onClick={() => setShowPriorityNotice(false)}>
+            <strong>Priority access</strong>
+            <span>Pre-launch orders</span>
+            <small>Deliveries begin 14 September</small>
+          </Link>
+        </aside>
+      )}
     </>
   );
 }
