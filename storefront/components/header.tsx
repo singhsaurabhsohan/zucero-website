@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, CalendarDays, Menu, ShoppingBag, Tag, Truck, UserRound, X } from "lucide-react";
+import { ArrowRight, Menu, ShoppingBag, UserRound, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useCart } from "@/components/cart-provider";
@@ -89,14 +89,7 @@ export function Header() {
       {showPriorityNotice && (
         <aside className="priority-popup" aria-label="Desi Khand pre-book offer">
           <button type="button" aria-label="Dismiss priority access offer" onClick={() => setShowPriorityNotice(false)}><X size={16} /></button>
-          <p className="priority-popup-label">Priority access</p>
-          <h2>Pre-book Desi Khand</h2>
-          <div className="priority-popup-details">
-            <span><Tag aria-hidden="true" /><strong>₹399* · 490 g</strong></span>
-            <span><Truck aria-hidden="true" />Free delivery</span>
-            <span><CalendarDays aria-hidden="true" />Deliveries begin 14 September</span>
-          </div>
-          <Link href="/products/desi-khand" onClick={() => setShowPriorityNotice(false)}>View offer <ArrowRight aria-hidden="true" /></Link>
+          <Link href="/products/desi-khand" onClick={() => setShowPriorityNotice(false)}>Priority access <ArrowRight aria-hidden="true" /></Link>
         </aside>
       )}
     </>
