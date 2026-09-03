@@ -488,6 +488,9 @@ html{scroll-padding-top:calc(var(--header-height) + 16px)}
 .priority-popup strong{font-size:.67rem;color:#8d6b26}
 .priority-popup span{font:500 1rem/1.25 var(--serif)}
 .priority-popup small{margin-top:.25rem;font-size:.68rem;color:var(--muted)}
+.priority-popup b{margin:.35rem 0 .1rem;color:var(--deep-green);font:500 1.65rem/1 var(--serif)}
+.priority-popup b small{font:600 .68rem var(--sans);color:#80651f}
+.priority-popup em{margin-top:.55rem;color:#80651f;font-size:.7rem;font-style:normal;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
 .priority-popup>button{position:absolute;top:.55rem;right:.55rem;display:grid;place-items:center;width:30px;height:30px;border:0;background:transparent;color:var(--deep-green)}
 @media(max-width:640px){
   .priority-popup{top:calc(var(--nav-height) + 10px);right:12px;padding:.85rem 2.5rem .85rem 1rem}

@@ -89,10 +89,12 @@ export function Header() {
       {showPriorityNotice && (
         <aside className="priority-popup" aria-label="Pre-launch ordering notice">
           <button type="button" aria-label="Dismiss notice" onClick={() => setShowPriorityNotice(false)}><X size={16} /></button>
-          <Link href="/#products" onClick={() => setShowPriorityNotice(false)}>
+          <Link href="/products/desi-khand" onClick={() => setShowPriorityNotice(false)}>
             <strong>Priority access</strong>
-            <span>Pre-launch orders</span>
-            <small>Deliveries begin 14 September</small>
+            <span>Pre-book Desi Khand</span>
+            <b>₹399* <small>· 490 g</small></b>
+            <small>Free delivery · Begins 14 September</small>
+            <em>View offer →</em>
           </Link>
         </aside>
       )}
