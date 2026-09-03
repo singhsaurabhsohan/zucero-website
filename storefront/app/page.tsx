@@ -1,19 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowDown, ArrowRight, Check, FlaskConical, Leaf, PackageCheck, Sparkles, Sun } from "lucide-react";
+import { ArrowDown, ArrowRight, FlaskConical, Leaf, PackageCheck, Sparkles, Sun } from "lucide-react";
 import { Header } from "@/components/header";
 import { LocationConsent } from "@/components/location-consent";
 import { HeritageSections, PhilosophySection } from "@/components/heritage-sections";
 import { SiteFooter } from "@/components/site-footer";
+import { StoryCarousel } from "@/components/story-carousel";
 
-const carousel = ["artisan_hands.webp", "crystal_divider.webp", "heritage_khand.webp", "khand_texture.webp", "mishri_macro.webp", "sugarcane_origin.webp", "tea_ritual.webp"];
 const highlights = [
   { Icon: Leaf, title: "PURE BY NATURE", description: "Nothing Artificial" },
   { Icon: FlaskConical, title: "NATURAL GOODNESS", description: "Retains the goodness of its natural source" },
   { Icon: Sparkles, title: "MINDFUL SWEETNESS", description: "A natural alternative to refined sugar" },
   { Icon: PackageCheck, title: "DELICATE SWEETNESS", description: "Light, subtle and naturally sweet" },
 ];
-const carouselCopy = [["Good is traditional.", "Made with respect for craft.", "/#process"], ["Good is transparent.", "Know what goes into what you eat.", "/products/dhage-wali-mishri"], ["Good is pure.", "Pure is a process.", "/products/desi-khand"], ["Good is knowing.", "Know your sugar.", "/#problem"], ["Good is transparent.", "Crystal by crystal.", "/products/dhage-wali-mishri"], ["Good begins in nature.", "Begin with sugarcane.", "/#nature"], ["Good is a choice.", "Choose better. Choose Zucero.", "/#products"]];
 const faqs = [
   ["What makes Zucero different from refined white sugar?", "Zucero focuses on minimally processed, traditional sugar formats. Each product page will clearly state ingredients, process, and nutrition so you can make an informed choice."],
   ["Is Zucero sugar-free or suitable for diabetes?", "No. Zucero products are sugars and should be consumed mindfully. We do not make disease-treatment claims; please follow advice from your healthcare professional."],
@@ -59,9 +58,7 @@ export default function Home() {
         <Link href="#carousel" className="scroll-cue" aria-label="Scroll to explore"><ArrowDown /></Link>
       </section>
 
-      <section id="carousel" className="image-marquee" aria-label="Zucero moments">
-        <div className="marquee-track">{[...carousel, ...carousel].map((image, index) => <Link className="marquee-image" href={carouselCopy[index % carousel.length][2]} key={`${image}-${index}`} aria-hidden={index >= carousel.length ? true : undefined} tabIndex={index >= carousel.length ? -1 : undefined}><Image src={`/images/${image}`} alt="" width={520} height={360} /><span><strong>{carouselCopy[index % carousel.length][0]}</strong><small>{carouselCopy[index % carousel.length][1]}</small></span></Link>)}</div>
-      </section>
+      <StoryCarousel />
 
       <PhilosophySection />
 
