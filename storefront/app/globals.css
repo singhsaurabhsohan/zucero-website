@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@200;300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&display=swap');
+
+@font-face{font-family:"Melodrama";src:url("/fonts/Melodrama-Variable.woff2") format("woff2");font-style:normal;font-weight:300 700;font-display:swap}
 
 :root{--ink:#0c110d;--cream:#ede7da;--paper:#f2ede0;--muted:#655f54;--gold:#b8973f;--deep:#141a15;--forest:#4a6741;--line:rgba(29,27,25,.16);--serif:"Cormorant Garamond",Georgia,serif;--sans:"Outfit","Helvetica Neue",sans-serif}
 
@@ -522,6 +524,14 @@ footer>div:not(.footer-brand):not(.footer-bottom){font-size:.94rem}
   .heritage h2,.heritage h3,.heritage-philosophy h2{font-size:clamp(2.55rem,11vw,3.35rem)}
   .why-zucero h2,.product-story h2,.pdp-page h2{font-size:clamp(2.45rem,10.5vw,3.25rem)}
 }
+
+/* Zucero typography pairing: expressive Melodrama displays, precise Manrope UI. */
+:root{--serif:"Melodrama",Georgia,serif;--sans:"Manrope","Helvetica Neue",Arial,sans-serif}
+h1,h2,h3,blockquote,.product-info h3,.process-grid h3,.account-card h2,.empty-cart h2,.empty-orders h2{font-family:var(--serif)}
+body,button,input,select,textarea{font-family:var(--sans)}
+h1,h2{font-weight:400;letter-spacing:-.012em}
+h3{font-weight:500;letter-spacing:-.005em}
+p,li,summary,label,input,textarea,select{letter-spacing:.002em}
 
 /* Navigation begins transparent and gains its botanical background on scroll. */
 .site-header{transition:background-color .3s ease,color .3s ease,box-shadow .3s ease,backdrop-filter .3s ease}
