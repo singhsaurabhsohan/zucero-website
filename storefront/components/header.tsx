@@ -12,10 +12,17 @@ const links = [["Our story", "/#philosophy"], ["Products", "/#products"], ["How 
 export function Header() {
   const [open, setOpen] = useState(false);
   const [showPriorityNotice, setShowPriorityNotice] = useState(true);
+  const [scrolled, setScrolled] = useState(false);
   const [lightBackground, setLightBackground] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
+  useEffect(() => {
+    const updateScrolled = () => setScrolled(window.scrollY > 24);
+    updateScrolled();
+    window.addEventListener("scroll", updateScrolled, { passive: true });
+    return () => window.removeEventListener("scroll", updateScrolled);
+  }, []);
   useEffect(() => {
     if (!open) return;
     const previousOverflow = document.body.style.overflow;
@@ -66,7 +73,7 @@ export function Header() {
   const { count } = useCart();
   return (
     <>
-    <header ref={headerRef} className={`site-header ${lightBackground && !open ? "nav-on-light" : "nav-on-dark"}`}>
+    <header ref={headerRef} className={`site-header ${lightBackground && !open ? "nav-on-light" : "nav-on-dark"} ${scrolled || open ? "is-scrolled" : "is-at-top"}`}>
       <Link href="/" className="brand" aria-label="Zucero home" onClick={() => setOpen(false)}>
         <Image src="/images/zucerothegoodsugar-logo.webp" alt="Zucero — The Good Sugar" width={124} height={124} priority />
       </Link>
