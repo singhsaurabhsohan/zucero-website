@@ -320,6 +320,11 @@ html{scroll-padding-top:120px}
 .pdp-benefits{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;margin:1rem 0;padding:1.25rem 0;border-block:1px solid var(--line)}
 .pdp-benefits span{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.65rem;font-size:.68rem;line-height:1.4}
 .pdp-benefits svg{color:var(--gold);width:26px;height:26px}
+.pdp-khand-benefits{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin:1.25rem 0;background:var(--line);border:1px solid var(--line)}
+.pdp-khand-benefits article{min-width:0;padding:1.5rem 1rem;text-align:center;background:var(--cream)}
+.pdp-khand-benefits svg{width:25px;height:25px;color:var(--gold)}
+.pdp-khand-benefits h3{margin:.65rem 0 .45rem;font-family:var(--serif);font-size:clamp(1.25rem,1.6vw,1.65rem);font-weight:400;line-height:1.15}
+.pdp-khand-benefits p{margin:0;color:var(--muted);font-size:.78rem;line-height:1.55}
 .pdp-sizes{display:grid;grid-template-columns:1fr 1fr;margin:.7rem 0}
 .pdp-sizes button{display:flex;flex-direction:column;gap:.35rem;text-align:left;padding:1rem;border-radius:4px}
 .pdp-sizes small{font-size:.7rem}
@@ -361,7 +366,9 @@ html{scroll-padding-top:120px}
   .pdp-gallery{position:static;max-width:680px;width:100%;margin:auto}
   .pdp-information{grid-template-columns:1fr;gap:1.5rem;padding:3.5rem 6vw}
   .pdp-service-strip{grid-template-columns:1fr 1fr;gap:2rem}
+  .pdp-khand-benefits{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
+@media(max-width:520px){.pdp-khand-benefits{grid-template-columns:1fr}}
 @media(max-width:760px){
   .heritage-product,.heritage-product.reverse,.heritage-columns,.heritage-journal-grid{grid-template-columns:1fr;gap:2rem}
   .heritage-product.reverse .heritage-picture{order:0}
