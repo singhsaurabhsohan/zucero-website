@@ -561,3 +561,16 @@ p,li,summary,label,input,textarea,select{letter-spacing:.002em}
   .carousel-status{right:62px;bottom:12px}
 }
 @media(prefers-reduced-motion:reduce){.carousel-viewport{scroll-behavior:auto}}
+
+/* Keep both Collection products aligned, with their information below. */
+.heritage-product-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(2rem,5vw,5rem);align-items:start}
+.heritage-product-grid .heritage-product{display:flex;flex-direction:column;gap:0;margin:0;min-width:0}
+.heritage-product-grid .heritage-picture{width:100%;aspect-ratio:4/5}
+.heritage-product-grid .heritage-product-details{padding-top:2.25rem}
+.heritage-product-grid .heritage-product-details h3{font-size:clamp(2.5rem,4vw,4.2rem)}
+.heritage-product-grid .heritage-product-details>p:not(.eyebrow){max-width:560px}
+@media(max-width:760px){
+  .heritage-product-grid{grid-template-columns:1fr;gap:4.5rem}
+  .heritage-product-grid .heritage-picture{aspect-ratio:4/5}
+  .heritage-product-grid .heritage-product-details{padding-top:1.6rem}
+}

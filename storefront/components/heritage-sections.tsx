@@ -18,10 +18,12 @@ export function HeritageSections() {
     <div className="collection-intro"><p>Luxury is not about adding more.<br />It’s about preserving what truly matters.</p></div>
     <section id="products" className="heritage-collection">
       <header><p className="eyebrow">The Zucero Collection</p><h2>The Collection</h2><span className="heritage-rule" /><p>Each one distinct. Each one with a story older than the brand.</p><p className="eyebrow">Be first to experience The Good Sugar</p><p>Priority access · Deliveries begin 14 September.</p></header>
-      {products.map((product, index) => <article className={`heritage-product ${index ? "reverse" : ""}`} key={product.slug}>
-        <div className="heritage-picture"><Image src={index === 0 ? "/images/carousel-khand-matka-v2.png" : "/images/mishri_macro.webp"} alt={product.name} fill sizes="(max-width: 760px) 88vw, 45vw" /></div>
-        <div><p className="eyebrow">No. 0{index + 1} — {index ? "Crystal" : "Cane"}</p><h3>{product.name}</h3><span className="heritage-rule" /><p>{index ? "A centuries-old tradition of crystallised sweetness." : "Before refined sugar, there was Khand — a centuries-old Indian tradition of sweetness."}</p><p>{product.description}</p><p className="heritage-sizes">{product.variants.map(v => `${v.label} · ₹${(v.pricePaise ?? 0) / 100}`).join(" / ")}</p><Link href={`/products/${product.slug}`} className="text-link">Shop {index ? "Mishri" : "Khand"} →</Link></div>
-      </article>)}
+      <div className="heritage-product-grid">
+        {products.map((product, index) => <article className="heritage-product" key={product.slug}>
+          <div className="heritage-picture"><Image src={index === 0 ? "/images/carousel-khand-matka-v2.png" : "/images/mishri_macro.webp"} alt={product.name} fill sizes="(max-width: 760px) 88vw, 42vw" /></div>
+          <div className="heritage-product-details"><p className="eyebrow">No. 0{index + 1} — {index ? "Crystal" : "Cane"}</p><h3>{product.name}</h3><span className="heritage-rule" /><p>{index ? "A centuries-old tradition of crystallised sweetness." : "Before refined sugar, there was Khand — a centuries-old Indian tradition of sweetness."}</p><p>{product.description}</p><p className="heritage-sizes">{product.variants.map(v => `${v.label} · ₹${(v.pricePaise ?? 0) / 100}`).join(" / ")}</p><Link href={`/products/${product.slug}`} className="text-link">Shop {index ? "Mishri" : "Khand"} →</Link></div>
+        </article>)}
+      </div>
     </section>
     <section id="process" className="heritage-dark heritage-craft">
       <div className="heritage-panorama"><Image src="/images/artisan_hands.webp" alt="Traditional sugar-making in a brass vessel" fill sizes="100vw" /></div>
