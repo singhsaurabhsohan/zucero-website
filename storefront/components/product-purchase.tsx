@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Check, Minus, Plus, ShoppingBag, Leaf, PackageCheck, Coffee, ShieldCheck, Truck } from "lucide-react";
+import { Ban, CandyOff, Check, CookingPot, Minus, Plus, ShoppingBag, Leaf, PackageCheck, Coffee, ShieldCheck, Sun, Truck } from "lucide-react";
 import { whatsappOrder } from "@/lib/whatsapp";
 import type { Product } from "@/lib/catalog";
 import { formatPrice } from "@/lib/catalog";
@@ -48,12 +48,12 @@ export function ProductPurchase({ product }: { product: Product }) {
     {isKhand ? <aside className="featured-prebook-offer"><span>Limited pre-launch offer - 490 g</span><strong>₹399*</strong><p><Truck aria-hidden="true" /> Free delivery for pre-book orders</p></aside> : <><p className="product-price">{formatPrice(variant.pricePaise)}</p><p className="prelaunch-price-label">Limited pre-launch offer · {variant.label}</p><aside className="prelaunch-card"><span className="eyebrow">Before the world tastes it.</span><p>A limited window to experience The Good Sugar before its official launch.</p><strong>14 September</strong><small>Deliveries begin 14 September · Order through WhatsApp.</small></aside></>}
     <p className="pdp-tax-note">Our team will confirm taxes, shipping and payment on WhatsApp.</p>
     {isKhand ? <div className="pdp-khand-benefits">{[
-      ["Sun-dried", "Naturally dried under the sun as part of our traditional process."],
-      ["No added flavours", "Nothing added to alter its natural character or taste."],
-      ["No added sweeteners", "Sweetness comes from sugarcane, without added sweeteners."],
-      ["Traditional iron vessel craft", "Traditionally prepared in iron vessels as part of the time-honoured making process."],
-      ["Natural character, preserved", "A slower process designed to retain the character of sugarcane."],
-    ].map(([title, copy]) => <article key={title}><Leaf aria-hidden="true" /><h3>{title}</h3><p>{copy}</p></article>)}</div> : <div className="pdp-benefits"><span><Leaf />Cane sweetness</span><span><Coffee />Everyday rituals</span><span><PackageCheck />Carefully packed</span><span><ShieldCheck />Clear ingredients</span></div>}
+      { title: "Sun-dried", Icon: Sun },
+      { title: "No added flavours", Icon: Ban },
+      { title: "No added sweeteners", Icon: CandyOff },
+      { title: "Traditional iron vessel craft", Icon: CookingPot },
+      { title: "Natural character, preserved", Icon: Leaf },
+    ].map(({ title, Icon }) => <article key={title}><Icon aria-hidden="true" /><h3>{title}</h3></article>)}</div> : <div className="pdp-benefits"><span><Leaf />Cane sweetness</span><span><Coffee />Everyday rituals</span><span><PackageCheck />Carefully packed</span><span><ShieldCheck />Clear ingredients</span></div>}
     <div className="purchase-block"><span>Selected size: {variant.label}</span><div className="variant-row pdp-sizes">{product.variants.map((item) => <button key={item.id} aria-pressed={variantId === item.id} className={variantId === item.id ? "active" : ""} onClick={() => { setVariantId(item.id); setShippingMessage(""); }}><strong>{item.label}</strong><small>{formatPrice(item.pricePaise)}</small></button>)}</div></div>
     <div className="purchase-actions">
       <div className="quantity-picker" aria-label="Quantity"><button onClick={() => setQuantity(Math.max(1, quantity - 1))} aria-label="Decrease quantity"><Minus size={16} /></button><span>{quantity}</span><button onClick={() => setQuantity(Math.min(10, quantity + 1))} aria-label="Increase quantity"><Plus size={16} /></button></div>
