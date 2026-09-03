@@ -464,3 +464,45 @@ html{scroll-padding-top:calc(var(--header-height) + 16px)}
 @media(max-width:640px){
   .priority-popup{top:calc(var(--nav-height) + 10px);right:12px;padding:.85rem 2.5rem .85rem 1rem}
 }
+
+/* Premium, readable type scale: restrained display sizes with legible supporting copy. */
+body{font-size:17px;line-height:1.68}
+.nav{font-size:.78rem;letter-spacing:.12em}
+.eyebrow,.heritage .eyebrow{font-size:.76rem;line-height:1.5}
+.button,.text-link,.text-button{font-size:.78rem}
+.hero h1{font-size:clamp(3.4rem,5.8vw,6.4rem);line-height:.98}
+.hero-copy>p:not(.eyebrow){font-size:.96rem;line-height:1.6}
+.section-copy h2,.section-heading h2,.proof-section h2,.faq-section h2,.contact-section h2{font-size:clamp(2.6rem,3.8vw,4.7rem)}
+.nature-copy h2{font-size:clamp(2.8rem,4.7vw,5.3rem)}
+.heritage h2{font-size:clamp(2.8rem,5vw,5.5rem)}
+.heritage h3{font-size:clamp(2.4rem,4.2vw,4.3rem)}
+.heritage-philosophy h2{font-size:clamp(2.5rem,4vw,4.4rem)}
+.heritage-slow h2{font-size:clamp(3.8rem,8vw,7.5rem)}
+.why-zucero h2{font-size:clamp(2.4rem,4vw,4rem)}
+.content-hero h1{font-size:clamp(3.2rem,5.8vw,5.8rem)}
+.purchase-panel h1,.page-title h1,.checkout-heading h1,.account-story h1,.orders-shell h1{font-size:clamp(2.8rem,4.3vw,5rem)}
+.product-story h2,.pdp-page h2{font-size:clamp(2.35rem,3.6vw,3.8rem)}
+.section-copy>p:not(.eyebrow):not(.note):not(.founder-line),.product-story>p:last-child,.content-hero p:last-child,.heritage-philosophy p{font-size:1.08rem}
+.note,.process-grid p,.prelaunch-card p,.pdp-difference article p,.pdp-page .product-description{font-size:.96rem}
+.hero-labels a,.marquee-image small,.product-buy strong,.founder-line,.prelaunch-price-label,.prelaunch-card small,.pdp-breadcrumb,.pdp-tax-note,.pdp-review-link,.pdp-information summary{font-size:.8rem}
+.launch-form label span,.contact-form label span,.purchase-block>span,.checkout-form label>span,.account-card label>span,.product-facts span,.pdp-benefits span,.pdp-sizes small{font-size:.75rem}
+.purchase-assurances,.cart-line p,.order-summary>div,.checkout-line,.pdp-delivery label{font-size:.92rem}
+.summary-note,.checkout-summary>p,.pdp-delivery p,.pdp-service-strip span{font-size:.84rem}
+footer h3{font-size:.78rem}
+footer>div:not(.footer-brand):not(.footer-bottom){font-size:.94rem}
+.footer-bottom{font-size:.82rem}
+.hero-proof-copy strong{font-size:.76rem}
+.hero-proof-copy small{font-size:.8rem}
+.priority-popup strong,.priority-popup small{font-size:.74rem}
+@media(max-width:640px){
+  body{font-size:16.5px;line-height:1.66}
+  .hero h1{font-size:clamp(2.75rem,12vw,3.65rem)}
+  .hero-copy>p:not(.eyebrow){font-size:.84rem}
+  .section-copy h2,.section-heading h2,.proof-section h2,.faq-section h2,.contact-section h2{font-size:clamp(2.2rem,9.5vw,2.85rem)}
+  .nature-copy h2{font-size:clamp(2.4rem,10vw,3.25rem)}
+  .heritage h2,.heritage h3,.heritage-philosophy h2{font-size:clamp(2.25rem,10vw,3rem)}
+  .heritage-slow h2{font-size:clamp(3rem,12vw,4.5rem)}
+  .content-hero h1{font-size:clamp(2.65rem,12vw,3.75rem)}
+  .purchase-panel h1,.page-title h1,.checkout-heading h1,.account-story h1,.orders-shell h1{font-size:clamp(2.45rem,11vw,3.5rem)}
+  .hero-labels a,.hero-copy .button,.marquee-image strong,.marquee-image small{font-size:.72rem}
+}
