@@ -382,6 +382,19 @@ html{scroll-padding-top:120px}
   .pdp-difference,.pdp-reviews{padding:3.5rem 6vw}
 }
 
+/* Nature story: readable glass panel with portrait-safe image framing. */
+.nature-section{place-items:center start;text-align:left}
+.nature-art img{object-position:center 30%}
+.nature-art:after{background:linear-gradient(90deg,rgba(3,19,11,.58) 0%,rgba(4,18,11,.2) 55%,rgba(4,15,9,.28) 100%)}
+.nature-copy{width:min(720px,calc(100% - 14vw));max-width:none;margin-left:7vw;padding:clamp(2rem,4vw,3.5rem);background:linear-gradient(135deg,rgba(5,31,19,.82),rgba(5,25,16,.6));border:1px solid rgba(218,181,99,.35);box-shadow:0 24px 70px rgba(0,0,0,.24);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.nature-copy>p:not(.eyebrow){margin-left:0;margin-right:0}
+@media(max-width:760px){
+  .nature-section{place-items:center;text-align:center}
+  .nature-art img{object-position:center center}
+  .nature-copy{width:calc(100% - 2rem);margin-left:0;padding:2rem 1.25rem;background:rgba(5,29,18,.72)}
+  .nature-copy>p:not(.eyebrow){margin-left:auto;margin-right:auto}
+}
+
 /* One shared header geometry: announcement and frosted navigation never overlap. */
 :root{--nav-height:120px;--announcement-height:30px;--header-height:calc(var(--nav-height) + var(--announcement-height))}
 html{scroll-padding-top:calc(var(--header-height) + 16px)}
