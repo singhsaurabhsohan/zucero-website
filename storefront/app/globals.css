@@ -439,6 +439,8 @@ html{scroll-padding-top:calc(var(--header-height) + 16px)}
 .site-header .brand img,.site-header.nav-on-light .brand img{filter:none}
 
 /* Two-level product highlights; duplicate items retain the seamless mobile loop. */
+.hero-video-embed{position:absolute;inset:0;overflow:hidden;background:var(--deep-green-dark)}
+.hero-video-embed iframe{position:absolute;top:50%;left:50%;width:max(100vw,177.78vh);height:max(100%,56.25vw);border:0;transform:translate(-50%,-50%);pointer-events:none}
 .hero-proofs-track>span{min-width:0;padding:0 1rem;gap:.75rem}
 .hero-proofs-track>span>svg{flex-shrink:0}
 .hero-proof-copy{display:block;min-width:0;white-space:normal;font-family:var(--sans);text-align:left}

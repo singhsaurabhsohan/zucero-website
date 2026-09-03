@@ -28,7 +28,15 @@ export default function Home() {
     <main>
       <section className="hero">
         <Image className="hero-image" src="/images/hero-cinematic-poster.png" alt="Zucero Desi Khand in warm sunlight among sugarcane" fill priority sizes="100vw" />
-        <video autoPlay muted loop playsInline preload="metadata" poster="/images/hero-cinematic-poster.png" aria-label="Zucero cinematic brand visual"><source src="/media/hero-cinematic.mp4" type="video/mp4" /></video>
+        <div className="hero-video-embed" aria-hidden="true">
+          <iframe
+            title="Zucero cinematic hero film"
+            src="https://play.gumlet.io/embed/6a2ee82136223b22766f448c?background=true"
+            referrerPolicy="origin"
+            allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen; clipboard-write"
+            tabIndex={-1}
+          />
+        </div>
         <div className="hero-shade" />
         <Header />
         <div className="hero-copy">
