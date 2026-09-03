@@ -21,7 +21,7 @@ export function HeritageSections() {
       <div className="heritage-product-grid">
         {products.map((product, index) => <article className="heritage-product" key={product.slug}>
           <div className="heritage-picture"><Image src={index === 0 ? "/images/carousel-khand-matka-v2.png" : "/images/collection-mishri-v2.png"} alt={product.name} fill sizes="(max-width: 760px) 88vw, 42vw" /></div>
-          <div className="heritage-product-details"><p className="eyebrow">No. 0{index + 1} — {index ? "Crystal" : "Cane"}</p><h3>{product.name}</h3><span className="heritage-rule" /><p>{index ? "A centuries-old tradition of crystallised sweetness." : "Before refined sugar, there was Khand — a centuries-old Indian tradition of sweetness."}</p><p>{product.description}</p><p className="heritage-sizes">{product.variants.map(v => `${v.label} · ₹${(v.pricePaise ?? 0) / 100}`).join(" / ")}</p><Link href={`/products/${product.slug}`} className="text-link">Shop {index ? "Mishri" : "Khand"} →</Link></div>
+          <div className="heritage-product-details"><p className="eyebrow">No. 0{index + 1} — {index ? "Crystal" : "Cane"}</p><h3>{product.name}</h3><span className="heritage-rule" /><div className="heritage-product-story"><p>{index ? "A centuries-old tradition of crystallised sweetness." : "Before refined sugar, there was Khand — a centuries-old Indian tradition of sweetness."}</p><p>{product.description}</p></div><p className="heritage-sizes">{product.variants.map(v => `${v.label} · ₹${(v.pricePaise ?? 0) / 100}`).join(" / ")}</p><Link href={`/products/${product.slug}`} className="text-link">Shop {index ? "Mishri" : "Khand"} →</Link></div>
         </article>)}
       </div>
     </section>
