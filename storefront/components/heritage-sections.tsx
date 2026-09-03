@@ -17,7 +17,7 @@ export function HeritageSections() {
   return <div className="heritage">
     <div className="collection-intro"><p>Luxury is not about adding more.<br />It’s about preserving what truly matters.</p></div>
     <section id="products" className="heritage-collection">
-      <header><p className="eyebrow">The Zucero Collection</p><h2>The Collection</h2><span className="heritage-rule" /><p>Each one distinct. Each one with a story older than the brand.</p><p className="eyebrow">Be first to experience The Good Sugar</p><p>Priority access · Deliveries begin 14 September.</p></header>
+      <header><p className="eyebrow">The Zucero Collection</p><h2>The Collection</h2><span className="heritage-rule" /><p>Each one distinct. Each one with a story older than the brand.</p><div className="collection-launch-callout"><p className="eyebrow">Be first to experience The Good Sugar</p><p>Priority access <span>·</span> Deliveries begin 14 September.</p></div></header>
       <div className="heritage-product-grid">
         {products.map((product, index) => <article className="heritage-product" key={product.slug}>
           <div className="heritage-picture"><Image src={index === 0 ? "/images/carousel-khand-matka-v2.png" : "/images/collection-mishri-v2.png"} alt={product.name} fill sizes="(max-width: 760px) 88vw, 42vw" /><div className="heritage-image-title"><span>No. 0{index + 1}</span><h3>{product.name}</h3></div></div>
