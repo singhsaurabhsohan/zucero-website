@@ -64,7 +64,7 @@ export default function Home() {
 
       <section id="problem" className="split-section problem">
         <div className="section-copy"><p className="eyebrow">The sugar problem</p><h2>Sweetness lost its <em>story.</em></h2><p>Sugar begins with something beautifully simple. A stalk of sugarcane. Sunlight. Soil. Time.</p><p>For generations, India knew how to turn that sweetness into Gur, Khand and Mishri — with patience, craft and a deep respect for the ingredient.</p><p>But somewhere along the way, sweetness became increasingly refined, standardised and disconnected from where it began. The colour became whiter. The crystals became more uniform. The story became harder to see.</p><p>We believe sweetness deserves better. Not more. Not louder. Just closer to its source. So we went back to the beginning.</p><p className="note">Sugar is still sugar. Enjoy it mindfully; natural sweetness is not sugar-free.</p></div>
-        <div className="editorial-image"><Image src="/images/khand_texture.webp" alt="Close-up of golden unrefined sugar crystals" fill sizes="(max-width: 760px) 100vw, 50vw" /></div>
+        <div className="editorial-image"><Image src="/images/khand_texture.webp" alt="Close-up of golden unrefined sugar crystals" fill sizes="(max-width: 760px) 100vw, 50vw" /><div className="section-image-caption"><span>The sugar problem</span><strong>Sweetness lost<br />its story.</strong></div></div>
       </section>
 
       <section id="nature" className="nature-section">

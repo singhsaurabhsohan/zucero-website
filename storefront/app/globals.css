@@ -568,6 +568,13 @@ p,li,summary,label,input,textarea,select{letter-spacing:.002em}
 .heritage-collection header .collection-launch-callout .eyebrow{margin:0 0 .55rem;color:#e3bd68;font-size:clamp(.78rem,.95vw,.92rem);font-weight:700}
 .heritage-collection header .collection-launch-callout>p:last-child{margin:0 auto;color:var(--cream);font-family:var(--serif);font-size:clamp(1.4rem,2.1vw,2rem);line-height:1.25}
 .collection-launch-callout>p:last-child span{padding:0 .3em;color:var(--gold)}
+.editorial-image:after,.heritage-panorama:after,.heritage-journal-grid .heritage-picture:after{content:"";position:absolute;z-index:1;inset:45% 0 0;background:linear-gradient(transparent,rgba(3,20,12,.86))}
+.section-image-caption{position:absolute;z-index:2;inset:auto 0 0;padding:clamp(1.5rem,4vw,3.5rem);color:var(--cream);pointer-events:none}
+.section-image-caption span{display:block;margin-bottom:.55rem;color:#e1ba64;font-size:clamp(.72rem,.9vw,.86rem);font-weight:700;letter-spacing:.2em;text-transform:uppercase}
+.section-image-caption strong{display:block;max-width:780px;font-family:var(--serif);font-size:clamp(2.2rem,4.5vw,4.8rem);font-weight:400;line-height:1.02;letter-spacing:-.01em;text-shadow:0 3px 24px rgba(0,0,0,.45)}
+.heritage-journal-grid .section-image-caption{padding:clamp(1.3rem,2.5vw,2.2rem)}
+.heritage-journal-grid .section-image-caption strong{font-size:clamp(1.9rem,3vw,3rem)}
+.heritage-journal-grid>a>p{margin-top:1.4rem}
 .heritage-product-grid .heritage-product{display:flex;flex-direction:column;gap:0;margin:0;min-width:0}
 .heritage-product-grid .heritage-picture{width:100%;aspect-ratio:4/5}
 .heritage-product-grid .heritage-picture:after{content:"";position:absolute;z-index:1;inset:55% 0 0;background:linear-gradient(transparent,rgba(3,21,13,.9))}
@@ -581,6 +588,8 @@ p,li,summary,label,input,textarea,select{letter-spacing:.002em}
 .heritage-product-grid .heritage-sizes{margin-top:auto}
 @media(max-width:760px){
   .collection-launch-callout{margin-top:2rem;padding:1.25rem 1rem}
+  .section-image-caption{padding:1.4rem}
+  .section-image-caption strong{font-size:clamp(2rem,9vw,3rem)}
   .heritage-product-grid{grid-template-columns:1fr;gap:4.5rem}
   .heritage-product-grid .heritage-picture{aspect-ratio:4/5}
   .heritage-product-grid .heritage-product-details{padding-top:1.6rem}
