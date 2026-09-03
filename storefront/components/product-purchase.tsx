@@ -17,6 +17,7 @@ export function ProductPurchase({ product }: { product: Product }) {
   const [checking, setChecking] = useState(false);
   const variant = product.variants.find((item) => item.id === variantId)!;
   const readyForSale = variant.pricePaise !== null;
+  const isKhand = product.slug === "desi-khand";
 
   const buyLink = whatsappOrder([{ productName: product.name, variantLabel: variant.label, quantity }]);
   function addToBag() {
@@ -44,9 +45,7 @@ export function ProductPurchase({ product }: { product: Product }) {
     <p className="eyebrow">{product.eyebrow}</p>
     <h1>{product.name}</h1>
     <p className="product-description">{product.description}</p>
-    <p className="product-price">{formatPrice(variant.pricePaise)}</p>
-    <p className="prelaunch-price-label">Limited pre-launch offer · {variant.label}</p>
-    <aside className="prelaunch-card"><span className="eyebrow">Before the world tastes it.</span><p>A limited window to experience The Good Sugar before its official launch.</p><strong>14 September</strong><small>Deliveries begin 14 September · Order through WhatsApp.</small></aside>
+    {isKhand ? <aside className="featured-prebook-offer"><span>Limited pre-launch offer - 490 g</span><strong>₹399* <small>for 490 g</small></strong><p><Truck aria-hidden="true" /> Free delivery for pre-book orders</p></aside> : <><p className="product-price">{formatPrice(variant.pricePaise)}</p><p className="prelaunch-price-label">Limited pre-launch offer · {variant.label}</p><aside className="prelaunch-card"><span className="eyebrow">Before the world tastes it.</span><p>A limited window to experience The Good Sugar before its official launch.</p><strong>14 September</strong><small>Deliveries begin 14 September · Order through WhatsApp.</small></aside></>}
     <p className="pdp-tax-note">Our team will confirm taxes, shipping and payment on WhatsApp.</p>
     <a className="pdp-review-link" href="#product-reviews">No reviews yet — a new beginning</a>
     <div className="pdp-benefits"><span><Leaf />Cane sweetness</span><span><Coffee />Everyday rituals</span><span><PackageCheck />Carefully packed</span><span><ShieldCheck />Clear ingredients</span></div>
