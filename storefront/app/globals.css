@@ -54,3 +54,8 @@ footer{background:var(--deep-green-dark)}
 /* Persistent navigation across every route. */
 .site-header{position:fixed;top:0;left:0;right:0;background:rgba(9,23,15,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 8px 30px rgba(3,12,7,.12)}
 .store-header .site-header{position:fixed}
+
+/* Solid botanical navigation on every route and screen size. */
+.site-header,.store-header .site-header,.site-header.nav-on-light,.site-header.nav-on-dark{background:var(--deep-green);color:var(--cream)}
+.site-header .nav a:hover{color:#e7c67d}
+.site-header .brand img,.site-header.nav-on-light .brand img{filter:none}
