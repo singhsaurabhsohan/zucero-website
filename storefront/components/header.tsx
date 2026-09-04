@@ -110,7 +110,7 @@ export function Header() {
       {showPriorityNotice && !(pathname === "/" && collectionInView) && (
         <aside className="priority-popup" aria-label="Priority access to the Zucero collection">
           <button type="button" aria-label="Dismiss priority access offer" onClick={() => setShowPriorityNotice(false)}><X size={16} /></button>
-          <Link href="/#products" onClick={(event) => followSection(event, "/#products")}><Gem aria-hidden="true" /><span><strong>Priority access</strong><small>Explore the collection</small></span><ArrowRight aria-hidden="true" /></Link>
+          <Link href="/#products" onClick={(event) => followSection(event, "/#products")}><Gem aria-hidden="true" /><span><strong>Priority access</strong></span><ArrowRight aria-hidden="true" /></Link>
         </aside>
       )}
     </>
