@@ -8,7 +8,7 @@ import type { MouseEvent as ReactMouseEvent } from "react";
 import { usePathname } from "next/navigation";
 import { useCart } from "@/components/cart-provider";
 
-const links = [["Our story", "/#philosophy"], ["Products", "/#products"], ["How it’s made", "/#process"], ["Contact", "/contact"]];
+const links = [["Our story", "/#philosophy"], ["Products", "/products"], ["How it’s made", "/#process"], ["Contact", "/contact"]];
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -107,10 +107,10 @@ export function Header() {
         <button ref={menuButtonRef} className="icon-button mobile-menu" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} aria-controls="primary-navigation" onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button>
       </div>
     </header>
-      {showPriorityNotice && !(pathname === "/" && collectionInView) && (
+      {showPriorityNotice && !((pathname === "/" || pathname === "/products") && collectionInView) && (
         <aside className="priority-popup" aria-label="Priority access to the Zucero collection">
           <button type="button" aria-label="Dismiss priority access offer" onClick={() => setShowPriorityNotice(false)}><X size={16} /></button>
-          <Link href="/#products" onClick={(event) => followSection(event, "/#products")}><Gem aria-hidden="true" /><span><strong>Priority access</strong></span><ArrowRight aria-hidden="true" /></Link>
+          <Link href="/products" onClick={() => setOpen(false)}><Gem aria-hidden="true" /><span><strong>Priority access</strong></span><ArrowRight aria-hidden="true" /></Link>
         </aside>
       )}
     </>
