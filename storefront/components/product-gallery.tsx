@@ -7,8 +7,8 @@ import type { Product } from "@/lib/catalog";
 export function ProductGallery({ product }: { product: Product }) {
   const photos = product.slug === "dhage-wali-mishri"
     ? [
-        { src: "/images/mishri-raw-hero.png", label: "Brown Mishri served in a silver bowl" },
         { src: "/images/mishri-jar-lifestyle.png", label: "Zucero Brown Mishri jar with serving pieces" },
+        { src: "/images/mishri-raw-hero.png", label: "Brown Mishri served in a silver bowl" },
       ]
     : [
         { src: "/images/khand-branded-jar.png", label: "Zucero Desi Khand jar" },
