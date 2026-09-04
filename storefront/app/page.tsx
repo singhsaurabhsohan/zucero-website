@@ -35,7 +35,7 @@ export default function Home() {
           <p className="eyebrow gold">Rooted in Indian sugar-making</p>
           <h1>Sweetness<br />is a <em>ritual.</em></h1>
           <p>Nature perfected sweetness.<br />We simply preserved it.</p>
-          <div className="button-row"><Link className="button button-gold" href="#products">Explore our collection <ArrowRight size={16} /></Link></div>
+          <div className="button-row"><Link className="button button-gold" href="#collection-title">Explore our collection <ArrowRight size={16} /></Link></div>
           <div className="hero-labels"><Link href="/products/desi-khand#product-information">Pure by nature</Link><Link href="#nature">Natural goodness</Link><Link href="#problem">Mindful sweetness</Link><Link href="/products/dhage-wali-mishri">Delicate sweetness</Link></div>
         </div>
         <div className="hero-proofs" aria-label="Product highlights">
@@ -65,7 +65,7 @@ export default function Home() {
 
       <HeritageSections philosophy={<PhilosophySection />} />
 
-      <section className="why-zucero section-shell"><SectionDivider number="10" title="Why Zucero Exists" /><h2>We question what goes into everything else.<br /><em>Why not sugar?</em></h2><p>We know where our coffee comes from.<br />We ask about our milk.<br />We read the labels on what we eat.</p><p>Yet sugar — something we consume every day — is rarely questioned.</p><p><strong>Zucero exists to change that.</strong><br />To make sweetness more thoughtful.<br />More transparent.<br />More connected to its source.</p><p>We return to sugarcane, traditional craft and the patience of time — because we believe <strong>good sugar should be made with the same care with which you choose it.</strong></p><p><strong>Zucero. The Good Sugar.</strong></p><div className="why-highlight"><strong>Be first to experience The Good Sugar</strong><span>Pre-book before launch. Deliveries begin 14 September.</span><Link className="button button-gold" href="#products">Explore the collection <ArrowRight size={16} /></Link></div></section>
+      <section className="why-zucero section-shell"><SectionDivider number="10" title="Why Zucero Exists" /><h2>We question what goes into everything else.<br /><em>Why not sugar?</em></h2><p>We know where our coffee comes from.<br />We ask about our milk.<br />We read the labels on what we eat.</p><p>Yet sugar — something we consume every day — is rarely questioned.</p><p><strong>Zucero exists to change that.</strong><br />To make sweetness more thoughtful.<br />More transparent.<br />More connected to its source.</p><p>We return to sugarcane, traditional craft and the patience of time — because we believe <strong>good sugar should be made with the same care with which you choose it.</strong></p><p><strong>Zucero. The Good Sugar.</strong></p><div className="why-highlight"><strong>Be first to experience The Good Sugar</strong><span>Pre-book before launch. Deliveries begin 14 September.</span><Link className="button button-gold" href="#collection-title">Explore the collection <ArrowRight size={16} /></Link></div></section>
 
       <section id="contact" className="contact-section"><SectionDivider number="11" title="The Launch List" light /><div><h2>Be first to taste<br /><em>the good sugar.</em></h2><p>Get launch availability, founder notes, and early product access. No noisy inbox.</p></div><LaunchListForm /></section>
 

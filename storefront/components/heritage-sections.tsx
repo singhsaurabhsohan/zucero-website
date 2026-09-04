@@ -22,7 +22,7 @@ export function CollectionSection() {
   return <>
     <div className="collection-intro"><p>Luxury is not about adding more.<br />It’s about preserving what truly matters.</p></div>
     <section id="products" className="heritage-collection">
-      <SectionDivider number="04" title="The Collection" light />
+      <div id="collection-title" className="collection-anchor"><SectionDivider number="04" title="The Collection" light /></div>
       <h2 className="sr-only">Explore Our Collection</h2>
       <header><span className="heritage-rule" /><p>Each one distinct. Each one with a story older than the brand.</p><div className="collection-launch-callout"><p className="eyebrow">Be first to experience The Good Sugar</p><p>Priority access <span>·</span> Deliveries begin 14 September.</p></div></header>
       <div className="heritage-product-grid">

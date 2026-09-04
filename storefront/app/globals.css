@@ -811,6 +811,7 @@ main section[id]{scroll-margin-top:calc(var(--nav-height) + 18px)}
 .heritage-craft{padding-top:clamp(30px,3.2vw,52px);background:var(--deep-green)}
 .heritage-craft .craft-caption{justify-content:flex-start;padding-top:clamp(2.5rem,4.5vw,4.75rem)}
 .heritage-collection{scroll-margin-top:0}
+.collection-anchor{scroll-margin-top:0}
 @media(max-width:760px){
   .heritage-craft{padding-top:28px}
   .heritage-craft .craft-caption{padding-top:1.75rem}
