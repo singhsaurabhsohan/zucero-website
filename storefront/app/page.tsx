@@ -59,7 +59,7 @@ export default function Home() {
       </section>
 
       <section id="nature" className="nature-section">
-        <div className="nature-art"><Image src="/images/sugarcane_origin.webp" alt="Sugarcane growing in warm sunlight" fill sizes="100vw" /></div>
+        <div className="nature-art"><Image src="/images/nature-sugarcane-field-v2.png" alt="An Indian woman walking through mature sugarcane at sunrise" fill sizes="100vw" /></div>
         <div className="nature-copy"><Sun /><p className="eyebrow gold">Nature’s answer</p><h2>Begin with sugarcane.<br />Interfere less.</h2><p>At Zucero, we believe some things don’t need to be reinvented. They simply need to be respected.</p><p>We return to traditional forms of sweetness, thoughtfully crafted from sugarcane and brought into the modern kitchen with greater care, clarity and intention.</p><p>This is sweetness with its story intact.<br />This is The Good Sugar.</p></div>
       </section>
 
