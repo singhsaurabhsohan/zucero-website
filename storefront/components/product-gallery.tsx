@@ -7,18 +7,12 @@ import type { Product } from "@/lib/catalog";
 export function ProductGallery({ product }: { product: Product }) {
   const photos = product.slug === "dhage-wali-mishri"
     ? [
-        { src: product.image, label: product.name },
         { src: "/images/mishri-raw-hero.png", label: "Brown Mishri served in a silver bowl" },
         { src: "/images/mishri-jar-lifestyle.png", label: "Zucero Brown Mishri jar with serving pieces" },
-        { src: "/images/slow_sweetness.webp", label: "Mishri serving inspiration" },
-        { src: "/images/sugarcane_origin.webp", label: "Sugarcane inspiration" },
       ]
     : [
-        { src: product.image, label: product.name },
         { src: "/images/khand-branded-jar.png", label: "Zucero Desi Khand jar" },
         { src: "/images/khand-matka-serving.png", label: "Fine Desi Khand served from a black matka" },
-        { src: "/images/khand_texture.webp", label: "Natural fine-granule Desi Khand texture" },
-        { src: "/images/sugarcane_origin.webp", label: "Sugarcane inspiration" },
       ];
   const [active, setActive] = useState(0);
   const zoom = useRef<HTMLDialogElement>(null);
