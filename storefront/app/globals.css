@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@300;400;500;600;700&display=swap');
 
 @font-face{font-family:"Melodrama";src:url("/fonts/Melodrama-Variable.woff2") format("woff2");font-style:normal;font-weight:300 700;font-display:swap}
 
@@ -396,6 +396,55 @@ html{scroll-padding-top:120px}
   .pdp-difference,.pdp-reviews{padding:3.5rem 6vw}
 }
 
+/* Final homepage editorial system: one type pairing, compact chapters and dependable anchors. */
+:root{--serif:"Cormorant Garamond",Georgia,serif;--sans:"Manrope","Helvetica Neue",Arial,sans-serif}
+body,button,input,select,textarea{font-family:var(--sans)}
+h1,h2,h3,blockquote{font-family:var(--serif);font-optical-sizing:auto}
+.site-header,.store-header .site-header{position:fixed}
+main section[id]{scroll-margin-top:calc(var(--nav-height) + 18px)}
+
+.section-divider{position:relative;z-index:4;width:88%;margin:0 auto;padding:1rem 0 .9rem;border-top:1px solid rgba(28,39,31,.25);display:flex;align-items:baseline;gap:1rem;color:var(--deep-green)}
+.section-divider span{font:700 .7rem/1 var(--sans);letter-spacing:.18em;color:var(--gold)}
+.section-divider strong{font:600 clamp(1.05rem,1.5vw,1.45rem)/1.1 var(--sans);letter-spacing:.13em;text-transform:uppercase}
+.section-divider-light{color:var(--cream);border-top-color:rgba(242,237,224,.28)}
+
+.problem{display:block;min-height:0;background:var(--paper)}
+.problem>.section-copy{width:min(1040px,88vw);margin:0 auto;padding:clamp(3rem,5vw,5.5rem) 0;justify-content:flex-start}
+.problem .problem-heading{margin-bottom:1rem}
+.problem .problem-heading h2{max-width:850px;font-size:clamp(4rem,7vw,7.25rem)}
+.problem .section-copy>p{max-width:760px}
+
+.nature-section{min-height:clamp(580px,72vh,700px)}
+.heritage{--chapter-space:clamp(3.25rem,5.2vw,5.75rem)}
+.heritage-panorama{height:clamp(360px,42vw,610px)}
+.heritage-columns{padding:clamp(3rem,5vw,5.5rem) 8vw}
+.heritage-collection{padding-top:1rem!important}
+.heritage-collection header{margin-bottom:clamp(2.5rem,4vw,4rem)}
+.collection-intro{padding:clamp(2rem,3vw,3rem) 7vw}
+.heritage-philosophy,.heritage-founder,.heritage-rituals{padding-top:clamp(3.25rem,5vw,5.5rem);padding-bottom:clamp(3.25rem,5vw,5.5rem)}
+.why-zucero.section-shell{padding-top:clamp(3.5rem,5vw,5.75rem);padding-bottom:clamp(3.5rem,5vw,5.75rem)}
+.contact-section{padding-top:0}
+.contact-section>.section-divider{grid-column:1/-1;width:100%;margin-bottom:clamp(2rem,4vw,4rem)}
+
+.craft-caption{inset:0 auto 0 0;width:min(52%,680px);display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start}
+.craft-caption>span{font-size:clamp(.86rem,1.1vw,1.05rem)}
+.craft-caption strong{display:grid;font-size:clamp(3.7rem,7.5vw,7.8rem);line-height:.78}
+.craft-caption strong b{display:block;font:inherit}
+.priority-popup a{cursor:pointer;pointer-events:auto}
+
+@media(max-width:760px){
+  .section-divider{width:88%;padding:.85rem 0 .75rem}
+  .section-divider strong{font-size:.95rem;letter-spacing:.1em}
+  .problem>.section-copy{padding:2.75rem 0 3.5rem}
+  .problem .problem-heading h2{font-size:clamp(3rem,14vw,4.25rem)}
+  .heritage{--chapter-space:3.5rem}
+  .heritage-panorama{height:clamp(390px,112vw,560px)}
+  .heritage-columns{padding:3.5rem 6vw}
+  .craft-caption{width:78%;padding:1.35rem}
+  .craft-caption strong{font-size:clamp(3rem,17vw,5rem)}
+  .contact-section>.section-divider{margin-bottom:1rem}
+}
+
 /* Nature story: readable glass panel with portrait-safe image framing. */
 .nature-section{place-items:center start;text-align:left}
 .nature-art img{object-position:center 30%}
@@ -652,4 +701,48 @@ p,li,summary,label,input,textarea,select{letter-spacing:.002em}
   .heritage-product-grid .heritage-product-details{padding-top:1.6rem}
   .heritage-product-grid .heritage-product-story{min-height:0}
   .heritage-product-grid .heritage-image-title h3{font-size:clamp(2.35rem,10vw,3.2rem)}
+}
+
+/* Keep the final design system last so legacy rules cannot override the homepage refresh. */
+:root{--serif:"Cormorant Garamond",Georgia,serif;--sans:"Manrope","Helvetica Neue",Arial,sans-serif}
+body,button,input,select,textarea{font-family:var(--sans)}
+h1,h2,h3,blockquote{font-family:var(--serif);font-optical-sizing:auto}
+.site-header,.store-header .site-header{position:fixed}
+main section[id]{scroll-margin-top:calc(var(--nav-height) + 18px)}
+.section-divider{position:relative;z-index:4;width:88%;margin:0 auto;padding:1rem 0 .9rem;border-top:1px solid rgba(28,39,31,.25);display:flex;align-items:baseline;gap:1rem;color:var(--deep-green)}
+.section-divider span{font:700 .7rem/1 var(--sans);letter-spacing:.18em;color:var(--gold)}
+.section-divider strong{font:600 clamp(1.05rem,1.5vw,1.45rem)/1.1 var(--sans);letter-spacing:.13em;text-transform:uppercase}
+.section-divider-light{color:var(--cream);border-top-color:rgba(242,237,224,.28)}
+.problem{display:block;min-height:0;background:var(--paper)}
+.problem>.section-copy{width:min(1040px,88vw);margin:0 auto;padding:clamp(3rem,5vw,5.5rem) 0;justify-content:flex-start}
+.problem .problem-heading{margin-bottom:1rem}
+.problem .problem-heading h2{max-width:850px;font-size:clamp(4rem,7vw,7.25rem)}
+.problem .section-copy>p{max-width:760px}
+.nature-section{min-height:clamp(580px,72vh,700px)}
+.heritage{--chapter-space:clamp(3.25rem,5.2vw,5.75rem)}
+.heritage-panorama{height:clamp(360px,42vw,610px)}
+.heritage-columns{padding:clamp(3rem,5vw,5.5rem) 8vw}
+.heritage-collection{padding-top:1rem!important}
+.heritage-collection header{margin-bottom:clamp(2.5rem,4vw,4rem)}
+.collection-intro{padding:clamp(2rem,3vw,3rem) 7vw}
+.heritage-philosophy,.heritage-founder,.heritage-rituals{padding-top:clamp(3.25rem,5vw,5.5rem);padding-bottom:clamp(3.25rem,5vw,5.5rem)}
+.why-zucero.section-shell{padding-top:clamp(3.5rem,5vw,5.75rem);padding-bottom:clamp(3.5rem,5vw,5.75rem)}
+.contact-section{padding-top:0}
+.contact-section>.section-divider{grid-column:1/-1;width:100%;margin-bottom:clamp(2rem,4vw,4rem)}
+.craft-caption{inset:0 auto 0 0;width:min(52%,680px);display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start}
+.craft-caption>span{font-size:clamp(.86rem,1.1vw,1.05rem)}
+.craft-caption strong{display:grid;font-size:clamp(3.7rem,7.5vw,7.8rem);line-height:.78}
+.craft-caption strong b{display:block;font:inherit}
+.priority-popup a{cursor:pointer;pointer-events:auto}
+@media(max-width:760px){
+  .section-divider{width:88%;padding:.85rem 0 .75rem}
+  .section-divider strong{font-size:.95rem;letter-spacing:.1em}
+  .problem>.section-copy{padding:2.75rem 0 3.5rem}
+  .problem .problem-heading h2{font-size:clamp(3rem,14vw,4.25rem)}
+  .heritage{--chapter-space:3.5rem}
+  .heritage-panorama{height:clamp(390px,112vw,560px)}
+  .heritage-columns{padding:3.5rem 6vw}
+  .craft-caption{width:78%;padding:1.35rem}
+  .craft-caption strong{font-size:clamp(3rem,17vw,5rem)}
+  .contact-section>.section-divider{margin-bottom:1rem}
 }

@@ -6,6 +6,7 @@ import { LocationConsent } from "@/components/location-consent";
 import { HeritageSections, PhilosophySection } from "@/components/heritage-sections";
 import { SiteFooter } from "@/components/site-footer";
 import { StoryCarousel } from "@/components/story-carousel";
+import { SectionDivider } from "@/components/section-divider";
 
 const highlights = [
   { Icon: Leaf, title: "PURE BY NATURE", description: "Nothing Artificial" },
@@ -51,21 +52,22 @@ export default function Home() {
 
       <StoryCarousel />
 
-      <section id="problem" className="split-section problem">
+      <section id="problem" className="problem">
+        <SectionDivider number="01" title="The Sugar Problem" />
         <div className="section-copy"><header className="problem-heading"><p className="eyebrow">The sugar problem</p><h2>Sweetness lost<br /><em>its story.</em></h2></header><p>Sugar begins with something beautifully simple.</p><p><strong>A stalk of sugarcane.<br />Sunlight.<br />Soil.<br />Time.</strong></p><p>For generations, India knew how to turn that sweetness into Gur, Khand and Mishri — with patience, craft and a deep respect for the ingredient.</p><p>But somewhere along the way, sweetness became increasingly refined, standardised and disconnected from where it began.</p><p>The colour became whiter.<br />The crystals became more uniform.<br />The story became harder to see.</p><p><strong>We believe sweetness deserves better.</strong><br />Not more.<br />Not louder.<br />Just <strong>closer to its source.</strong></p><p><strong>So we went back to the beginning.</strong></p></div>
-        <div className="editorial-image"><Image src="/images/sugar-problem-v2.png" alt="Sugarcane field illuminated by warm sunrise light" fill sizes="(max-width: 760px) 100vw, 50vw" /></div>
       </section>
 
       <section id="nature" className="nature-section">
+        <SectionDivider number="02" title="Nature’s Solution" light />
         <div className="nature-art"><Image src="/images/nature-sugarcane-field-v2.png" alt="An Indian woman walking through mature sugarcane at sunrise" fill sizes="100vw" /></div>
         <div className="nature-copy"><Sun /><p className="eyebrow gold">Nature’s answer</p><h2>Begin with sugarcane.<br />Interfere less.</h2><p>At Zucero, we believe some things don’t need to be reinvented. They simply need to be respected.</p><p>We return to traditional forms of sweetness, thoughtfully crafted from sugarcane and brought into the modern kitchen with greater care, clarity and intention.</p><p>This is sweetness with its story intact.<br />This is The Good Sugar.</p></div>
       </section>
 
       <HeritageSections philosophy={<PhilosophySection />} />
 
-      <section className="why-zucero section-shell"><p className="eyebrow">Why Zucero exists</p><h2>We question what goes into everything else.<br /><em>Why not sugar?</em></h2><p>We know where our coffee comes from.<br />We ask about our milk.<br />We read the labels on what we eat.</p><p>Yet sugar — something we consume every day — is rarely questioned.</p><p><strong>Zucero exists to change that.</strong><br />To make sweetness more thoughtful.<br />More transparent.<br />More connected to its source.</p><p>We return to sugarcane, traditional craft and the patience of time — because we believe <strong>good sugar should be made with the same care with which you choose it.</strong></p><p><strong>Zucero. The Good Sugar.</strong></p><div className="why-highlight"><strong>Be first to experience The Good Sugar</strong><span>Pre-book before launch. Deliveries begin 14 September.</span><Link className="button button-gold" href="#products">Explore the collection <ArrowRight size={16} /></Link></div></section>
+      <section className="why-zucero section-shell"><SectionDivider number="10" title="Why Zucero Exists" /><p className="eyebrow">Why Zucero exists</p><h2>We question what goes into everything else.<br /><em>Why not sugar?</em></h2><p>We know where our coffee comes from.<br />We ask about our milk.<br />We read the labels on what we eat.</p><p>Yet sugar — something we consume every day — is rarely questioned.</p><p><strong>Zucero exists to change that.</strong><br />To make sweetness more thoughtful.<br />More transparent.<br />More connected to its source.</p><p>We return to sugarcane, traditional craft and the patience of time — because we believe <strong>good sugar should be made with the same care with which you choose it.</strong></p><p><strong>Zucero. The Good Sugar.</strong></p><div className="why-highlight"><strong>Be first to experience The Good Sugar</strong><span>Pre-book before launch. Deliveries begin 14 September.</span><Link className="button button-gold" href="#products">Explore the collection <ArrowRight size={16} /></Link></div></section>
 
-      <section id="contact" className="contact-section"><div><p className="eyebrow gold">The launch list</p><h2>Be first to taste<br /><em>the good sugar.</em></h2><p>Get launch availability, founder notes, and early product access. No noisy inbox.</p></div><form className="launch-form"><label><span>Name</span><input name="name" autoComplete="name" placeholder="Your name" required /></label><label><span>Email</span><input name="email" type="email" autoComplete="email" placeholder="you@example.com" required /></label><button className="button button-gold" type="submit">Join the launch list <ArrowRight size={16} /></button><small>By joining, you agree to receive Zucero updates. Unsubscribe anytime.</small></form></section>
+      <section id="contact" className="contact-section"><SectionDivider number="11" title="The Launch List" light /><div><p className="eyebrow gold">The launch list</p><h2>Be first to taste<br /><em>the good sugar.</em></h2><p>Get launch availability, founder notes, and early product access. No noisy inbox.</p></div><form className="launch-form"><label><span>Name</span><input name="name" autoComplete="name" placeholder="Your name" required /></label><label><span>Email</span><input name="email" type="email" autoComplete="email" placeholder="you@example.com" required /></label><button className="button button-gold" type="submit">Join the launch list <ArrowRight size={16} /></button><small>By joining, you agree to receive Zucero updates. Unsubscribe anytime.</small></form></section>
 
       <SiteFooter />
       <LocationConsent />

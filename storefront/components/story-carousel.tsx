@@ -35,7 +35,7 @@ export function StoryCarousel() {
       const card = viewport?.children[next] as HTMLElement | undefined;
       if (viewport && card) viewport.scrollTo({ left: card.offsetLeft, behavior: "smooth" });
       return next;
-    }), 4000);
+    }), 7500);
     return () => window.clearInterval(timer);
   }, [paused]);
 

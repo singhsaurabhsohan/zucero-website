@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Gem, Menu, ShoppingBag, UserRound, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import type { MouseEvent as ReactMouseEvent } from "react";
 import { usePathname } from "next/navigation";
 import { useCart } from "@/components/cart-provider";
 
@@ -81,6 +82,15 @@ export function Header() {
     observer.observe(collection);
     return () => observer.disconnect();
   }, [pathname]);
+  function followSection(event: ReactMouseEvent<HTMLAnchorElement>, href: string) {
+    if (pathname !== "/" || !href.startsWith("/#")) return;
+    const target = document.getElementById(href.slice(2));
+    if (!target) return;
+    event.preventDefault();
+    setOpen(false);
+    window.history.replaceState(null, "", href.slice(1));
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
   const { count } = useCart();
   return (
     <>
@@ -89,7 +99,7 @@ export function Header() {
         <Image src="/images/zucero-highres-logo.png" alt="Zucero — The Good Sugar" width={180} height={120} priority />
       </Link>
       <nav id="primary-navigation" className={open ? "nav open" : "nav"} aria-label="Primary navigation">
-        {links.map(([label, href]) => <Link key={href} href={href} onClick={() => setOpen(false)}>{label}</Link>)}
+        {links.map(([label, href]) => <Link key={href} href={href} onClick={(event) => { setOpen(false); followSection(event, href); }}>{label}</Link>)}
       </nav>
       <div className="header-actions">
         <Link href="/account" className="icon-button" aria-label="Account" onClick={() => setOpen(false)}><UserRound size={20} /></Link>
@@ -100,7 +110,7 @@ export function Header() {
       {showPriorityNotice && !(pathname === "/" && collectionInView) && (
         <aside className="priority-popup" aria-label="Priority access to the Zucero collection">
           <button type="button" aria-label="Dismiss priority access offer" onClick={() => setShowPriorityNotice(false)}><X size={16} /></button>
-          <Link href="/#products"><Gem aria-hidden="true" /><span><strong>Priority access</strong><small>Explore the collection</small></span><ArrowRight aria-hidden="true" /></Link>
+          <Link href="/#products" onClick={(event) => followSection(event, "/#products")}><Gem aria-hidden="true" /><span><strong>Priority access</strong><small>Explore the collection</small></span><ArrowRight aria-hidden="true" /></Link>
         </aside>
       )}
     </>
