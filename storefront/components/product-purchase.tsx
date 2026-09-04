@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Ban, CandyOff, Check, CookingPot, Minus, Plus, ShoppingBag, Leaf, PackageCheck, Coffee, ShieldCheck, Sun, Truck } from "lucide-react";
+import { Ban, CandyOff, Check, CookingPot, Gem, Leaf, Minus, Plus, ShoppingBag, Sparkles, Sun, Truck } from "lucide-react";
 import { whatsappOrder } from "@/lib/whatsapp";
 import type { Product } from "@/lib/catalog";
 import { formatPrice } from "@/lib/catalog";
@@ -18,6 +18,22 @@ export function ProductPurchase({ product }: { product: Product }) {
   const variant = product.variants.find((item) => item.id === variantId)!;
   const readyForSale = variant.pricePaise !== null;
   const isKhand = product.slug === "desi-khand";
+  const offerPrice = variant.pricePaise === null ? "Price to be confirmed" : `₹${variant.pricePaise / 100}${isKhand ? "*" : ""}`;
+  const benefits = isKhand
+    ? [
+        { title: "Sun-dried", Icon: Sun },
+        { title: "No added flavours", Icon: Ban },
+        { title: "No added sweeteners", Icon: CandyOff },
+        { title: "Traditional iron vessel craft", Icon: CookingPot },
+        { title: "Natural character, preserved", Icon: Leaf },
+      ]
+    : [
+        { title: "Khand-based", Icon: Leaf },
+        { title: "Thread-crafted", Icon: Sparkles },
+        { title: "Crystal by crystal", Icon: Gem },
+        { title: "No added flavours", Icon: Ban },
+        { title: "No added sweeteners", Icon: CandyOff },
+      ];
 
   const buyLink = whatsappOrder([{ productName: product.name, variantLabel: variant.label, quantity }]);
   function addToBag() {
@@ -45,15 +61,9 @@ export function ProductPurchase({ product }: { product: Product }) {
     <p className="eyebrow">{product.eyebrow}</p>
     <h1>{product.name}</h1>
     <p className="product-description">{product.description}</p>
-    {isKhand ? <aside className="featured-prebook-offer"><span>Limited pre-launch offer - 490 g</span><strong>₹399*</strong><p><Truck aria-hidden="true" /> Free delivery for pre-book orders</p></aside> : <><p className="product-price">{formatPrice(variant.pricePaise)}</p><p className="prelaunch-price-label">Limited pre-launch offer · {variant.label}</p><aside className="prelaunch-card"><span className="eyebrow">Before the world tastes it.</span><p>A limited window to experience The Good Sugar before its official launch.</p><strong>14 September</strong><small>Deliveries begin 14 September · Order through WhatsApp.</small></aside></>}
+    <aside className="featured-prebook-offer"><span>Limited pre-launch offer - {variant.label}</span><strong>{offerPrice}</strong><p><Truck aria-hidden="true" /> Free delivery for pre-book orders</p></aside>
     <p className="pdp-tax-note">Our team will confirm taxes, shipping and payment on WhatsApp.</p>
-    {isKhand ? <div className="pdp-khand-benefits">{[
-      { title: "Sun-dried", Icon: Sun },
-      { title: "No added flavours", Icon: Ban },
-      { title: "No added sweeteners", Icon: CandyOff },
-      { title: "Traditional iron vessel craft", Icon: CookingPot },
-      { title: "Natural character, preserved", Icon: Leaf },
-    ].map(({ title, Icon }) => <article key={title}><Icon aria-hidden="true" /><h3>{title}</h3></article>)}</div> : <div className="pdp-benefits"><span><Leaf />Cane sweetness</span><span><Coffee />Everyday rituals</span><span><PackageCheck />Carefully packed</span><span><ShieldCheck />Clear ingredients</span></div>}
+    <div className="pdp-khand-benefits">{benefits.map(({ title, Icon }) => <article key={title}><Icon aria-hidden="true" /><h3>{title}</h3></article>)}</div>
     <div className="purchase-block"><span>Selected size: {variant.label}</span><div className="variant-row pdp-sizes">{product.variants.map((item) => <button key={item.id} aria-pressed={variantId === item.id} className={variantId === item.id ? "active" : ""} onClick={() => { setVariantId(item.id); setShippingMessage(""); }}><strong>{item.label}</strong><small>{formatPrice(item.pricePaise)}</small></button>)}</div></div>
     <div className="purchase-actions">
       <div className="quantity-picker" aria-label="Quantity"><button onClick={() => setQuantity(Math.max(1, quantity - 1))} aria-label="Decrease quantity"><Minus size={16} /></button><span>{quantity}</span><button onClick={() => setQuantity(Math.min(10, quantity + 1))} aria-label="Increase quantity"><Plus size={16} /></button></div>
