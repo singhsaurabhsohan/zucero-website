@@ -806,3 +806,11 @@ main section[id]{scroll-margin-top:calc(var(--nav-height) + 18px)}
   .overlay-section-title,.heritage .craft-caption h2.overlay-section-title{font-size:.76rem;letter-spacing:.15em}
   .craft-caption h2.overlay-section-title{margin-bottom:1.15rem}
 }
+
+/* Give Nature and Craft a clear chapter break, with the Craft story beginning at the image top. */
+.heritage-craft{padding-top:clamp(30px,3.2vw,52px);background:var(--deep-green)}
+.heritage-craft .craft-caption{justify-content:flex-start;padding-top:clamp(2.5rem,4.5vw,4.75rem)}
+@media(max-width:760px){
+  .heritage-craft{padding-top:28px}
+  .heritage-craft .craft-caption{padding-top:1.75rem}
+}
