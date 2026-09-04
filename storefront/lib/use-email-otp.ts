@@ -4,6 +4,13 @@ import { useMemo, useState } from "react";
 import type { User } from "@supabase/supabase-js";
 import { createSupabaseBrowserClient, isSupabaseConfigured } from "@/lib/supabase-browser";
 
+const PRODUCTION_SITE_URL = "https://zucero-storefront.vercel.app";
+
+function getAuthCallbackUrl() {
+  const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim() || PRODUCTION_SITE_URL;
+  return new URL("/auth/callback", configuredSiteUrl).toString();
+}
+
 export function useEmailOtp() {
   const client = useMemo(() => isSupabaseConfigured() ? createSupabaseBrowserClient() : null, []);
   const [codeSent, setCodeSent] = useState(false);
@@ -25,7 +32,11 @@ export function useEmailOtp() {
     setMessage("");
     const { error } = await client.auth.signInWithOtp({
       email: email.trim().toLowerCase(),
-      options: { shouldCreateUser: true, data: fullName ? { full_name: fullName.trim() } : undefined },
+      options: {
+        shouldCreateUser: true,
+        emailRedirectTo: getAuthCallbackUrl(),
+        data: fullName ? { full_name: fullName.trim() } : undefined,
+      },
     });
     setBusy(false);
     if (error) {
