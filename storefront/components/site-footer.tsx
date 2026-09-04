@@ -4,7 +4,7 @@ import { whatsappLink } from "@/lib/whatsapp";
 
 export function SiteFooter() {
   return <footer>
-    <div className="footer-brand"><Image className="footer-logo" src="/images/zucerothegoodsugar-logo.webp" alt="Zucero — The Good Sugar" width={112} height={112} /><p>Thoughtfully made Indian sweetness, explained honestly.</p></div>
+    <div className="footer-brand"><Image className="footer-logo" src="/images/zucero-highres-logo.png" alt="Zucero — The Good Sugar" width={180} height={120} /><p>Thoughtfully made Indian sweetness, explained honestly.</p></div>
     <div><h3>Explore</h3><Link href="/#products">Products</Link><Link href="/#process">Our process</Link><Link href="/our-story">Our story</Link><Link href="/journal">Journal</Link></div>
     <div><h3>Help</h3><Link href="/account/orders">Track order</Link><Link href="/shipping">Shipping</Link><Link href="/returns">Returns</Link><Link href="/contact">Contact</Link><a href={whatsappLink()}>WhatsApp: +91 97171 69977</a></div>
     <div><h3>Legal</h3><Link href="/privacy">Privacy</Link><Link href="/terms">Terms</Link><Link href="/refunds">Refund policy</Link></div>
