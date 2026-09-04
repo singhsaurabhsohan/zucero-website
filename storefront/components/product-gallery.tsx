@@ -15,7 +15,9 @@ export function ProductGallery({ product }: { product: Product }) {
       ]
     : [
         { src: product.image, label: product.name },
-        { src: "/images/khand_texture.webp", label: "Khand texture" },
+        { src: "/images/khand_texture.webp", label: "Natural fine-granule Desi Khand texture" },
+        { src: "/images/carousel-khand-matka-v2.png", label: "Desi Khand served from a traditional matka" },
+        { src: "/images/hero-khand-photoreal-v1.png", label: "Desi Khand with sugarcane at sunrise" },
         { src: "/images/sugarcane_origin.webp", label: "Sugarcane inspiration" },
       ];
   const [active, setActive] = useState(0);
