@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import type { User } from "@supabase/supabase-js";
 import { createSupabaseBrowserClient, isSupabaseConfigured } from "@/lib/supabase-browser";
 
-const PRODUCTION_SITE_URL = "https://zucero-storefront.vercel.app";
+const PRODUCTION_SITE_URL = "https://www.thegoodsugar.in";
 
 function getAuthCallbackUrl() {
   const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim() || PRODUCTION_SITE_URL;

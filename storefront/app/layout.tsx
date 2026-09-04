@@ -6,6 +6,7 @@ import { whatsappLink } from "@/lib/whatsapp";
 import { BackToTop } from "@/components/back-to-top";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.thegoodsugar.in"),
   title: { default: "Zucero — The Good Sugar", template: "%s | Zucero" },
   description: "Thoughtfully made Indian sugar, preserving sweetness the way nature intended.",
   icons: { icon: "/images/zucero-favicon.webp" }

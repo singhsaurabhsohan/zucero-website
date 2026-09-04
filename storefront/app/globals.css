@@ -571,8 +571,13 @@ html{scroll-padding-top:calc(var(--header-height) + 16px)}
 .priority-popup>button{position:absolute;z-index:2;top:50%;right:.55rem;display:grid;place-items:center;width:30px;height:30px;transform:translateY(-50%);border:1px solid rgba(227,195,108,.28);border-radius:50%;background:rgba(255,255,255,.04);color:#f8f0dc}
 @keyframes priority-shine{0%,65%{left:-35%}100%{left:125%}}
 @media(max-width:640px){
-  .priority-popup{top:calc(var(--nav-height) + 14px);right:12px;width:min(286px,calc(100vw - 24px));height:64px}
-  .priority-popup>a{padding-left:1rem}
+  .priority-popup{top:calc(var(--nav-height) + 8px);right:max(8px,env(safe-area-inset-right));width:min(190px,calc(100vw - 16px));height:46px;padding-right:32px;box-shadow:0 10px 28px rgba(3,12,7,.25)}
+  .priority-popup>a{gap:.45rem;padding:0 .35rem 0 .75rem}
+  .priority-popup>a>svg:first-child{width:15px;height:15px}
+  .priority-popup>a strong{font-size:.58rem;letter-spacing:.11em}
+  .priority-popup>a>svg:last-child{width:14px;height:14px}
+  .priority-popup>button{right:.35rem;width:24px;height:24px}
+  .priority-popup>button svg{width:13px;height:13px}
 }
 
 /* Premium, readable type scale: restrained display sizes with legible supporting copy. */
