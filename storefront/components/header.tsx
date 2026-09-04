@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useCart } from "@/components/cart-provider";
 
-const links = [["Our story", "/#philosophy"], ["Products", "/#products"], ["How it’s made", "/#process"], ["FAQs", "/#faqs"], ["Contact", "/contact"]];
+const links = [["Our story", "/#philosophy"], ["Products", "/#products"], ["How it’s made", "/#process"], ["Contact", "/contact"]];
 
 export function Header() {
   const [open, setOpen] = useState(false);

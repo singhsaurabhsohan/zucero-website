@@ -271,6 +271,7 @@ html{scroll-padding-top:120px}
 .heritage-sizes{font-size:.8rem;letter-spacing:.12em;color:var(--muted)}
 .heritage-panorama{position:relative;height:clamp(350px,48vw,700px)}
 .heritage-columns{display:grid;grid-template-columns:1fr 1fr;gap:10vw;padding:var(--chapter-space) 8vw}
+.heritage-columns.heritage-copy-only{grid-template-columns:minmax(0,760px);justify-content:center}
 .heritage-lead{font-size:clamp(1.2rem,2vw,1.65rem)}
 .heritage-slow>div:first-child{padding:var(--chapter-space) 7vw;text-align:center}
 .heritage-slow h2{font-size:clamp(4rem,10vw,10rem);color:var(--gold)}

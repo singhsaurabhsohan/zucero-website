@@ -33,9 +33,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       <details><summary>Ingredients <span>+</span></summary><p>{product.ingredients}. Refer to the final pack label for the complete product declaration and batch details.</p></details>
       <details><summary>Storage <span>+</span></summary><p>Keep tightly closed in a cool, dry place, away from moisture. Always use a clean, dry spoon. Check your pack for the batch-specific best-before date.</p></details>
       <details><summary>Shipping &amp; returns <span>+</span></summary><p>Delivery serviceability is checked using your PIN code. Final charges and taxes are shown at checkout. Please see our <Link href="/shipping">shipping</Link> and <Link href="/returns">returns policies</Link> for details.</p></details>
-      <details><summary>Frequently asked questions <span>+</span></summary><h3>Which sizes are available?</h3><p>{product.variants.map(v => v.label).join(" and ")}.</p><h3>Is this sugar-free?</h3><p>No. This is a sugar product and should be consumed mindfully.</p><h3>Where can I find the shelf life?</h3><p>Use the best-before date printed on your product pack.</p></details>
     </div></section>
-    <section id="product-reviews" className="pdp-reviews"><p className="eyebrow">Customer reviews</p><h2>Real experiences.<br /><em>Worth waiting for.</em></h2><p>No customer reviews yet. Verified purchaser feedback will appear here after launch.</p></section>
     <section className="pdp-related"><p className="eyebrow">Complete your collection</p><h2>You may also enjoy</h2><div className="product-grid">{products.filter(p => p.slug !== slug).map(p => <ProductCard product={p} key={p.slug} />)}</div></section>
     <SiteFooter />
   </main>;

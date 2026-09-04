@@ -23,7 +23,7 @@ export const products: Product[] = [
     name: "Desi Khand",
     eyebrow: "Natural unrefined cane sugar",
     description: "Born from fresh sugarcane juice. Shaped by time. Crafted to preserve its natural character.",
-    image: "/images/heritage_khand.webp",
+    image: "/images/khand-branded-jar.png",
     ingredients: "Sugarcane juice, desi cow milk and desi cow ghee. Contains milk.",
     variants: [
       { id: "khand-490", label: "490 g", sku: "ZUC-KHA-490", weightGrams: 490, pricePaise: 39900 },
@@ -35,7 +35,7 @@ export const products: Product[] = [
     name: "Original Brown Khand Mishri",
     eyebrow: "From the abundance of sugarcane to the rarity of every crystal",
     description: "Crafted crystal by crystal through an age-old Indian thread technique, preserving its distinctive colour, delicate sweetness and refined crunch.",
-    image: "/images/mishri_macro.webp",
+    image: "/images/mishri-raw-hero.png",
     ingredients: "Sugarcane juice, desi cow milk and desi cow ghee. Contains milk.",
     variants: [
       { id: "mishri-250", label: "250 g", sku: "ZUC-MIS-250", weightGrams: 250, pricePaise: 79900 },
