@@ -396,6 +396,31 @@ html{scroll-padding-top:120px}
   .pdp-difference,.pdp-reviews{padding:3.5rem 6vw}
 }
 
+/* Verified email flows */
+.otp-form{display:grid;gap:1rem}
+.otp-form label{display:grid;gap:.4rem}
+.otp-form label>span{font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.otp-form input{width:100%;border:1px solid #b9ae9c;background:#fff;padding:.85rem;color:var(--ink);outline:none}
+.otp-form input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(203,164,92,.14)}
+.otp-form input:disabled,.otp-form textarea:disabled{opacity:.7;cursor:not-allowed}
+.otp-change{justify-self:start;border:0;border-bottom:1px solid currentColor;background:transparent;padding:.15rem 0;color:inherit;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
+.otp-message{margin:0!important;font-size:.84rem;color:inherit}
+.verified-success{min-height:260px;display:grid;place-content:center;justify-items:center;gap:.6rem;text-align:center;color:var(--cream)}
+.verified-success svg{width:34px;height:34px;color:var(--gold)}
+.verified-success strong{font:500 clamp(1.8rem,3vw,2.6rem)/1.1 var(--serif)}
+.verified-success span{color:#c9c4b8}
+.contact-success{color:var(--deep-green);background:var(--cream);padding:3rem}
+.contact-success span{color:var(--muted)}
+.otp-modal-backdrop{position:fixed;z-index:100;inset:0;display:grid;place-items:center;padding:1rem;background:rgba(2,12,8,.72);backdrop-filter:blur(9px)}
+.otp-modal{position:relative;width:min(470px,100%);padding:clamp(2rem,5vw,3.5rem);border:1px solid rgba(203,164,92,.55);background:var(--paper);box-shadow:0 28px 90px rgba(0,0,0,.38);color:var(--ink)}
+.otp-modal>svg{width:34px;height:34px;color:var(--gold)}
+.otp-modal h2{margin:.3rem 0 .7rem;font:500 clamp(2.2rem,6vw,3.2rem)/1 var(--serif)}
+.otp-modal>p:not(.eyebrow){margin:0 0 1.5rem;color:var(--muted)}
+.otp-modal-close{position:absolute;top:.8rem;right:.8rem;display:grid;place-items:center;width:40px;height:40px;border:0;background:transparent;color:var(--ink)}
+.otp-modal-close svg{width:20px}
+.otp-modal .button{width:100%}
+.pdp-buy-now,.pdp-sticky-buy .button,.order-summary .checkout-button,.checkout-form .checkout-button{border-radius:0}
+
 /* Final homepage editorial system: one type pairing, compact chapters and dependable anchors. */
 :root{--serif:"Cormorant Garamond",Georgia,serif;--sans:"Manrope","Helvetica Neue",Arial,sans-serif}
 body,button,input,select,textarea{font-family:var(--sans)}

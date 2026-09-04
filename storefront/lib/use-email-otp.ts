@@ -1,0 +1,63 @@
+"use client";
+
+import { useMemo, useState } from "react";
+import type { User } from "@supabase/supabase-js";
+import { createSupabaseBrowserClient, isSupabaseConfigured } from "@/lib/supabase-browser";
+
+export function useEmailOtp() {
+  const client = useMemo(() => isSupabaseConfigured() ? createSupabaseBrowserClient() : null, []);
+  const [codeSent, setCodeSent] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [message, setMessage] = useState("");
+
+  async function currentVerifiedUser(email: string) {
+    if (!client) return null;
+    const { data } = await client.auth.getUser();
+    return data.user?.email?.toLowerCase() === email.trim().toLowerCase() ? data.user : null;
+  }
+
+  async function sendCode(email: string, fullName?: string) {
+    if (!client) {
+      setMessage("Email verification is temporarily unavailable. Please contact Zucero support.");
+      return false;
+    }
+    setBusy(true);
+    setMessage("");
+    const { error } = await client.auth.signInWithOtp({
+      email: email.trim().toLowerCase(),
+      options: { shouldCreateUser: true, data: fullName ? { full_name: fullName.trim() } : undefined },
+    });
+    setBusy(false);
+    if (error) {
+      setMessage(error.message);
+      return false;
+    }
+    setCodeSent(true);
+    setMessage("We sent a six-digit verification code to your email.");
+    return true;
+  }
+
+  async function verifyCode(email: string, token: string): Promise<User | null> {
+    if (!client) return null;
+    setBusy(true);
+    setMessage("");
+    const { data, error } = await client.auth.verifyOtp({
+      email: email.trim().toLowerCase(),
+      token: token.trim(),
+      type: "email",
+    });
+    setBusy(false);
+    if (error || !data.user) {
+      setMessage(error?.message ?? "That code could not be verified. Please request a new one.");
+      return null;
+    }
+    return data.user;
+  }
+
+  function resetCode() {
+    setCodeSent(false);
+    setMessage("");
+  }
+
+  return { client, codeSent, busy, message, setMessage, sendCode, verifyCode, currentVerifiedUser, resetCode };
+}

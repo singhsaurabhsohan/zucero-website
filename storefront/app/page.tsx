@@ -7,6 +7,7 @@ import { HeritageSections, PhilosophySection } from "@/components/heritage-secti
 import { SiteFooter } from "@/components/site-footer";
 import { StoryCarousel } from "@/components/story-carousel";
 import { SectionDivider } from "@/components/section-divider";
+import { LaunchListForm } from "@/components/launch-list-form";
 
 const highlights = [
   { Icon: Leaf, title: "PURE BY NATURE", description: "Nothing Artificial" },
@@ -67,7 +68,7 @@ export default function Home() {
 
       <section className="why-zucero section-shell"><SectionDivider number="10" title="Why Zucero Exists" /><h2>We question what goes into everything else.<br /><em>Why not sugar?</em></h2><p>We know where our coffee comes from.<br />We ask about our milk.<br />We read the labels on what we eat.</p><p>Yet sugar — something we consume every day — is rarely questioned.</p><p><strong>Zucero exists to change that.</strong><br />To make sweetness more thoughtful.<br />More transparent.<br />More connected to its source.</p><p>We return to sugarcane, traditional craft and the patience of time — because we believe <strong>good sugar should be made with the same care with which you choose it.</strong></p><p><strong>Zucero. The Good Sugar.</strong></p><div className="why-highlight"><strong>Be first to experience The Good Sugar</strong><span>Pre-book before launch. Deliveries begin 14 September.</span><Link className="button button-gold" href="#products">Explore the collection <ArrowRight size={16} /></Link></div></section>
 
-      <section id="contact" className="contact-section"><SectionDivider number="11" title="The Launch List" light /><div><h2>Be first to taste<br /><em>the good sugar.</em></h2><p>Get launch availability, founder notes, and early product access. No noisy inbox.</p></div><form className="launch-form"><label><span>Name</span><input name="name" autoComplete="name" placeholder="Your name" required /></label><label><span>Email</span><input name="email" type="email" autoComplete="email" placeholder="you@example.com" required /></label><button className="button button-gold" type="submit">Join the launch list <ArrowRight size={16} /></button><small>By joining, you agree to receive Zucero updates. Unsubscribe anytime.</small></form></section>
+      <section id="contact" className="contact-section"><SectionDivider number="11" title="The Launch List" light /><div><h2>Be first to taste<br /><em>the good sugar.</em></h2><p>Get launch availability, founder notes, and early product access. No noisy inbox.</p></div><LaunchListForm /></section>
 
       <SiteFooter />
       <LocationConsent />

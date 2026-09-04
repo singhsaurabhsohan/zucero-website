@@ -8,6 +8,7 @@ import { useCart } from "@/components/cart-provider";
 import { formatPrice } from "@/lib/catalog";
 import { SiteFooter } from "@/components/site-footer";
 import { whatsappOrder } from "@/lib/whatsapp";
+import { VerifiedPurchaseLink } from "@/components/verified-purchase-link";
 
 export default function CartPage() {
   const { lines, subtotalPaise, update, remove } = useCart();
@@ -17,7 +18,7 @@ export default function CartPage() {
       <div className="page-title"><p className="eyebrow">Your selection</p><h1>Shopping bag</h1><p>{lines.length ? `${lines.length} selected product${lines.length === 1 ? "" : "s"}` : "Your bag is ready for something good."}</p></div>
       {!lines.length ? <div className="empty-cart"><h2>Your bag is empty.</h2><p>Explore the opening Zucero collection.</p><Link className="button button-dark" href="/#products">Shop products</Link></div> : <div className="cart-layout">
         <div className="cart-lines">{lines.map((line) => <article className="cart-line" key={line.variantId}><Image src={line.image} alt={line.productName} width={180} height={200} /><div><Link href={`/products/${line.productSlug}`}><h2>{line.productName}</h2></Link><p>{line.variantLabel} · {line.sku}</p><div className="quantity-picker"><button onClick={() => update(line.variantId, line.quantity - 1)} aria-label="Decrease quantity"><Minus size={15} /></button><span>{line.quantity}</span><button onClick={() => update(line.variantId, line.quantity + 1)} aria-label="Increase quantity"><Plus size={15} /></button></div></div><div className="line-total"><strong>{formatPrice(line.pricePaise * line.quantity)}</strong><button onClick={() => remove(line.variantId)} aria-label={`Remove ${line.productName}`}><Trash2 size={17} /></button></div></article>)}</div>
-        <aside className="order-summary"><p className="eyebrow">Order summary</p><div><span>Subtotal</span><strong>{formatPrice(subtotalPaise)}</strong></div><div><span>GST &amp; shipping</span><span>Confirmed by our team</span></div><p className="summary-note">Continue to WhatsApp to confirm availability, delivery charges and payment. No order is placed automatically.</p><a className="button button-dark checkout-button" href={whatsappOrder(lines)}>Order on WhatsApp</a><Link className="text-link continue-link" href="/#products">Continue shopping</Link></aside>
+        <aside className="order-summary"><p className="eyebrow">Order summary</p><div><span>Subtotal</span><strong>{formatPrice(subtotalPaise)}</strong></div><div><span>GST &amp; shipping</span><span>Confirmed by our team</span></div><p className="summary-note">Verify your email, then continue to WhatsApp to confirm availability, delivery charges and payment. No order is placed automatically.</p><VerifiedPurchaseLink className="button button-dark checkout-button" href={whatsappOrder(lines)}>Verify email &amp; order</VerifiedPurchaseLink><Link className="text-link continue-link" href="/#products">Continue shopping</Link></aside>
       </div>}
     </section><SiteFooter />
   </main>;
