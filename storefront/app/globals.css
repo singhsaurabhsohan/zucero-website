@@ -734,6 +734,7 @@ main section[id]{scroll-margin-top:calc(var(--nav-height) + 18px)}
 .craft-caption strong{display:grid;font-size:clamp(3.7rem,7.5vw,7.8rem);line-height:.78}
 .craft-caption strong b{display:block;font:inherit}
 .priority-popup a{cursor:pointer;pointer-events:auto}
+.section-divider strong{color:var(--gold)}
 @media(max-width:760px){
   .section-divider{width:88%;padding:.85rem 0 .75rem}
   .section-divider strong{font-size:.95rem;letter-spacing:.1em}
