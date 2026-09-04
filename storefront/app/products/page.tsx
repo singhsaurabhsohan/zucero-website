@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function ProductsPage() {
   return <main className="store-page collection-page">
     <StoreHeader />
-    <CollectionSection />
+    <div className="heritage"><h1 className="sr-only">Explore Our Collection</h1><CollectionSection /></div>
     <SiteFooter />
   </main>;
 }

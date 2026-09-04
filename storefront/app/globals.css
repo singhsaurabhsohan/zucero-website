@@ -424,6 +424,7 @@ html{scroll-padding-top:120px}
 /* Final homepage editorial system: one type pairing, compact chapters and dependable anchors. */
 :root{--serif:"Cormorant Garamond",Georgia,serif;--sans:"Manrope","Helvetica Neue",Arial,sans-serif}
 body,button,input,select,textarea{font-family:var(--sans)}
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
 h1,h2,h3,blockquote{font-family:var(--serif);font-optical-sizing:auto}
 .site-header,.store-header .site-header{position:fixed}
 main section[id]{scroll-margin-top:calc(var(--nav-height) + 18px)}
@@ -760,6 +761,8 @@ main section[id]{scroll-margin-top:calc(var(--nav-height) + 18px)}
 .craft-caption strong b{display:block;font:inherit}
 .priority-popup a{cursor:pointer;pointer-events:auto}
 .section-divider strong{color:var(--gold)}
+.collection-page .site-header.is-at-top{color:var(--deep-green)}
+.footer-bottom{color:#96988f}
 @media(max-width:760px){
   .section-divider{width:88%;padding:.85rem 0 .75rem}
   .section-divider strong{font-size:.95rem;letter-spacing:.1em}
@@ -771,4 +774,5 @@ main section[id]{scroll-margin-top:calc(var(--nav-height) + 18px)}
   .craft-caption{width:78%;padding:1.35rem}
   .craft-caption strong{font-size:clamp(3rem,17vw,5rem)}
   .contact-section>.section-divider{margin-bottom:1rem}
+  .nature-art img{object-position:72% center}
 }
