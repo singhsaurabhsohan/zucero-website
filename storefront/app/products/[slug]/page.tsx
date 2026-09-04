@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Leaf, PackageCheck, Truck, MessageCircle } from "lucide-react";
 import { ProductGallery } from "@/components/product-gallery";
@@ -7,16 +8,58 @@ import { ProductPurchase } from "@/components/product-purchase";
 import { StoreHeader } from "@/components/store-header";
 import { SiteFooter } from "@/components/site-footer";
 import { products } from "@/lib/catalog";
+import { absoluteUrl } from "@/lib/site";
 
 export function generateStaticParams() { return products.map(({ slug }) => ({ slug })); }
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const product = products.find((item) => item.slug === slug);
+  if (!product) return {};
+  const path = `/products/${product.slug}`;
+  return {
+    title: product.name,
+    description: product.description,
+    alternates: { canonical: path },
+    openGraph: {
+      type: "website",
+      url: path,
+      title: `${product.name} | Zucero`,
+      description: product.description,
+      images: [{ url: product.image, alt: product.name }],
+    },
+    twitter: { card: "summary_large_image", title: `${product.name} | Zucero`, description: product.description, images: [product.image] },
+  };
+}
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const product = products.find((item) => item.slug === slug);
   if (!product) notFound();
   const isKhand = slug === "desi-khand";
+  const prices = product.variants.map((variant) => variant.pricePaise).filter((price): price is number => price !== null);
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    description: product.description,
+    image: absoluteUrl(product.image),
+    brand: { "@type": "Brand", name: "Zucero" },
+    sku: product.variants[0]?.sku,
+    offers: product.variants.filter((variant) => variant.pricePaise !== null).map((variant) => ({
+      "@type": "Offer",
+      url: absoluteUrl(`/products/${product.slug}`),
+      priceCurrency: "INR",
+      price: (variant.pricePaise! / 100).toFixed(2),
+      availability: "https://schema.org/PreOrder",
+      sku: variant.sku,
+      name: variant.label,
+    })),
+    ...(prices.length ? { lowPrice: Math.min(...prices) / 100, highPrice: Math.max(...prices) / 100 } : {}),
+  };
   const goodFacts = isKhand ? [["Sun-dried", "Naturally dried under the sun as part of our traditional process."], ["No added flavours", "Nothing added to alter its natural character or taste."], ["No added sweeteners", "Sweetness comes from sugarcane, without added sweeteners."], ["Traditional iron vessel craft", "Traditionally prepared in iron vessels as part of the time-honoured making process."], ["Natural character, preserved", "A slower process designed to retain the character of sugarcane."]] : [["Khand-based", "Crafted from sugarcane-derived Khand, not refined white sugar."], ["Thread-crafted", "Crystallised slowly around carefully positioned threads using an age-old Indian technique."], ["Crystal by crystal", "Each crystal forms gradually through a patient, traditional process."], ["No added flavours", "Nothing added to alter its natural sweetness or character."], ["No added sweeteners", "Sweetness comes from the sugarcane-derived base."], ["Traditional craft", "A time-honoured method where patience, precision and nature shape every crystal."]];
   return <main className="store-page pdp-page">
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
     <StoreHeader />
     <nav className="pdp-breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span>/</span><Link href="/#products">The Collection</Link><span>/</span><span>{product.name}</span></nav>
     <section className="product-detail">
@@ -32,7 +75,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       <details><summary>How to use <span>+</span></summary><p>{isKhand ? "Measure with a clean, dry spoon. Stir into hot drinks or incorporate into your recipe, adjusting the amount to your taste." : "Separate the sugar crystals from any thread before using them. Dissolve in a warm drink or use in a recipe. Do not consume the thread."}</p></details>
       <details><summary>Ingredients <span>+</span></summary><p>{product.ingredients}. Refer to the final pack label for the complete product declaration and batch details.</p></details>
       <details><summary>Storage <span>+</span></summary><p>Keep tightly closed in a cool, dry place, away from moisture. Always use a clean, dry spoon. Check your pack for the batch-specific best-before date.</p></details>
-      <details><summary>Shipping &amp; returns <span>+</span></summary><p>Delivery serviceability is checked using your PIN code. Final charges and taxes are shown at checkout. Please see our <Link href="/shipping">shipping</Link> and <Link href="/returns">returns policies</Link> for details.</p></details>
+      <details><summary>Shipping &amp; returns <span>+</span></summary><p>Delivery serviceability can be checked using your PIN code. Shipping, applicable taxes and payment are confirmed with our team on WhatsApp. Please see our <Link href="/shipping">shipping</Link> and <Link href="/returns">returns policies</Link> for details.</p></details>
     </div></section>
     <section className="pdp-related"><p className="eyebrow">Complete your collection</p><h2>You may also enjoy</h2><div className="product-grid">{products.filter(p => p.slug !== slug).map(p => <ProductCard product={p} key={p.slug} />)}</div></section>
     <SiteFooter />
