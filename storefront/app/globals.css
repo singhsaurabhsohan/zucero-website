@@ -781,6 +781,9 @@ main section[id]{scroll-margin-top:calc(var(--nav-height) + 18px)}
 .pdp-page .store-header,
 .pdp-page .site-header.is-at-top,
 .pdp-page .store-header .site-header.is-at-top{background:var(--deep-green);color:var(--cream)}
+.collection-page .store-header,
+.collection-page .site-header.is-at-top,
+.collection-page .store-header .site-header.is-at-top{background:var(--deep-green);color:var(--cream)}
 .pdp-related{padding:clamp(3.5rem,6vw,6rem) 6vw}
 .pdp-related .product-grid{width:min(680px,100%);max-width:none;margin:0}
 .pdp-related .product-card{display:flex;min-height:0;flex-direction:column;background:transparent}
