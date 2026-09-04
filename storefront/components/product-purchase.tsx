@@ -64,6 +64,7 @@ export function ProductPurchase({ product }: { product: Product }) {
     <aside className="featured-prebook-offer"><span>Limited pre-launch offer - {variant.label}</span><strong>{offerPrice}</strong><p><Truck aria-hidden="true" /> Free delivery for pre-book orders</p></aside>
     <p className="pdp-tax-note">Our team will confirm taxes, shipping and payment on WhatsApp.</p>
     <div className="pdp-khand-benefits">{benefits.map(({ title, Icon }) => <article key={title}><Icon aria-hidden="true" /><h3>{title}</h3></article>)}</div>
+    <p className="pdp-ingredients"><strong>Ingredients:</strong> Sugar cane Juice, Desi Cow Milk and Desi Cow Ghee</p>
     <div className="purchase-block"><span>Selected size: {variant.label}</span><div className="variant-row pdp-sizes">{product.variants.map((item) => <button key={item.id} aria-pressed={variantId === item.id} className={variantId === item.id ? "active" : ""} onClick={() => { setVariantId(item.id); setShippingMessage(""); }}><strong>{item.label}</strong><small>{formatPrice(item.pricePaise)}</small></button>)}</div></div>
     <div className="purchase-actions">
       <div className="quantity-picker" aria-label="Quantity"><button onClick={() => setQuantity(Math.max(1, quantity - 1))} aria-label="Decrease quantity"><Minus size={16} /></button><span>{quantity}</span><button onClick={() => setQuantity(Math.min(10, quantity + 1))} aria-label="Increase quantity"><Plus size={16} /></button></div>

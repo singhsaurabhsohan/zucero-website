@@ -329,6 +329,8 @@ html{scroll-padding-top:120px}
 .pdp-sizes button{display:flex;flex-direction:column;gap:.35rem;text-align:left;padding:1rem;border-radius:4px}
 .pdp-sizes small{font-size:.7rem}
 .pdp-page .purchase-block{margin-top:1.1rem}
+.pdp-ingredients{margin:1.25rem 0 0;padding:.85rem 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:.82rem;line-height:1.5;color:var(--muted)}
+.pdp-ingredients strong{text-transform:uppercase;letter-spacing:.1em;color:var(--ink)}
 .pdp-buy-now{width:100%}
 .pdp-page button:disabled{opacity:.45;cursor:not-allowed}
 .pdp-delivery{margin-top:1.5rem;padding:1.25rem;border:1px solid var(--line)}
