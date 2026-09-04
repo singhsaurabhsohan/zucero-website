@@ -12,7 +12,7 @@ import { VerifiedPurchaseLink } from "@/components/verified-purchase-link";
 export default function CheckoutPage() {
   const { lines, subtotalPaise } = useCart();
   const [email, setEmail] = useState("");
-  if (!lines.length) return <main className="store-page"><StoreHeader /><section className="empty-cart"><h1>Your bag is empty.</h1><Link className="button button-dark" href="/#products">Shop products</Link></section><SiteFooter /></main>;
+  if (!lines.length) return <main className="store-page"><StoreHeader /><section className="empty-cart"><h1>Your bag is empty.</h1><Link className="button button-dark" href="/products">Shop products</Link></section><SiteFooter /></main>;
   return <main className="store-page checkout-page"><StoreHeader /><section className="checkout-layout">
     <form className="checkout-form">
       <div className="checkout-heading"><p className="eyebrow">Secure checkout</p><h1>Where should we send it?</h1><p>You may check out as a guest. Create an account afterward to save the address and track future orders.</p></div>

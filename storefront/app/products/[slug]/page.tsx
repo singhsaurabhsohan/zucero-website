@@ -18,7 +18,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const goodFacts = isKhand ? [["Sun-dried", "Naturally dried under the sun as part of our traditional process."], ["No added flavours", "Nothing added to alter its natural character or taste."], ["No added sweeteners", "Sweetness comes from sugarcane, without added sweeteners."], ["Traditional iron vessel craft", "Traditionally prepared in iron vessels as part of the time-honoured making process."], ["Natural character, preserved", "A slower process designed to retain the character of sugarcane."]] : [["Khand-based", "Crafted from sugarcane-derived Khand, not refined white sugar."], ["Thread-crafted", "Crystallised slowly around carefully positioned threads using an age-old Indian technique."], ["Crystal by crystal", "Each crystal forms gradually through a patient, traditional process."], ["No added flavours", "Nothing added to alter its natural sweetness or character."], ["No added sweeteners", "Sweetness comes from the sugarcane-derived base."], ["Traditional craft", "A time-honoured method where patience, precision and nature shape every crystal."]];
   return <main className="store-page pdp-page">
     <StoreHeader />
-    <nav className="pdp-breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span>/</span><Link href="/#products">The Collection</Link><span>/</span><span>{product.name}</span></nav>
+    <nav className="pdp-breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span>/</span><Link href="/products">The Collection</Link><span>/</span><span>{product.name}</span></nav>
     <section className="product-detail">
       <ProductGallery product={product} />
       <ProductPurchase product={product} />
