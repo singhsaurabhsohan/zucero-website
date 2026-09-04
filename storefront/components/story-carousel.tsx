@@ -40,7 +40,7 @@ export function StoryCarousel() {
   }, [paused]);
 
   return (
-    <section id="carousel" className="story-carousel" aria-label="Zucero stories" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} onFocus={() => setPaused(true)} onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setPaused(false); }}>
+    <section id="carousel" className="story-carousel" aria-label="Zucero stories" onFocus={() => setPaused(true)} onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setPaused(false); }}>
       <div className="carousel-viewport" ref={viewportRef}>
         {stories.map((story) => (
           <Link className="marquee-image" href={story.href} key={story.title}>

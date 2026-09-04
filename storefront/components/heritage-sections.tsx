@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { products } from "@/lib/catalog";
 
 export function PhilosophySection() {
@@ -13,8 +14,13 @@ export function PhilosophySection() {
   </div>;
 }
 
-export function HeritageSections() {
+export function HeritageSections({ philosophy }: { philosophy: ReactNode }) {
   return <div className="heritage">
+    <section id="process" className="heritage-dark heritage-craft">
+      <div className="heritage-panorama"><Image src="/images/khand-craft-artisan-v2.png" alt="An artisan preparing fine Desi Khand in a traditional iron kadai" fill sizes="100vw" /><div className="section-image-caption"><span>The Craft</span><strong>Good takes time.</strong></div></div>
+      <div className="heritage-columns heritage-copy-only"><div><span className="heritage-rule" /><p className="heritage-lead">At Zucero, we honour the wisdom of how sweetness was made before shortcuts became the norm.</p><p>Our Khand begins with fresh sugarcane juice and is prepared using time-honoured methods. Traditionally prepared in iron vessels and naturally dried under the sun, it allows time and nature to do their work.</p><p>And then there is our Mishri. Fine threads are carefully positioned to encourage the slow formation of crystals — a meeting of geometry, patience and traditional Indian craft.</p><p>No shortcuts. No unnecessary intervention. Just sugarcane, time, tradition and craft. Because purity isn’t created at the end. It is protected from the beginning.</p></div></div>
+      <div className="craft-steps">{[["Source", "Good begins at the source — with carefully selected sugarcane, chosen for its natural character and quality."], ["Purify", "Traditionally clarified using natural ingredients to remove unwanted impurities while preserving its natural character."], ["Crystallise", "Slowly transformed into crystals through the art of traditional craftsmanship."], ["Deliver", "Carefully packed and prepared to bring Zucero to your home."]].map(([title, copy], i) => <article key={title}><span className="eyebrow">0{i + 1}</span><h3>{title}</h3><p>{copy}</p></article>)}</div>
+    </section>
     <div className="collection-intro"><p>Luxury is not about adding more.<br />It’s about preserving what truly matters.</p></div>
     <section id="products" className="heritage-collection">
       <header><p className="eyebrow">The Zucero Collection</p><h2>The Collection</h2><span className="heritage-rule" /><p>Each one distinct. Each one with a story older than the brand.</p><div className="collection-launch-callout"><p className="eyebrow">Be first to experience The Good Sugar</p><p>Priority access <span>·</span> Deliveries begin 14 September.</p></div></header>
@@ -25,11 +31,7 @@ export function HeritageSections() {
         </article>)}
       </div>
     </section>
-    <section id="process" className="heritage-dark heritage-craft">
-      <div className="heritage-panorama"><Image src="/images/khand-craft-artisan-v2.png" alt="An artisan preparing fine Desi Khand in a traditional iron kadai" fill sizes="100vw" /><div className="section-image-caption"><span>The Craft</span><strong>Good takes time.</strong></div></div>
-      <div className="heritage-columns heritage-copy-only"><div><span className="heritage-rule" /><p className="heritage-lead">At Zucero, we honour the wisdom of how sweetness was made before shortcuts became the norm.</p><p>Our Khand begins with fresh sugarcane juice and is prepared using time-honoured methods. Traditionally prepared in iron vessels and naturally dried under the sun, it allows time and nature to do their work.</p><p>And then there is our Mishri. Fine threads are carefully positioned to encourage the slow formation of crystals — a meeting of geometry, patience and traditional Indian craft.</p><p>No shortcuts. No unnecessary intervention. Just sugarcane, time, tradition and craft. Because purity isn’t created at the end. It is protected from the beginning.</p></div></div>
-      <div className="craft-steps">{[["Source", "Good begins at the source — with carefully selected sugarcane, chosen for its natural character and quality."], ["Purify", "Traditionally clarified using natural ingredients to remove unwanted impurities while preserving its natural character."], ["Crystallise", "Slowly transformed into crystals through the art of traditional craftsmanship."], ["Deliver", "Carefully packed and prepared to bring Zucero to your home."]].map(([title, copy], i) => <article key={title}><span className="eyebrow">0{i + 1}</span><h3>{title}</h3><p>{copy}</p></article>)}</div>
-    </section>
+    {philosophy}
     <section className="heritage-dark heritage-slow"><div><p className="eyebrow">Chapter 04</p><h2>Slow<br /><em>sweetness.</em></h2><span className="heritage-rule" /><p>There is something that happens when Mishri dissolves slowly in hot water. You wait for it. That waiting is the ritual. Not the sugar itself, but what it asks of you.</p></div><div className="heritage-panorama"><Image src="/images/slow-sweetness-ritual-v3.png" alt="Brown Mishri beside a brass cup of morning chai" fill sizes="100vw" /><div className="section-image-caption"><span>Everyday ritual</span><strong>Let sweetness<br />unfold slowly.</strong></div></div></section>
     <section className="heritage-founder"><Image src="/images/foundertamanna.webp" alt="Tamanna Sharma, founder of Zucero" width={380} height={480} sizes="(max-width: 640px) 70vw, 300px" /><p className="eyebrow">Tamanna Sharma · The founder’s point of view</p><blockquote>If marketing can create trust,<br />it should also earn it.</blockquote><p className="eyebrow">Founder &amp; Managing Director, Zucero</p><span className="heritage-rule" /><p>With leadership experience across India and international markets, Tamanna Sharma has spent years understanding the power of brands — and, more importantly, the power of trust.</p><p>A good brand is not built by marketing alone. It is built by a good product, and strengthened by trust earned over time.</p><p>Zucero exists to make good more visible. Not by making bigger promises or creating unnecessary noise, but by making people more aware of what they choose.</p><Link className="text-link" href="/our-story">Read the founder’s story →</Link></section>
     <section className="heritage-dark heritage-rituals"><p className="eyebrow">Made for real life</p><h2>Everyday rituals,<br />elevated.</h2><div className="heritage-ritual-grid">{[

@@ -51,11 +51,9 @@ export default function Home() {
 
       <StoryCarousel />
 
-      <PhilosophySection />
-
       <section id="problem" className="split-section problem">
-        <div className="section-copy"><p>Sugar begins with something beautifully simple. A stalk of sugarcane. Sunlight. Soil. Time.</p><p>For generations, India knew how to turn that sweetness into Gur, Khand and Mishri — with patience, craft and a deep respect for the ingredient.</p><p>But somewhere along the way, sweetness became increasingly refined, standardised and disconnected from where it began. The colour became whiter. The crystals became more uniform. The story became harder to see.</p><p>We believe sweetness deserves better. Not more. Not louder. Just closer to its source. So we went back to the beginning.</p><p className="note">Sugar is still sugar. Enjoy it mindfully; natural sweetness is not sugar-free.</p></div>
-        <div className="editorial-image"><Image src="/images/sugar-problem-v2.png" alt="Sugarcane field illuminated by warm sunrise light" fill sizes="(max-width: 760px) 100vw, 50vw" /><div className="section-image-caption"><span>The sugar problem</span><strong>Sweetness lost<br />its story.</strong></div></div>
+        <div className="section-copy"><header className="problem-heading"><p className="eyebrow">The sugar problem</p><h2>Sweetness lost<br /><em>its story.</em></h2></header><p>Sugar begins with something beautifully simple. A stalk of sugarcane. Sunlight. Soil. Time.</p><p>For generations, India knew how to turn that sweetness into Gur, Khand and Mishri — with patience, craft and a deep respect for the ingredient.</p><p>But somewhere along the way, sweetness became increasingly refined, standardised and disconnected from where it began. The colour became whiter. The crystals became more uniform. The story became harder to see.</p><p>We believe sweetness deserves better. Not more. Not louder. Just closer to its source. So we went back to the beginning.</p><p className="note">Sugar is still sugar. Enjoy it mindfully; natural sweetness is not sugar-free.</p></div>
+        <div className="editorial-image"><Image src="/images/sugar-problem-v2.png" alt="Sugarcane field illuminated by warm sunrise light" fill sizes="(max-width: 760px) 100vw, 50vw" /></div>
       </section>
 
       <section id="nature" className="nature-section">
@@ -63,7 +61,7 @@ export default function Home() {
         <div className="nature-copy"><Sun /><p className="eyebrow gold">Nature’s answer</p><h2>Begin with sugarcane.<br />Interfere less.</h2><p>At Zucero, we believe some things don’t need to be reinvented. They simply need to be respected.</p><p>We return to traditional forms of sweetness, thoughtfully crafted from sugarcane and brought into the modern kitchen with greater care, clarity and intention.</p><p>This is sweetness with its story intact.<br />This is The Good Sugar.</p></div>
       </section>
 
-      <HeritageSections />
+      <HeritageSections philosophy={<PhilosophySection />} />
 
       <section className="why-zucero section-shell"><p className="eyebrow">Why Zucero exists</p><h2>We question what goes into everything else.<br /><em>Why not sugar?</em></h2><p>We know where our coffee comes from. We ask about our milk. We read the labels on what we eat. Yet sugar — something we consume every day — is rarely questioned.</p><p>Zucero exists to change that. To make sweetness more thoughtful. More transparent. More connected to its source.</p><Link className="button button-gold" href="#products">Be first to experience The Good Sugar</Link><p className="eyebrow">Deliveries begin 14 September</p></section>
 
