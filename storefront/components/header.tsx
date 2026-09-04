@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Menu, ShoppingBag, UserRound, X } from "lucide-react";
+import { ArrowRight, Gem, Menu, ShoppingBag, UserRound, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useCart } from "@/components/cart-provider";
@@ -87,9 +87,9 @@ export function Header() {
       </div>
     </header>
       {showPriorityNotice && (
-        <aside className="priority-popup" aria-label="Desi Khand pre-book offer">
+        <aside className="priority-popup" aria-label="Priority access to the Zucero collection">
           <button type="button" aria-label="Dismiss priority access offer" onClick={() => setShowPriorityNotice(false)}><X size={16} /></button>
-          <Link href="/products/desi-khand" onClick={() => setShowPriorityNotice(false)}>Priority access <ArrowRight aria-hidden="true" /></Link>
+          <Link href="/#products" onClick={() => setShowPriorityNotice(false)}><Gem aria-hidden="true" /><span><strong>Priority access</strong><small>Explore the collection</small></span><ArrowRight aria-hidden="true" /></Link>
         </aside>
       )}
     </>
