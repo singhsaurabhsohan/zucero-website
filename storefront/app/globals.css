@@ -776,3 +776,27 @@ main section[id]{scroll-margin-top:calc(var(--nav-height) + 18px)}
   .contact-section>.section-divider{margin-bottom:1rem}
   .nature-art img{object-position:72% center}
 }
+
+/* Product pages: permanent brand navigation and a compact horizontal companion card. */
+.pdp-page .store-header,
+.pdp-page .site-header.is-at-top,
+.pdp-page .store-header .site-header.is-at-top{background:var(--deep-green);color:var(--cream)}
+.pdp-related{padding:clamp(3.5rem,6vw,6rem) 6vw}
+.pdp-related .product-grid{width:min(1080px,100%);max-width:none;margin:0}
+.pdp-related .product-card{display:grid;grid-template-columns:minmax(280px,.9fr) minmax(0,1.1fr);min-height:380px}
+.pdp-related .product-image{height:100%;min-height:380px}
+.pdp-related .product-info{display:flex;flex-direction:column;justify-content:center;padding:clamp(2rem,4vw,4rem)}
+.pdp-related .product-info h3{font-size:clamp(2rem,3.2vw,3.25rem);line-height:1.05}
+.pdp-related .product-buy{margin-top:auto}
+@media(max-width:640px){
+  .pdp-related{padding:3.5rem 5vw}
+  .pdp-related .product-card{grid-template-columns:minmax(125px,42%) minmax(0,58%);min-height:320px}
+  .pdp-related .product-image{min-height:320px}
+  .pdp-related .product-info{justify-content:flex-start;padding:1rem}
+  .pdp-related .product-info h3{font-size:clamp(1.45rem,7vw,1.9rem);margin:.15rem 0 .6rem}
+  .pdp-related .product-info>p:not(.eyebrow){display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;font-size:.78rem;line-height:1.45}
+  .pdp-related .variant-row{flex-wrap:wrap;gap:.35rem;margin:.7rem 0}
+  .pdp-related .variant-row button{padding:.38rem .55rem;font-size:.72rem}
+  .pdp-related .product-buy{align-items:stretch;flex-direction:column;gap:.55rem}
+  .pdp-related .product-buy .button{width:100%;min-height:42px;padding:.55rem;font-size:.68rem}
+}
