@@ -796,3 +796,13 @@ main section[id]{scroll-margin-top:calc(var(--nav-height) + 18px)}
   .pdp-related .product-info{padding-top:1.5rem}
   .pdp-related .product-info h3{font-size:clamp(2.35rem,10vw,3.2rem)}
 }
+
+/* Place chapter labels with their story content instead of in detached title bars. */
+.overlay-section-title,
+.heritage .craft-caption h2.overlay-section-title{display:block;margin:0 0 1.25rem;color:var(--gold);font:600 clamp(.78rem,.95vw,.92rem)/1.2 var(--sans);letter-spacing:.18em;text-transform:uppercase}
+.nature-copy .overlay-section-title{margin-bottom:1.35rem}
+.craft-caption h2.overlay-section-title{margin-bottom:1.6rem;text-shadow:0 2px 18px rgba(0,0,0,.55)}
+@media(max-width:760px){
+  .overlay-section-title,.heritage .craft-caption h2.overlay-section-title{font-size:.76rem;letter-spacing:.15em}
+  .craft-caption h2.overlay-section-title{margin-bottom:1.15rem}
+}

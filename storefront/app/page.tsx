@@ -59,9 +59,8 @@ export default function Home() {
       </section>
 
       <section id="nature" className="nature-section">
-        <SectionDivider number="02" title="Nature’s Solution" light />
         <div className="nature-art"><Image src="/images/nature-solution-field-v3.png" alt="An Indian woman standing in a sugarcane field at sunrise" fill sizes="100vw" /></div>
-        <div className="nature-copy"><Sun /><h2>Begin with sugarcane.<br />Interfere less.</h2><p>At Zucero, we believe some things don’t need to be reinvented. They simply need to be respected.</p><p>We return to traditional forms of sweetness, thoughtfully crafted from sugarcane and brought into the modern kitchen with greater care, clarity and intention.</p><p>This is sweetness with its story intact.<br />This is The Good Sugar.</p></div>
+        <div className="nature-copy"><p className="overlay-section-title">Nature’s Solution</p><Sun /><h2>Begin with sugarcane.<br />Interfere less.</h2><p>At Zucero, we believe some things don’t need to be reinvented. They simply need to be respected.</p><p>We return to traditional forms of sweetness, thoughtfully crafted from sugarcane and brought into the modern kitchen with greater care, clarity and intention.</p><p>This is sweetness with its story intact.<br />This is The Good Sugar.</p></div>
       </section>
 
       <HeritageSections philosophy={<PhilosophySection />} />
