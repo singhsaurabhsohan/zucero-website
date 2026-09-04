@@ -1,0 +1,62 @@
+name: Domain cutover
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/domain-cutover.yml'
+  workflow_dispatch:
+
+jobs:
+  cutover:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Inspect current DNS
+        shell: bash
+        run: |
+          echo '=== NAMESERVERS ==='
+          dig +short NS thegoodsugar.in || true
+          echo '=== APEX A ==='
+          dig +short A thegoodsugar.in || true
+          echo '=== WWW CNAME ==='
+          dig +short CNAME www.thegoodsugar.in || true
+          echo '=== MX ==='
+          dig +short MX thegoodsugar.in || true
+          echo '=== TXT ==='
+          dig +short TXT thegoodsugar.in || true
+
+      - name: Attach domains to Vercel when token is available
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          PROJECT_ID: prj_4ZfdP8Cnoca2CpSpc1jlShhccXD5
+          TEAM_ID: team_Xai7w1qU0faqWVMUVIPX5WpM
+        shell: bash
+        run: |
+          if [ -z "$VERCEL_TOKEN" ]; then
+            echo 'VERCEL_TOKEN_NOT_CONFIGURED'
+            exit 0
+          fi
+
+          add_domain () {
+            domain="$1"
+            echo "Adding $domain to Vercel project..."
+            code=$(curl -sS -o "/tmp/${domain}.json" -w '%{http_code}' \
+              -X POST "https://api.vercel.com/v10/projects/${PROJECT_ID}/domains?teamId=${TEAM_ID}" \
+              -H "Authorization: Bearer ${VERCEL_TOKEN}" \
+              -H 'Content-Type: application/json' \
+              --data "{\"name\":\"${domain}\"}")
+            echo "HTTP ${code}"
+            cat "/tmp/${domain}.json"
+            echo
+          }
+
+          add_domain thegoodsugar.in
+          add_domain www.thegoodsugar.in
+
+      - name: Check public HTTP state
+        shell: bash
+        run: |
+          echo '=== HTTPS APEX ==='
+          curl -sSIL --max-time 20 https://thegoodsugar.in/ || true
+          echo '=== HTTPS WWW ==='
+          curl -sSIL --max-time 20 https://www.thegoodsugar.in/ || true
