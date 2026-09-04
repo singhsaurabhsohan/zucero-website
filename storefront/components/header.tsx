@@ -12,6 +12,7 @@ const links = [["Our story", "/#philosophy"], ["Products", "/#products"], ["How 
 export function Header() {
   const [open, setOpen] = useState(false);
   const [showPriorityNotice, setShowPriorityNotice] = useState(true);
+  const [collectionInView, setCollectionInView] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [lightBackground, setLightBackground] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
@@ -70,6 +71,16 @@ export function Header() {
     window.addEventListener("load", schedule);
     return () => { cancelAnimationFrame(frame); window.removeEventListener("scroll", schedule); window.removeEventListener("resize", schedule); window.removeEventListener("load", schedule); };
   }, [pathname]);
+  useEffect(() => {
+    const collection = document.getElementById("products");
+    if (!collection) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setCollectionInView(entry.isIntersecting),
+      { threshold: 0.08 },
+    );
+    observer.observe(collection);
+    return () => observer.disconnect();
+  }, [pathname]);
   const { count } = useCart();
   return (
     <>
@@ -86,10 +97,10 @@ export function Header() {
         <button ref={menuButtonRef} className="icon-button mobile-menu" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} aria-controls="primary-navigation" onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button>
       </div>
     </header>
-      {showPriorityNotice && (
+      {showPriorityNotice && !(pathname === "/" && collectionInView) && (
         <aside className="priority-popup" aria-label="Priority access to the Zucero collection">
           <button type="button" aria-label="Dismiss priority access offer" onClick={() => setShowPriorityNotice(false)}><X size={16} /></button>
-          <Link href="/#products" onClick={() => setShowPriorityNotice(false)}><Gem aria-hidden="true" /><span><strong>Priority access</strong><small>Explore the collection</small></span><ArrowRight aria-hidden="true" /></Link>
+          <Link href="/#products"><Gem aria-hidden="true" /><span><strong>Priority access</strong><small>Explore the collection</small></span><ArrowRight aria-hidden="true" /></Link>
         </aside>
       )}
     </>
