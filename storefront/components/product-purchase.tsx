@@ -71,10 +71,10 @@ export function ProductPurchase({ product }: { product: Product }) {
       <div className="quantity-picker" aria-label="Quantity"><button onClick={() => setQuantity(Math.max(1, quantity - 1))} aria-label="Decrease quantity"><Minus size={16} /></button><span>{quantity}</span><button onClick={() => setQuantity(Math.min(10, quantity + 1))} aria-label="Increase quantity"><Plus size={16} /></button></div>
       <button className="button button-dark add-button" disabled={!readyForSale} onClick={() => addToBag()}>{added ? <><Check size={17} /> Added</> : <><ShoppingBag size={17} /> {readyForSale ? "Add to cart" : "Awaiting launch price"}</>}</button>
     </div>
-    <VerifiedPurchaseLink className="button button-gold pdp-buy-now" href={buyLink}>Buy on WhatsApp</VerifiedPurchaseLink>
+    <VerifiedPurchaseLink className="button button-gold pdp-buy-now" href={buyLink} lines={[{ productName: product.name, variantLabel: variant.label, quantity }]}>Buy on WhatsApp</VerifiedPurchaseLink>
     <p className="pdp-tax-note">Opens a prefilled chat. Your order is confirmed by our team on WhatsApp.</p>
     {!readyForSale && <p className="pdp-tax-note">Ordering opens once the final launch prices are confirmed.</p>}
     <form className="pdp-delivery" onSubmit={checkDelivery}><label htmlFor="delivery-pin"><Truck size={18} /> Check delivery availability</label><div><input id="delivery-pin" value={postalCode} onChange={e => { setPostalCode(e.target.value.replace(/\D/g, "").slice(0, 6)); setShippingMessage(""); }} inputMode="numeric" autoComplete="postal-code" pattern="[0-9]{6}" minLength={6} maxLength={6} placeholder="Enter 6-digit PIN code" required /><button type="submit" disabled={checking}>{checking ? "Checking…" : "Check"}</button></div><p role="status">{shippingMessage}</p></form>
-    <div className="pdp-sticky-buy"><span>{product.name}<small>{variant.label} · {formatPrice(variant.pricePaise)}</small></span><VerifiedPurchaseLink className="button button-dark" href={buyLink}>Buy on WhatsApp</VerifiedPurchaseLink></div>
+    <div className="pdp-sticky-buy"><span>{product.name}<small>{variant.label} · {formatPrice(variant.pricePaise)}</small></span><VerifiedPurchaseLink className="button button-dark" href={buyLink} lines={[{ productName: product.name, variantLabel: variant.label, quantity }]}>Buy on WhatsApp</VerifiedPurchaseLink></div>
   </div>;
 }
