@@ -4,6 +4,7 @@ import { CartProvider } from "@/components/cart-provider";
 import { MessageCircle } from "lucide-react";
 import { whatsappLink } from "@/lib/whatsapp";
 import { BackToTop } from "@/components/back-to-top";
+import { GoogleAnalytics } from "@/components/google-analytics";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.thegoodsugar.in"),
@@ -13,5 +14,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body><CartProvider>{children}<BackToTop /><aside aria-label="WhatsApp contact"><a href={whatsappLink()} className="whatsapp-contact" aria-label="Chat with Zucero on WhatsApp at +91 87963 49977"><MessageCircle size={24} /><span>WhatsApp</span></a></aside></CartProvider></body></html>;
+  return <html lang="en"><body><CartProvider>{children}<BackToTop /><aside aria-label="WhatsApp contact"><a href={whatsappLink()} className="whatsapp-contact" aria-label="Chat with Zucero on WhatsApp at +91 87963 49977"><MessageCircle size={24} /><span>WhatsApp</span></a></aside></CartProvider><GoogleAnalytics /></body></html>;
 }
