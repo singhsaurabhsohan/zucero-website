@@ -303,7 +303,7 @@ html{scroll-padding-top:120px}
 .pdp-page .product-price{font-size:1.5rem;margin:.5rem 0}
 .pdp-tax-note{font-size:.76rem;color:var(--muted);margin:.3rem 0}
 .pdp-review-link{display:inline-block;font-size:.78rem;text-decoration:underline;margin:.75rem 0}
-.pdp-gallery{position:sticky;top:124px;min-width:0}
+.pdp-gallery{position:static;min-width:0}
 .pdp-main-image{position:relative;aspect-ratio:1;background:var(--cream)}
 .pdp-zoom{position:absolute;inset:0;border:0;padding:0;background:none}
 .pdp-zoom img{object-fit:cover}
@@ -359,11 +359,11 @@ html{scroll-padding-top:120px}
 .pdp-information a{text-decoration:underline}
 .pdp-reviews{scroll-margin-top:110px}
 .pdp-reviews>p:last-child{color:var(--muted);max-width:500px;margin:auto}
-.pdp-gallery-column{min-width:0}
-.pdp-recommendation{margin-top:1.5rem;border-top:1px solid var(--line);padding-top:1.25rem}
-.pdp-recommendation h2{margin:0 0 1rem;font:500 1.4rem/1.2 var(--serif);color:var(--deep-green)}
-.pdp-recommendation-card{display:flex;align-items:center;gap:1.25rem;padding:.75rem;border:1px solid var(--line);text-decoration:none;color:var(--deep-green)}
-.pdp-recommendation-card>img{width:clamp(80px,15vw,112px);height:auto;aspect-ratio:1;object-fit:cover;flex-shrink:0}
+.pdp-gallery-column{position:sticky;top:124px;min-width:0}
+.pdp-recommendation{clear:both;margin-top:1.5rem;border-top:1px solid var(--line);padding-top:1rem}
+.pdp-page .pdp-recommendation h2{margin:0 0 .75rem;font:600 .78rem/1.2 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--deep-green)}
+.pdp-recommendation-card{display:flex;align-items:center;gap:1rem;padding:.65rem;border:1px solid var(--line);text-decoration:none;color:var(--deep-green)}
+.pdp-recommendation-card>img{width:clamp(76px,12vw,92px);height:auto;aspect-ratio:1;object-fit:cover;flex-shrink:0}
 .pdp-recommendation-card>div{min-width:0}
 .pdp-recommendation-card h3{margin:0 0 .4rem;font:500 clamp(1.15rem,2vw,1.5rem)/1.2 var(--serif)}
 .pdp-recommendation-card p{margin:0 0 .5rem;font-size:.85rem;color:var(--muted)}
@@ -373,7 +373,7 @@ html{scroll-padding-top:120px}
 :focus-visible{outline:2px solid var(--gold);outline-offset:4px}
 @media(max-width:900px){
   .pdp-page .product-detail{grid-template-columns:1fr;padding:0 5vw 3rem;gap:2rem}
-  .pdp-gallery{position:static;max-width:680px;width:100%;margin:auto}
+  .pdp-gallery-column{position:static;max-width:680px;width:100%;margin:auto}
   .pdp-information{grid-template-columns:1fr;gap:1.5rem;padding:3.5rem 6vw}
   .pdp-service-strip{grid-template-columns:1fr 1fr;gap:2rem}
 }
