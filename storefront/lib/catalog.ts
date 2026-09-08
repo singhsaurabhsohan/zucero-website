@@ -12,6 +12,7 @@ export type Product = {
   eyebrow: string;
   description: string;
   image: string;
+  cartImage?: string;
   ingredients: string;
   variants: ProductVariant[];
 };
@@ -36,9 +37,10 @@ export const products: Product[] = [
     eyebrow: "From the abundance of sugarcane to the rarity of every crystal",
     description: "Crafted crystal by crystal through an age-old Indian thread technique, preserving its distinctive colour, delicate sweetness and refined crunch.",
     image: "/images/mishri-raw-hero.png",
+    cartImage: "/images/mishri-jar-lifestyle.png",
     ingredients: "Sugarcane juice, desi cow milk and desi cow ghee. Contains milk.",
     variants: [
-      { id: "mishri-250", label: "250 g", sku: "ZUC-MIS-250", weightGrams: 250, pricePaise: 79900 },
+      { id: "mishri-250", label: "250 g", sku: "ZUC-MIS-250", weightGrams: 250, pricePaise: 89900 },
       { id: "mishri-500", label: "500 g", sku: "ZUC-MIS-500", weightGrams: 500, pricePaise: 179900 }
     ]
   }

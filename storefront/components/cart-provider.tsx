@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { products } from "@/lib/catalog";
 
 export type CartLine = {
   variantId: string;
@@ -33,7 +34,15 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     queueMicrotask(() => {
       try {
         const saved = localStorage.getItem("zucero-cart-prelaunch-v2");
-        if (saved) setLines(JSON.parse(saved));
+        if (saved) {
+          const storedLines = JSON.parse(saved) as CartLine[];
+          setLines(storedLines.map((line) => {
+            const product = products.find((item) => item.slug === line.productSlug);
+            const variant = product?.variants.find((item) => item.id === line.variantId);
+            if (!product || variant?.pricePaise === null || variant?.pricePaise === undefined) return line;
+            return { ...line, productName: product.name, variantLabel: variant.label, sku: variant.sku, image: product.cartImage ?? product.image, pricePaise: variant.pricePaise };
+          }));
+        }
       } catch { localStorage.removeItem("zucero-cart-prelaunch-v2"); }
       setReady(true);
     });

@@ -39,7 +39,7 @@ export function ProductPurchase({ product }: { product: Product }) {
   const buyLink = whatsappOrder([{ productName: product.name, variantLabel: variant.label, quantity }]);
   function addToBag() {
     if (variant.pricePaise === null) return;
-    add({ variantId: variant.id, productSlug: product.slug, productName: product.name, variantLabel: variant.label, sku: variant.sku, image: product.image, pricePaise: variant.pricePaise }, quantity);
+    add({ variantId: variant.id, productSlug: product.slug, productName: product.name, variantLabel: variant.label, sku: variant.sku, image: product.cartImage ?? product.image, pricePaise: variant.pricePaise }, quantity);
     setAdded(true);
     window.setTimeout(() => setAdded(false), 1800);
   }
