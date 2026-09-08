@@ -2,6 +2,7 @@
 
 import { MailCheck, X } from "lucide-react";
 import { useState } from "react";
+import { createPortal } from "react-dom";
 import type { CustomerDetails, PurchaseLine } from "@/lib/customer-details";
 import { emptyCustomerDetails } from "@/lib/customer-details";
 import { useEmailOtp } from "@/lib/use-email-otp";
@@ -89,9 +90,8 @@ export function VerifiedPurchaseLink({ href, lines, className, children, default
     otp.resetCode();
   }
 
-  return <>
-    <button type="button" className={className} onClick={begin}>{children}</button>
-    {open && <div className="otp-modal-backdrop" role="presentation" onMouseDown={event => { if (event.currentTarget === event.target) close(); }}>
+  const modal = open && typeof document !== "undefined" ? createPortal(
+    <div className="otp-modal-backdrop" role="presentation" onMouseDown={event => { if (event.currentTarget === event.target) close(); }}>
       <section className="otp-modal otp-purchase-modal" role="dialog" aria-modal="true" aria-labelledby="purchase-verification-title">
         <button className="otp-modal-close" type="button" aria-label="Close email verification" onClick={close}><X /></button>
         <MailCheck aria-hidden="true" />
@@ -114,6 +114,12 @@ export function VerifiedPurchaseLink({ href, lines, className, children, default
           {otp.message && <p className="otp-message wide" role="status">{otp.message}</p>}
         </form>
       </section>
-    </div>}
+    </div>,
+    document.body,
+  ) : null;
+
+  return <>
+    <button type="button" className={className} onClick={begin}>{children}</button>
+    {modal}
   </>;
 }
