@@ -1,11 +1,8 @@
 import Script from "next/script";
 
-const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim();
-const isValidMeasurementId = Boolean(measurementId && /^G-[A-Z0-9]+$/i.test(measurementId));
+const measurementId = "G-JX1VXVVVRQ";
 
 export function GoogleAnalytics() {
-  if (!isValidMeasurementId || !measurementId) return null;
-
   return (
     <>
       <Script
