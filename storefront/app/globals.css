@@ -242,7 +242,7 @@ footer{background:var(--deep-green-dark)}
 .site-header .brand{width:116px}
 .site-header .brand img{width:116px;height:116px;filter:none}
 .site-header.nav-on-light .brand img{filter:none}
-.whatsapp-contact{position:fixed;z-index:15;right:20px;bottom:30px;display:flex;align-items:center;gap:.6rem;padding:12px 17px;border-radius:40px;background:#17683c;color:white;font-size:.8rem;box-shadow:0 4px 18px #0003}
+.whatsapp-contact{position:fixed;z-index:15;right:20px;bottom:80px;display:flex;align-items:center;gap:.6rem;padding:12px 17px;border-radius:40px;background:#17683c;color:white;font-size:.8rem;box-shadow:0 4px 18px #0003}
 body:has(.pdp-page) .whatsapp-contact{bottom:118px}
 @media(max-width:640px){.site-header .brand{width:82px}.site-header .brand img{width:82px;height:82px}.whatsapp-contact{right:14px;bottom:16px;padding:13px}.whatsapp-contact span{display:none}}
 html{scroll-padding-top:120px}
@@ -507,7 +507,8 @@ html{scroll-padding-top:calc(var(--header-height) + 16px)}
 .site-header .header-actions{flex-shrink:0}
 .site-header .icon-button{width:44px;height:44px}
 .pdp-gallery{top:calc(var(--header-height) + 16px)}
-.back-to-top{position:fixed;right:160px;bottom:30px;z-index:15;display:grid;place-items:center;width:48px;height:48px;border:1px solid var(--gold);border-radius:50%;background:var(--deep-green);color:var(--cream);box-shadow:0 4px 18px #0003}
+.back-to-top{position:fixed;left:20px;right:auto;bottom:80px;z-index:15;display:grid;place-items:center;width:48px;height:48px;border:1px solid var(--gold);border-radius:50%;background:var(--deep-green);color:var(--cream);box-shadow:0 4px 18px #0003}
+body:has(.pdp-page) .back-to-top{bottom:118px}
 .back-to-top:hover{background:#245138}
 @media(max-width:900px){
   :root{--nav-height:88px}
@@ -526,8 +527,8 @@ html{scroll-padding-top:calc(var(--header-height) + 16px)}
   .site-header,.store-header .site-header{padding:0 14px}
   .site-header .header-actions{gap:0}
   .site-header .header-actions>a:first-child{display:grid}
-  .back-to-top{right:76px;bottom:calc(24px + env(safe-area-inset-bottom))}
-  .whatsapp-contact{bottom:calc(24px + env(safe-area-inset-bottom));width:50px;height:50px;justify-content:center}
+  .back-to-top{left:14px;right:auto;bottom:calc(80px + env(safe-area-inset-bottom))}
+  .whatsapp-contact{bottom:calc(80px + env(safe-area-inset-bottom));width:50px;height:50px;justify-content:center}
   .hero-copy{max-width:88vw}
   .heritage-slow h2{font-size:clamp(3rem,13vw,5rem)}
   .field-grid input,.field-grid select,.field-grid textarea,.account-card input{font-size:16px}
