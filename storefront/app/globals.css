@@ -633,6 +633,12 @@ footer>div:not(.footer-brand):not(.footer-bottom){font-size:.94rem}
 .footer-fssai{display:flex;align-items:center;gap:1rem}
 .footer-fssai img{width:70px;height:70px;object-fit:contain}
 .footer-bottom{font-size:.82rem}
+.footer-creator{display:inline-flex;align-items:center;justify-content:flex-end;gap:.55rem;color:#aaa69c;transition:color .2s ease}
+.footer-creator:hover{color:var(--gold)}
+.footer-creator>span{white-space:nowrap}
+.footer-creator img{width:112px;height:auto;object-fit:contain;filter:invert(73%) sepia(27%) saturate(685%) hue-rotate(3deg) brightness(94%) contrast(88%);opacity:.9;transition:opacity .2s ease,filter .2s ease}
+.footer-creator:hover img{filter:invert(79%) sepia(45%) saturate(584%) hue-rotate(358deg) brightness(94%) contrast(90%);opacity:1}
+.footer-heart{color:#c76c61}
 .hero-proof-copy strong{font-size:.76rem}
 .hero-proof-copy small{font-size:.8rem}
 @media(max-width:640px){
@@ -644,6 +650,7 @@ footer>div:not(.footer-brand):not(.footer-bottom){font-size:.94rem}
   .heritage h2,.heritage h3,.heritage-philosophy h2{font-size:clamp(2.25rem,10vw,3rem)}
   .heritage-slow h2{font-size:clamp(3rem,12vw,4.5rem)}
   .footer-compliance{align-items:flex-start;flex-direction:column!important;gap:1rem!important}
+  .footer-creator{justify-content:flex-start;margin-top:.25rem}
   .content-hero h1{font-size:clamp(2.65rem,12vw,3.75rem)}
   .purchase-panel h1,.page-title h1,.checkout-heading h1,.account-story h1,.orders-shell h1{font-size:clamp(2.45rem,11vw,3.5rem)}
   .hero-labels a,.hero-copy .button,.marquee-image strong,.marquee-image small{font-size:.72rem}
