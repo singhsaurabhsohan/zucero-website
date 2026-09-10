@@ -1,8 +1,13 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { ContentPage } from "@/components/content-page";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Returns" };
+export const metadata = buildPageMetadata({
+  title: "Returns & Replacements",
+  description: "Zucero returns and replacement policy for Desi Khand, Mishri and other food orders, including damaged, incorrect and missing-item resolutions.",
+  path: "/returns",
+  keywords: ["Zucero returns", "Desi Khand returns", "food order replacement"],
+});
 
 export default function ReturnsPage() {
   return <ContentPage eyebrow="We will make it right" title="Returns and replacements" intro="Food products need careful handling, so return eligibility depends on the condition and reason for the request.">
