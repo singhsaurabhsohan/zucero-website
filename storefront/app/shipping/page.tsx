@@ -1,7 +1,12 @@
-import type { Metadata } from "next";
 import { ContentPage } from "@/components/content-page";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Shipping Policy" };
+export const metadata = buildPageMetadata({
+  title: "Shipping Policy",
+  description: "Zucero shipping policy for Desi Khand and Mishri orders, including PIN-code serviceability, Shiprocket delivery, dispatch, tracking and address requirements.",
+  path: "/shipping",
+  keywords: ["Zucero shipping", "Desi Khand delivery", "Shiprocket delivery", "Khand shipping India"],
+});
 
 export default function ShippingPage() {
   return <ContentPage eyebrow="Delivery, clearly explained" title="Shipping policy" intro="Delivery availability, charges, and estimates are calculated from your PIN code before payment.">
