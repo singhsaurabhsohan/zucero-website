@@ -1,8 +1,13 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { ContentPage } from "@/components/content-page";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Terms" };
+export const metadata = buildPageMetadata({
+  title: "Terms of Use & Sale",
+  description: "Read Zucero's terms for products, orders, pricing, tax, accounts, privacy, shipping, returns and refunds on The Good Sugar storefront.",
+  path: "/terms",
+  keywords: ["Zucero terms", "The Good Sugar terms", "Desi Khand order terms"],
+});
 
 export default function TermsPage() {
   return <ContentPage eyebrow="Store terms" title="Terms of use and sale" intro="By using the Zucero storefront or placing an order, you agree to these terms and the policies linked here.">
