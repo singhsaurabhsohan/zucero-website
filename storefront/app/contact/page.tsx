@@ -1,8 +1,13 @@
-import type { Metadata } from "next";
 import { ContentPage } from "@/components/content-page";
 import { ContactForm } from "@/components/contact-form";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Contact" };
+export const metadata = buildPageMetadata({
+  title: "Contact Zucero",
+  description: "Contact Zucero for product questions, Desi Khand and Mishri information, orders, shipping, wholesale enquiries and customer support.",
+  path: "/contact",
+  keywords: ["Zucero contact", "Desi Khand support", "Khand order support"],
+});
 
 export default function ContactPage() {
   return <ContentPage eyebrow="Human support" title="Talk to Zucero" intro="Questions about products, orders, wholesale, or the launch are welcome.">
