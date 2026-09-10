@@ -1,7 +1,12 @@
-import type { Metadata } from "next";
 import { ContentPage } from "@/components/content-page";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Refund Policy" };
+export const metadata = buildPageMetadata({
+  title: "Refund Policy",
+  description: "Zucero refund policy for cancelled, unavailable, damaged or incorrect Desi Khand and Mishri orders, including processing and shipping-charge guidance.",
+  path: "/refunds",
+  keywords: ["Zucero refund policy", "Desi Khand refund", "food order refund"],
+});
 
 export default function RefundsPage() {
   return <ContentPage eyebrow="Fair resolutions" title="Refund policy" intro="Approved refunds are processed transparently to the payment method used for the order.">
