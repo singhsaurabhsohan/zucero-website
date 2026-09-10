@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+
 export const SITE_URL = "https://www.thegoodsugar.in";
 export const SITE_NAME = "Zucero — The Good Sugar";
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/images/hero-cinematic-poster.png`;
@@ -29,6 +31,40 @@ export const socialProfiles = [
 export function absoluteUrl(path = "") {
   if (!path) return SITE_URL;
   return `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;
+}
+
+export function buildPageMetadata({
+  title,
+  description,
+  path,
+  image = "/images/hero-cinematic-poster.png",
+  keywords = [],
+}: {
+  title: string;
+  description: string;
+  path: string;
+  image?: string;
+  keywords?: string[];
+}): Metadata {
+  return {
+    title,
+    description,
+    keywords: [...coreKeywords, ...keywords],
+    alternates: { canonical: path },
+    openGraph: {
+      type: "website",
+      url: absoluteUrl(path),
+      title: `${title} | Zucero`,
+      description,
+      images: [{ url: image, alt: `${title} — Zucero` }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${title} | Zucero`,
+      description,
+      images: [image],
+    },
+  };
 }
 
 export function safeJsonLd(value: unknown) {
