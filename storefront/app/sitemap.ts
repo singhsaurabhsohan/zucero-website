@@ -7,6 +7,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     "",
     "/products",
+    "/guides/desi-khand",
+    "/guides/sugar-alternatives",
     "/our-story",
     "/journal",
     "/contact",
@@ -19,8 +21,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const staticEntries: MetadataRoute.Sitemap = staticRoutes.map((path) => ({
     url: `${siteUrl}${path}`,
-    changeFrequency: path === "" || path === "/products" ? "weekly" : "monthly",
-    priority: path === "" ? 1 : path === "/products" ? 0.9 : 0.6,
+    changeFrequency: path === "" || path === "/products" || path.startsWith("/guides/") ? "weekly" : "monthly",
+    priority: path === "" ? 1 : path === "/products" ? 0.9 : path.startsWith("/guides/") ? 0.85 : 0.6,
   }));
 
   const productEntries: MetadataRoute.Sitemap = products.map((product) => ({
