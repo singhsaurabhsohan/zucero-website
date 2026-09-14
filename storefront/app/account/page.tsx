@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Mail, ShieldCheck } from "lucide-react";
@@ -14,6 +14,17 @@ export default function AccountPage() {
   const [email, setEmail] = useState("");
   const [token, setToken] = useState("");
   const otp = useEmailOtp();
+
+  useEffect(() => {
+    let active = true;
+    async function checkSession() {
+      if (!otp.client) return;
+      const { data } = await otp.client.auth.getUser();
+      if (active && data.user) router.replace("/account/orders");
+    }
+    checkSession();
+    return () => { active = false; };
+  }, [otp.client, router]);
 
   async function continueWithEmail(event: FormEvent) {
     event.preventDefault();
