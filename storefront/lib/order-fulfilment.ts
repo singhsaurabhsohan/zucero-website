@@ -78,8 +78,8 @@ export async function fulfilPaidOrder(orderId: string) {
 
   const packageWeightGrams = items.reduce((total: number, item: any) => {
     const match = catalogVariantBySku(item.sku);
-    return total + (match?.variant.weightGrams ?? 0) * item.quantity;
-  }, 250);
+    return total + (match?.variant.packedWeightGrams ?? match?.variant.weightGrams ?? 0) * item.quantity;
+  }, 0);
 
   const payload = {
     order_id: claimed.order_number,
