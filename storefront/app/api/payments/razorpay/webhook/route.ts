@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { fulfilPaidOrder } from "@/lib/order-fulfilment";
 import { notifyPaidOrder } from "@/lib/notifications";
+import { notifyPaymentFailed, notifyRefundProcessed } from "@/lib/payment-status-notifications";
 import { verifyRazorpaySignature } from "@/lib/razorpay";
 import { supabaseAdmin } from "@/lib/supabase-admin";
 
@@ -50,6 +51,7 @@ export async function POST(request: Request) {
         razorpay_payment_id: payment?.id ?? order.razorpay_payment_id,
         updated_at: new Date().toISOString(),
       }).eq("id", order.id);
+      await notifyPaymentFailed(order.id).catch((notificationError) => console.error("Payment failed notification failed", notificationError));
       return NextResponse.json({ received: true });
     }
 
@@ -59,6 +61,7 @@ export async function POST(request: Request) {
         payment_status: "refunded",
         updated_at: new Date().toISOString(),
       }).eq("id", order.id);
+      await notifyRefundProcessed(order.id).catch((notificationError) => console.error("Refund notification failed", notificationError));
       return NextResponse.json({ received: true });
     }
 
