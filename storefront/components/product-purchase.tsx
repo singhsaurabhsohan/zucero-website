@@ -72,13 +72,13 @@ export function ProductPurchase({ product }: { product: Product }) {
       const response = await fetch("/api/shipping/quote", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ postalCode, weightGrams: variant.weightGrams * quantity }),
+        body: JSON.stringify({ postalCode, weightGrams: variant.packedWeightGrams * quantity }),
       });
       const data = await response.json();
       if (!response.ok || !data.configured) throw new Error("unavailable");
       const couriers = data.result?.data?.available_courier_companies;
       setShippingMessage(Array.isArray(couriers) && couriers.length > 0
-        ? "Delivery is available for this PIN code. GST and final shipping are calculated at checkout."
+        ? "Delivery is available for this PIN code. Delivery is usually within ~7 days. GST and final shipping are calculated at checkout."
         : "No delivery option was returned for this PIN code. Please contact us for help.");
     } catch {
       setShippingMessage("We couldn’t confirm delivery right now. Please try again or contact us before ordering.");
@@ -91,7 +91,7 @@ export function ProductPurchase({ product }: { product: Product }) {
     <p className="eyebrow">{product.eyebrow}</p>
     <h1>{product.name}</h1>
     <p className="product-description">{product.description}</p>
-    <aside className="featured-prebook-offer"><span>Limited launch offer - {variant.label}</span><strong>{offerPrice}</strong><p><Truck aria-hidden="true" /> ₹79 Haryana · ₹129 rest of India · Free over ₹1,499</p></aside>
+    <aside className="featured-prebook-offer"><span>Experience the goodness of the first batch · {variant.label}</span><strong>{offerPrice}</strong><p><Truck aria-hidden="true" /> ₹79 Haryana · ₹129 rest of India · Free over ₹1,499</p><p>Delivery is usually within ~7 days.</p></aside>
     <p className="pdp-tax-note">Prices shown are before GST. Haryana orders add 2.5% CGST + 2.5% SGST; other Indian states add 5% IGST at checkout.</p>
     <div className="pdp-khand-benefits">{benefits.map(({ title, Icon }) => <article key={title}><Icon aria-hidden="true" /><h3>{title}</h3></article>)}</div>
     <p className="pdp-ingredients"><strong>Ingredients:</strong> Sugar cane Juice, Desi Cow Milk and Desi Cow Ghee</p>
@@ -101,7 +101,7 @@ export function ProductPurchase({ product }: { product: Product }) {
       <button type="button" className="button button-dark add-button" disabled={!readyForSale} onClick={addToBag}>{added ? <><Check size={17} /> Added</> : <><ShoppingBag size={17} /> {readyForSale ? "Add to cart" : "Awaiting launch price"}</>}</button>
     </div>
     <button type="button" className="button button-gold pdp-buy-now" disabled={!readyForSale} onClick={buyNow}>Buy now</button>
-    <p className="pdp-tax-note">Continue to secure checkout for address, GST, shipping and Razorpay payment.</p>
+    <p className="pdp-tax-note">Continue to secure checkout for address, GST, shipping and Razorpay payment. Delivery is usually within ~7 days.</p>
     {!readyForSale && <p className="pdp-tax-note">Ordering opens once the final launch prices are confirmed.</p>}
     <form className="pdp-delivery" onSubmit={checkDelivery}><label htmlFor="delivery-pin"><Truck size={18} /> Check delivery availability</label><div><input id="delivery-pin" value={postalCode} onChange={e => { setPostalCode(e.target.value.replace(/\D/g, "").slice(0, 6)); setShippingMessage(""); }} inputMode="numeric" autoComplete="postal-code" pattern="[0-9]{6}" minLength={6} maxLength={6} placeholder="Enter 6-digit PIN code" required /><button type="submit" disabled={checking}>{checking ? "Checking…" : "Check"}</button></div><p role="status">{shippingMessage}</p></form>
     <div className="pdp-sticky-buy"><span>{product.name}<small>{variant.label} · {formatPrice(variant.pricePaise)}</small></span><button type="button" className="button button-dark" disabled={!readyForSale} onClick={buyNow}>Buy now</button></div>
