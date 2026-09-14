@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./account-extras.css";
 import { CartProvider } from "@/components/cart-provider";
 import { MessageCircle } from "lucide-react";
 import { whatsappLink } from "@/lib/whatsapp";
