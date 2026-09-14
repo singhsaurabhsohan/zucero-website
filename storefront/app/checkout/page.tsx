@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState, type FormEvent } from "react";
+import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { StoreHeader } from "@/components/store-header";
 import { useCart } from "@/components/cart-provider";
 import { formatPrice } from "@/lib/catalog";
@@ -10,6 +10,7 @@ import type { CustomerDetails } from "@/lib/customer-details";
 import { emptyCustomerDetails } from "@/lib/customer-details";
 import { INDIAN_STATES } from "@/lib/india";
 import { calculateCheckoutTotal } from "@/lib/tax";
+import { createSupabaseBrowserClient, isSupabaseConfigured } from "@/lib/supabase-browser";
 
 type RazorpayResponse = {
   razorpay_order_id: string;
@@ -27,6 +28,18 @@ type RazorpayOptions = {
   prefill: { name: string; email: string; contact: string };
   handler: (response: RazorpayResponse) => void | Promise<void>;
   modal?: { ondismiss?: () => void };
+};
+
+type SavedAddress = {
+  id?: string;
+  fullName?: string;
+  phone?: string;
+  addressLine1?: string;
+  addressLine2?: string;
+  city?: string;
+  state?: string;
+  postalCode?: string;
+  isDefault?: boolean;
 };
 
 declare global {
@@ -68,6 +81,33 @@ export default function CheckoutPage() {
   const [error, setError] = useState("");
   const [completed, setCompleted] = useState<{ orderNumber: string; captured: boolean } | null>(null);
   const quote = useMemo(() => details.state ? calculateCheckoutTotal(subtotalPaise, details.state) : null, [details.state, subtotalPaise]);
+
+  useEffect(() => {
+    let active = true;
+    async function prefillAccount() {
+      if (!isSupabaseConfigured()) return;
+      const client = createSupabaseBrowserClient();
+      const { data } = await client.auth.getUser();
+      if (!active || !data.user) return;
+      const metadata = (data.user.user_metadata ?? {}) as Record<string, unknown>;
+      const saved = Array.isArray(metadata.addresses) ? metadata.addresses as SavedAddress[] : [];
+      const address = saved.find(item => item?.isDefault) ?? saved[0];
+      setDetails(current => ({
+        ...current,
+        email: data.user?.email ?? current.email,
+        fullName: address?.fullName || (typeof metadata.full_name === "string" ? metadata.full_name : current.fullName),
+        phone: address?.phone || (typeof metadata.phone === "string" ? metadata.phone : current.phone),
+        addressLine1: address?.addressLine1 || current.addressLine1,
+        addressLine2: address?.addressLine2 || current.addressLine2,
+        city: address?.city || current.city,
+        state: address?.state || current.state,
+        postalCode: address?.postalCode || current.postalCode,
+        country: "India",
+      }));
+    }
+    prefillAccount();
+    return () => { active = false; };
+  }, []);
 
   function update(field: keyof CustomerDetails, value: string) {
     setError("");
@@ -133,7 +173,7 @@ export default function CheckoutPage() {
   }
 
   if (completed) {
-    return <main className="store-page"><StoreHeader /><section className="empty-cart"><p className="eyebrow">Order received</p><h1>{completed.captured ? "Payment successful." : "Payment received."}</h1><p>Order <strong>{completed.orderNumber}</strong> has been recorded. {completed.captured ? "Your order is being sent to our fulfilment system automatically." : "We are waiting for final payment capture confirmation."}</p><Link className="button button-dark" href="/products">Continue shopping</Link></section><SiteFooter /></main>;
+    return <main className="store-page"><StoreHeader /><section className="empty-cart"><p className="eyebrow">Order received</p><h1>{completed.captured ? "Payment successful." : "Payment received."}</h1><p>Order <strong>{completed.orderNumber}</strong> has been recorded. {completed.captured ? "Your order is being sent to our fulfilment system automatically." : "We are waiting for final payment capture confirmation."}</p><div className="button-row"><Link className="button button-dark" href="/account/orders">View my account</Link><Link className="text-link" href="/products">Continue shopping</Link></div></section><SiteFooter /></main>;
   }
 
   if (!lines.length) return <main className="store-page"><StoreHeader /><section className="empty-cart"><h1>Your bag is empty.</h1><Link className="button button-dark" href="/products">Shop products</Link></section><SiteFooter /></main>;
