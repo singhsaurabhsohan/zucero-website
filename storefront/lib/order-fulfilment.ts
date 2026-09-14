@@ -76,7 +76,7 @@ export async function fulfilPaidOrder(orderId: string) {
   const pickupLocation = process.env.SHIPROCKET_PICKUP_LOCATION;
   if (!pickupLocation) throw new Error("Shiprocket pickup location is not configured");
 
-  const packageWeightGrams = items.reduce((total, item) => {
+  const packageWeightGrams = items.reduce((total: number, item: any) => {
     const match = catalogVariantBySku(item.sku);
     return total + (match?.variant.weightGrams ?? 0) * item.quantity;
   }, 250);
@@ -96,7 +96,7 @@ export async function fulfilPaidOrder(orderId: string) {
     billing_email: claimed.customer_email,
     billing_phone: phone10(claimed.customer_phone),
     shipping_is_billing: true,
-    order_items: items.map((item) => {
+    order_items: items.map((item: any) => {
       const match = catalogVariantBySku(item.sku);
       return {
         name: item.product_name,
