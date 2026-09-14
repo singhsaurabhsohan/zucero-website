@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { fulfilPaidOrder } from "@/lib/order-fulfilment";
+import { notifyPaidOrder } from "@/lib/notifications";
 import { fetchRazorpayPayment, verifyRazorpayPaymentSignature } from "@/lib/razorpay";
 import { supabaseAdmin } from "@/lib/supabase-admin";
 
@@ -55,6 +56,7 @@ export async function POST(request: Request) {
     }, { onConflict: "provider,provider_event_id" });
 
     const fulfilment = await fulfilPaidOrder(order.id);
+    await notifyPaidOrder(order.id).catch((notificationError) => console.error("Paid order notification failed", notificationError));
     return NextResponse.json({
       ok: true,
       captured: true,
