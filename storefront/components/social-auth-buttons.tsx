@@ -7,20 +7,20 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://www.thegoo
 
 export function SocialAuthButtons() {
   const client = useMemo(() => isSupabaseConfigured() ? createSupabaseBrowserClient() : null, []);
-  const [busy, setBusy] = useState<"google" | "apple" | null>(null);
+  const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState("");
 
-  async function continueWith(provider: "google" | "apple") {
+  async function continueWithGoogle() {
     if (!client) { setMessage("Account sign in is temporarily unavailable."); return; }
-    setBusy(provider);
+    setBusy(true);
     setMessage("");
     const redirectTo = new URL("/auth/callback", SITE_URL).toString();
-    const { error } = await client.auth.signInWithOAuth({ provider, options: { redirectTo } });
+    const { error } = await client.auth.signInWithOAuth({ provider: "google", options: { redirectTo } });
     if (error) {
-      setBusy(null);
+      setBusy(false);
       setMessage(error.message);
     }
   }
 
-  return <div className="social-auth"><button className="social-auth-button" type="button" disabled={Boolean(busy)} onClick={() => continueWith("google")}><span className="social-auth-mark">G</span>{busy === "google" ? "Connecting…" : "Continue with Google"}</button><button className="social-auth-button" type="button" disabled={Boolean(busy)} onClick={() => continueWith("apple")}><span className="social-auth-mark apple-mark">●</span>{busy === "apple" ? "Connecting…" : "Continue with Apple"}</button>{message && <p className="form-message" role="status">{message}</p>}</div>;
+  return <div className="social-auth"><button className="social-auth-button" type="button" disabled={busy} onClick={continueWithGoogle}><span className="social-auth-mark">G</span>{busy ? "Connecting…" : "Continue with Google"}</button>{message && <p className="form-message" role="status">{message}</p>}</div>;
 }
