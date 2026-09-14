@@ -4,6 +4,7 @@ export type ProductVariant = {
   sku: string;
   weightGrams: number;
   pricePaise: number | null;
+  hsn: string;
 };
 
 export type Product = {
@@ -17,7 +18,8 @@ export type Product = {
   variants: ProductVariant[];
 };
 
-// Pre-launch sizes and prices supplied in the September website-flow brief.
+// India launch prices are after the launch discount and before GST.
+// Checkout adds GST based on the delivery state.
 export const products: Product[] = [
   {
     slug: "desi-khand",
@@ -27,8 +29,8 @@ export const products: Product[] = [
     image: "/images/khand-branded-jar.png",
     ingredients: "Sugarcane juice, desi cow milk and desi cow ghee. Contains milk.",
     variants: [
-      { id: "khand-490", label: "490 g", sku: "ZUC-KHA-490", weightGrams: 490, pricePaise: 39900 },
-      { id: "khand-990", label: "990 g", sku: "ZUC-KHA-990", weightGrams: 990, pricePaise: 79900 }
+      { id: "khand-490", label: "490 g", sku: "ZUC-KHA-490", weightGrams: 490, pricePaise: 45900, hsn: "1701" },
+      { id: "khand-990", label: "990 g", sku: "ZUC-KHA-990", weightGrams: 990, pricePaise: 91800, hsn: "1701" }
     ]
   },
   {
@@ -40,8 +42,8 @@ export const products: Product[] = [
     cartImage: "/images/mishri-jar-lifestyle.png",
     ingredients: "Sugarcane juice, desi cow milk and desi cow ghee. Contains milk.",
     variants: [
-      { id: "mishri-250", label: "250 g", sku: "ZUC-MIS-250", weightGrams: 250, pricePaise: 89900 },
-      { id: "mishri-500", label: "500 g", sku: "ZUC-MIS-500", weightGrams: 500, pricePaise: 179900 }
+      { id: "mishri-250", label: "250 g", sku: "ZUC-MIS-250", weightGrams: 250, pricePaise: 89900, hsn: "1702" },
+      { id: "mishri-500", label: "500 g", sku: "ZUC-MIS-500", weightGrams: 500, pricePaise: 179900, hsn: "1702" }
     ]
   }
 ];
