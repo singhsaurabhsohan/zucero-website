@@ -11,6 +11,17 @@ function getAuthCallbackUrl() {
   return new URL("/auth/callback", configuredSiteUrl).toString();
 }
 
+function friendlyEmailError(message: string) {
+  const normalized = message.toLowerCase();
+  if (normalized.includes("rate limit") || normalized.includes("too many")) {
+    return "Please wait a minute before requesting another verification code.";
+  }
+  if (normalized.includes("magic link") || normalized.includes("smtp") || normalized.includes("email")) {
+    return "We couldn't send the verification code right now. Please try again in a moment.";
+  }
+  return message;
+}
+
 export function useEmailOtp() {
   const client = useMemo(() => isSupabaseConfigured() ? createSupabaseBrowserClient() : null, []);
   const [codeSent, setCodeSent] = useState(false);
@@ -40,7 +51,7 @@ export function useEmailOtp() {
     });
     setBusy(false);
     if (error) {
-      setMessage(error.message);
+      setMessage(friendlyEmailError(error.message));
       return false;
     }
     setCodeSent(true);
