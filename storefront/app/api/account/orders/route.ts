@@ -46,12 +46,12 @@ export async function GET() {
     .order("created_at", { ascending: false });
   if (error) return NextResponse.json({ error: "Could not load your orders." }, { status: 500 });
 
-  const ids = (orders ?? []).map((order) => order.id);
+  const ids = (orders ?? []).map((order: any) => order.id);
   const { data: items } = ids.length
     ? await db.from("order_items").select("order_id,sku,product_name,variant_label,quantity,unit_price_paise,line_total_paise").in("order_id", ids)
     : { data: [] as any[] };
 
-  const enriched = await Promise.all((orders ?? []).map(async (order) => {
+  const enriched = await Promise.all((orders ?? []).map(async (order: any) => {
     let liveStatus: string | null = null;
     let liveCourier: string | null = null;
     let liveTrackingUrl: string | null = null;
