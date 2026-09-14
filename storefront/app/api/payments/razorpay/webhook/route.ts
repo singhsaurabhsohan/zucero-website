@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { fulfilPaidOrder } from "@/lib/order-fulfilment";
+import { notifyPaidOrder } from "@/lib/notifications";
 import { verifyRazorpaySignature } from "@/lib/razorpay";
 import { supabaseAdmin } from "@/lib/supabase-admin";
 
@@ -69,6 +70,7 @@ export async function POST(request: Request) {
         updated_at: new Date().toISOString(),
       }).eq("id", order.id);
       await fulfilPaidOrder(order.id);
+      await notifyPaidOrder(order.id).catch((notificationError) => console.error("Paid order notification failed", notificationError));
     }
 
     return NextResponse.json({ received: true });
