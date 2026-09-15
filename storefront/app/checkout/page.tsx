@@ -9,7 +9,7 @@ import { SiteFooter } from "@/components/site-footer";
 import type { CustomerDetails } from "@/lib/customer-details";
 import { emptyCustomerDetails } from "@/lib/customer-details";
 import { INDIAN_STATES } from "@/lib/india";
-import { calculateCheckoutTotal } from "@/lib/tax";
+import { calculateCheckoutTotal, calculateCouponDiscount, normalizeCouponCode, ZUCADD10_CODE } from "@/lib/tax";
 import { createSupabaseBrowserClient, isSupabaseConfigured } from "@/lib/supabase-browser";
 
 type RazorpayResponse = {
@@ -79,8 +79,12 @@ export default function CheckoutPage() {
   const [details, setDetails] = useState<CustomerDetails>(emptyCustomerDetails);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [couponInput, setCouponInput] = useState("");
+  const [appliedCoupon, setAppliedCoupon] = useState("");
+  const [couponMessage, setCouponMessage] = useState("");
   const [completed, setCompleted] = useState<{ orderNumber: string; captured: boolean } | null>(null);
-  const quote = useMemo(() => details.state ? calculateCheckoutTotal(subtotalPaise, details.state) : null, [details.state, subtotalPaise]);
+  const discountPaise = useMemo(() => calculateCouponDiscount(subtotalPaise, appliedCoupon), [subtotalPaise, appliedCoupon]);
+  const quote = useMemo(() => details.state ? calculateCheckoutTotal(subtotalPaise, details.state, discountPaise) : null, [details.state, subtotalPaise, discountPaise]);
 
   useEffect(() => {
     let active = true;
@@ -114,6 +118,33 @@ export default function CheckoutPage() {
     setDetails((current) => ({ ...current, [field]: value }));
   }
 
+  function updateCoupon(value: string) {
+    setCouponInput(value.toUpperCase());
+    setCouponMessage("");
+    if (appliedCoupon) setAppliedCoupon("");
+  }
+
+  function handleCoupon() {
+    if (appliedCoupon) {
+      setAppliedCoupon("");
+      setCouponInput("");
+      setCouponMessage("Coupon removed.");
+      return;
+    }
+    const normalized = normalizeCouponCode(couponInput);
+    if (!normalized) {
+      setCouponMessage("Enter a coupon code.");
+      return;
+    }
+    if (normalized !== ZUCADD10_CODE) {
+      setCouponMessage("This coupon code is not valid.");
+      return;
+    }
+    setCouponInput(ZUCADD10_CODE);
+    setAppliedCoupon(ZUCADD10_CODE);
+    setCouponMessage("ZUCADD10 applied. Additional 10% discount added.");
+  }
+
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError("");
@@ -125,6 +156,7 @@ export default function CheckoutPage() {
         body: JSON.stringify({
           customer: { ...details, country: "India" },
           lines: lines.map((line) => ({ variantId: line.variantId, quantity: line.quantity })),
+          couponCode: appliedCoupon || undefined,
         }),
       });
       const order = await orderResponse.json();
@@ -183,9 +215,10 @@ export default function CheckoutPage() {
       <div className="checkout-heading"><p className="eyebrow">Secure checkout</p><h1>Where should we send it?</h1></div>
       <fieldset><legend>Contact</legend><div className="field-grid"><label className="wide"><span>Email</span><input required type="email" autoComplete="email" value={details.email} onChange={event => update("email", event.target.value)} /></label><label className="wide"><span>Full name</span><input required autoComplete="name" value={details.fullName} onChange={event => update("fullName", event.target.value)} /></label><label className="wide"><span>Mobile number</span><input required inputMode="tel" autoComplete="tel" value={details.phone} onChange={event => update("phone", event.target.value)} /></label></div></fieldset>
       <fieldset><legend>Delivery address</legend><div className="field-grid"><label className="wide"><span>Address</span><input required autoComplete="address-line1" value={details.addressLine1} onChange={event => update("addressLine1", event.target.value)} /></label><label className="wide"><span>Apartment, suite, etc. (optional)</span><input autoComplete="address-line2" value={details.addressLine2} onChange={event => update("addressLine2", event.target.value)} /></label><label><span>PIN code</span><input required inputMode="numeric" pattern="[0-9]{6}" autoComplete="postal-code" value={details.postalCode} onChange={event => update("postalCode", event.target.value.replace(/\D/g, "").slice(0, 6))} /></label><label><span>City</span><input required autoComplete="address-level2" value={details.city} onChange={event => update("city", event.target.value)} /></label><label><span>State / UT</span><select required autoComplete="address-level1" value={details.state} onChange={event => update("state", event.target.value)}><option value="">Select state</option>{INDIAN_STATES.map((state) => <option value={state} key={state}>{state}</option>)}</select></label><label><span>Country</span><input value="India" readOnly /></label></div></fieldset>
+      <fieldset><legend>Coupon code</legend><div className="field-grid"><label className="wide"><span>Coupon</span><input value={couponInput} onChange={event => updateCoupon(event.target.value)} placeholder="Enter coupon code" autoComplete="off" /></label><button className="button button-dark" type="button" onClick={handleCoupon} style={{ alignSelf: "end" }}>{appliedCoupon ? "Remove coupon" : "Apply coupon"}</button></div>{couponMessage && <p className="form-message" role="status">{couponMessage}</p>}</fieldset>
       {error && <p className="form-message" role="alert">{error}</p>}
       <button className="button button-dark checkout-button" type="submit" disabled={loading || !details.state || details.postalCode.length !== 6}>{loading ? "Preparing secure payment…" : quote ? `Pay ${formatPrice(quote.totalPaise)} securely` : "Select state to calculate total"}</button>
     </form>
-    <aside className="checkout-summary"><p className="eyebrow">Your order</p>{lines.map((line) => <div className="checkout-line" key={line.variantId}><span>{line.productName} · {line.variantLabel} × {line.quantity}</span><strong>{formatPrice(line.pricePaise * line.quantity)}</strong></div>)}<div className="checkout-line"><span>Product subtotal</span><strong>{formatPrice(subtotalPaise)}</strong></div>{quote ? <><div className="checkout-line"><span>Shipping</span><strong>{quote.shippingPaise === 0 ? "Free" : formatPrice(quote.shippingPaise)}</strong></div>{quote.mode === "CGST_SGST" ? <><div className="checkout-line"><span>CGST @ 2.5%</span><strong>{formatPrice(quote.cgstPaise)}</strong></div><div className="checkout-line"><span>SGST @ 2.5%</span><strong>{formatPrice(quote.sgstPaise)}</strong></div></> : <div className="checkout-line"><span>IGST @ 5%</span><strong>{formatPrice(quote.igstPaise)}</strong></div>}<div className="checkout-total"><span>Total payable</span><strong>{formatPrice(quote.totalPaise)}</strong></div></> : <p>Select your delivery state to calculate GST and shipping.</p>}</aside>
+    <aside className="checkout-summary"><p className="eyebrow">Your order</p>{lines.map((line) => <div className="checkout-line" key={line.variantId}><span>{line.productName} · {line.variantLabel} × {line.quantity}</span><strong>{formatPrice(line.pricePaise * line.quantity)}</strong></div>)}<div className="checkout-line"><span>Product subtotal</span><strong>{formatPrice(subtotalPaise)}</strong></div>{discountPaise > 0 && <div className="checkout-line"><span>Coupon {ZUCADD10_CODE} · 10% off</span><strong>-{formatPrice(discountPaise)}</strong></div>}{quote ? <><div className="checkout-line"><span>Shipping</span><strong>{quote.shippingPaise === 0 ? "Free" : formatPrice(quote.shippingPaise)}</strong></div>{quote.mode === "CGST_SGST" ? <><div className="checkout-line"><span>CGST @ 2.5%</span><strong>{formatPrice(quote.cgstPaise)}</strong></div><div className="checkout-line"><span>SGST @ 2.5%</span><strong>{formatPrice(quote.sgstPaise)}</strong></div></> : <div className="checkout-line"><span>IGST @ 5%</span><strong>{formatPrice(quote.igstPaise)}</strong></div>}<div className="checkout-total"><span>Total payable</span><strong>{formatPrice(quote.totalPaise)}</strong></div></> : <p>Select your delivery state to calculate GST and shipping.</p>}</aside>
   </section><SiteFooter /></main>;
 }
