@@ -1,6 +1,5 @@
 export const ZUCERO_ORIGIN_STATE = "Haryana";
 export const GST_RATE_BPS = 500;
-export const FREE_SHIPPING_THRESHOLD_PAISE = 149900;
 export const HARYANA_SHIPPING_PAISE = 7900;
 export const REST_OF_INDIA_SHIPPING_PAISE = 12900;
 export const ZUCADD10_CODE = "ZUCADD10";
@@ -19,8 +18,7 @@ export function calculateCouponDiscount(subtotalPaise: number, code: string | nu
   return Math.round(subtotalPaise * ZUCADD10_DISCOUNT_BPS / 10000);
 }
 
-export function calculateShipping(subtotalPaise: number, destinationState: string) {
-  if (subtotalPaise >= FREE_SHIPPING_THRESHOLD_PAISE) return 0;
+export function calculateShipping(_subtotalPaise: number, destinationState: string) {
   return isIntraState(destinationState) ? HARYANA_SHIPPING_PAISE : REST_OF_INDIA_SHIPPING_PAISE;
 }
 
