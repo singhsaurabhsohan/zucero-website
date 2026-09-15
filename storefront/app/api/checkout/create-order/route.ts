@@ -6,7 +6,7 @@ import { isIndianState } from "@/lib/india";
 import { createRazorpayOrder, razorpayPublicKeyId } from "@/lib/razorpay";
 import { getShippingOptions } from "@/lib/shiprocket";
 import { supabaseAdmin } from "@/lib/supabase-admin";
-import { calculateCheckoutTotal } from "@/lib/tax";
+import { calculateCheckoutTotal, calculateCouponDiscount, normalizeCouponCode, ZUCADD10_CODE } from "@/lib/tax";
 
 const schema = z.object({
   customer: z.object({
@@ -24,6 +24,7 @@ const schema = z.object({
     variantId: z.string().min(2).max(80),
     quantity: z.number().int().min(1).max(10),
   })).min(1).max(20),
+  couponCode: z.string().trim().max(40).optional().default(""),
 });
 
 function catalogLine(variantId: string) {
@@ -53,7 +54,12 @@ export async function POST(request: Request) {
     });
 
     const subtotalPaise = resolved.reduce((sum, line) => sum + (line.variant.pricePaise ?? 0) * line.quantity, 0);
-    const breakdown = calculateCheckoutTotal(subtotalPaise, input.customer.state);
+    const couponCode = normalizeCouponCode(input.couponCode);
+    if (couponCode && couponCode !== ZUCADD10_CODE) {
+      return NextResponse.json({ error: "This coupon code is not valid." }, { status: 400 });
+    }
+    const discountPaise = calculateCouponDiscount(subtotalPaise, couponCode);
+    const breakdown = calculateCheckoutTotal(subtotalPaise, input.customer.state, discountPaise);
     const totalWeightGrams = resolved.reduce((sum, line) => sum + line.variant.weightGrams * line.quantity, 0);
 
     const pickupPostcode = process.env.SHIPROCKET_PICKUP_POSTCODE;
@@ -85,7 +91,7 @@ export async function POST(request: Request) {
       payment_status: "pending",
       currency: "INR",
       subtotal_paise: subtotalPaise,
-      discount_paise: 0,
+      discount_paise: discountPaise,
       tax_paise: breakdown.totalTaxPaise,
       shipping_paise: breakdown.shippingPaise,
       total_paise: breakdown.totalPaise,
@@ -94,22 +100,30 @@ export async function POST(request: Request) {
     });
     if (orderError) throw new Error("Could not create order record");
 
-    const { error: itemsError } = await db.from("order_items").insert(resolved.map((line) => ({
-      order_id: localOrderId,
-      sku: line.variant.sku,
-      product_name: line.product.name,
-      variant_label: line.variant.label,
-      quantity: line.quantity,
-      unit_price_paise: line.variant.pricePaise,
-      tax_paise: Math.round(((line.variant.pricePaise ?? 0) * line.quantity) * 0.05),
-      line_total_paise: (line.variant.pricePaise ?? 0) * line.quantity,
-    })));
+    const { error: itemsError } = await db.from("order_items").insert(resolved.map((line) => {
+      const lineSubtotalPaise = (line.variant.pricePaise ?? 0) * line.quantity;
+      const lineDiscountPaise = couponCode === ZUCADD10_CODE ? Math.round(lineSubtotalPaise * 0.10) : 0;
+      return {
+        order_id: localOrderId,
+        sku: line.variant.sku,
+        product_name: line.product.name,
+        variant_label: line.variant.label,
+        quantity: line.quantity,
+        unit_price_paise: line.variant.pricePaise,
+        tax_paise: Math.round((lineSubtotalPaise - lineDiscountPaise) * 0.05),
+        line_total_paise: lineSubtotalPaise,
+      };
+    }));
     if (itemsError) throw new Error("Could not create order items");
 
     const razorpay = await createRazorpayOrder({
       amountPaise: breakdown.totalPaise,
       receipt: number,
-      notes: { local_order_id: localOrderId, order_number: number },
+      notes: {
+        local_order_id: localOrderId,
+        order_number: number,
+        ...(couponCode ? { coupon_code: couponCode } : {}),
+      },
     });
 
     const { error: paymentLinkError } = await db.from("orders")
@@ -123,6 +137,7 @@ export async function POST(request: Request) {
       razorpayOrderId: razorpay.id,
       amountPaise: breakdown.totalPaise,
       keyId: razorpayPublicKeyId(),
+      couponCode: couponCode || null,
       breakdown,
     });
   } catch (error) {
