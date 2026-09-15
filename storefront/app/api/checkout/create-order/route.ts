@@ -4,7 +4,7 @@ import { z } from "zod";
 import { products } from "@/lib/catalog";
 import { isIndianState } from "@/lib/india";
 import { createRazorpayOrder, razorpayPublicKeyId } from "@/lib/razorpay";
-import { getShippingOptions } from "@/lib/shiprocket";
+import { getPrepaidShippingQuote } from "@/lib/shiprocket";
 import { supabaseAdmin } from "@/lib/supabase-admin";
 import { calculateCheckoutTotal, calculateCouponDiscount, normalizeCouponCode, ZUCADD10_CODE } from "@/lib/tax";
 
@@ -59,20 +59,20 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "This coupon code is not valid." }, { status: 400 });
     }
     const discountPaise = calculateCouponDiscount(subtotalPaise, couponCode);
-    const breakdown = calculateCheckoutTotal(subtotalPaise, input.customer.state, discountPaise);
-    const totalWeightGrams = resolved.reduce((sum, line) => sum + line.variant.weightGrams * line.quantity, 0);
+    const totalWeightGrams = resolved.reduce((sum, line) => sum + line.variant.packedWeightGrams * line.quantity, 0);
+    if (totalWeightGrams > 30_000) {
+      return NextResponse.json({ error: "This order is too heavy for online checkout. Please contact us for assistance." }, { status: 400 });
+    }
 
     const pickupPostcode = process.env.SHIPROCKET_PICKUP_POSTCODE;
     if (!pickupPostcode) throw new Error("Shiprocket pickup postcode is not configured");
-    const serviceability = await getShippingOptions({
+    const shippingQuote = await getPrepaidShippingQuote({
       pickupPostcode,
       deliveryPostcode: input.customer.postalCode,
-      weightKg: Math.max(0.5, (totalWeightGrams + 250) / 1000),
-      cod: false,
-    }) as { data?: { available_courier_companies?: unknown[] } };
-    if (!serviceability?.data?.available_courier_companies?.length) {
-      return NextResponse.json({ error: "Delivery is currently unavailable for this PIN code." }, { status: 422 });
-    }
+      weightKg: totalWeightGrams / 1000,
+    });
+
+    const breakdown = calculateCheckoutTotal(subtotalPaise, input.customer.state, discountPaise, shippingQuote.shippingPaise);
 
     const db = supabaseAdmin();
     localOrderId = randomUUID();
@@ -122,6 +122,8 @@ export async function POST(request: Request) {
       notes: {
         local_order_id: localOrderId,
         order_number: number,
+        shipping_weight_grams: String(totalWeightGrams),
+        shipping_courier: shippingQuote.courierName,
         ...(couponCode ? { coupon_code: couponCode } : {}),
       },
     });
@@ -138,6 +140,7 @@ export async function POST(request: Request) {
       amountPaise: breakdown.totalPaise,
       keyId: razorpayPublicKeyId(),
       couponCode: couponCode || null,
+      totalWeightGrams,
       breakdown,
     });
   } catch (error) {
