@@ -1,3 +1,2 @@
-# ZUCERO Website
-
-Premium storefront for The Good Sugar.
+# zucero-website
+Premium website prototype for ZUCERO
